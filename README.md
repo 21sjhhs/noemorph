@@ -10,6 +10,8 @@ The method is **concept transformation → breadth-first discovery → explicit 
 
 > Release status: research acceptance was stopped by the user. Publication proceeds at the user’s request with incomplete acceptance disclosed in [QA_REPORT.md](QA_REPORT.md). CI checks are manual only; publishing does not restart tests.
 
+[Download v0.1.0-alpha.1](https://github.com/21sjhhs/noemorph/releases/tag/v0.1.0-alpha.1) — installable ZIP and SHA256 checksum.
+
 ## What a run does
 
 1. Preserve the original question, whole concept, subject, process, conditions, ambiguity and user scope.
