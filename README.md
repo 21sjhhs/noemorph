@@ -1,6 +1,6 @@
 # Noemorph
 
-**Multi-Agent Knowledge Exploration**
+**Go beyond the question you asked. Discover the questions you didn't know existed.**
 
 [简体中文](README.zh-CN.md) · [Skill instructions](SKILL.md) · [Architecture](references/ARCHITECTURE.md) · [QA report](QA_REPORT.md)
 
