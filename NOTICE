@@ -1,0 +1,11 @@
+Noemorph — Multi-Agent Knowledge Exploration
+Copyright 2026 Noemorph contributors
+
+Originally developed as the Socrates Skill. The original research entrypoint,
+research references and structural state utility are retained for provenance;
+the migration and source discrepancies are documented in the architecture.
+
+The rights holder confirmed Apache-2.0 licensing for the original project and
+the maintained code and instructions. This notice does not grant rights to
+external publications, user research data, third-party services or linked
+materials. Those materials are not bundled in this distribution.

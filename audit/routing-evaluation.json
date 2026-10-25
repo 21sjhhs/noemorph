@@ -1,0 +1,106 @@
+{
+  "evaluation_type": "isolated_metadata_routing_simulation",
+  "scope_note": "This is one isolated metadata-routing simulation, not a host-native auto-activation benchmark. Only the YAML frontmatter of noemorph/SKILL.md was read. No research or external services were used.",
+  "evaluations": [
+    {
+      "request": "Find hidden connections between scientific concepts.",
+      "decision": "route_to_skill",
+      "reason": "Cross-disciplinary connections and knowledge discovery are explicit triggers; the metadata supports exploratory concept expansion."
+    },
+    {
+      "request": "Explore a research question beyond its original scope.",
+      "decision": "route_to_skill",
+      "reason": "Exploring beyond the initial framing is explicitly stated, and the request is research-oriented."
+    },
+    {
+      "request": "Help me discover overlooked interdisciplinary research directions.",
+      "decision": "route_to_skill",
+      "reason": "Interdisciplinary discovery directly matches cross-disciplinary connections and knowledge discovery."
+    },
+    {
+      "request": "Generate new research questions from an existing hypothesis.",
+      "decision": "route_to_skill",
+      "reason": "Research question generation from hypotheses is an explicit trigger."
+    },
+    {
+      "request": "Perform recursive knowledge exploration rather than a conventional literature review.",
+      "decision": "route_to_skill",
+      "reason": "Recursive research and knowledge exploration explicitly match; the requested workflow exceeds a conventional literature review alone."
+    },
+    {
+      "request": "What is photosynthesis?",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "This is ordinary factual Q&A, which the metadata explicitly excludes."
+    },
+    {
+      "request": "Calculate 17 times 23.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Simple arithmetic does not require research or concept expansion."
+    },
+    {
+      "request": "Translate this paragraph into Chinese.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Translation is outside the described research and discovery workflow."
+    },
+    {
+      "request": "Summarize the attached article in five bullets.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "This requests a simple summary, which is explicitly excluded."
+    },
+    {
+      "request": "Find three papers about this protein.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "A bounded paper lookup does not request concept expansion or recursive discovery; conventional literature retrieval is a better fit."
+    },
+    {
+      "request": "Explain this concept with Socratic questions.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Socratic teaching is not the same as the described research workflow; no interdisciplinary discovery or recursive investigation is requested."
+    },
+    {
+      "request": "Break this software feature into implementation tasks.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Software planning is outside the described research exploration scope."
+    },
+    {
+      "request": "Review the causal evidence for this specific claim.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "A focused evidence appraisal does not itself request concept expansion or recursive discovery; scientific critical appraisal is a closer fit."
+    },
+    {
+      "request": "Create a knowledge graph from this already completed report.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "This requests transformation of existing material into a graph, not new knowledge exploration. The metadata does not claim graph-authoring capability."
+    },
+    {
+      "request": "Compare this year's laptop prices.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Current product-price comparison is outside the described exploratory scientific research workflow."
+    },
+    {
+      "request": "Use concept expansion to generate competing hypotheses and interdisciplinary links, then recursively investigate two rounds.",
+      "decision": "route_to_skill",
+      "reason": "Concept expansion, hypothesis generation, cross-disciplinary links and recursive research directly match the metadata."
+    },
+    {
+      "request": "Perform deep research on this topic.",
+      "decision": "needs_clarification",
+      "reason": "The opening description mentions deep research, but the remaining metadata narrows it to concept expansion and knowledge discovery. This request could instead mean a conventional literature review; selecting the skill automatically would risk overmatching."
+    },
+    {
+      "request": "Fix the Noemorph viewer's language menu.",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "Naming the project or viewer does not request its research workflow. This is a software maintenance task; compatibility text about the viewer is not an activation trigger."
+    },
+    {
+      "request": "What does recursive research mean?",
+      "decision": "ordinary_assistance_or_another_skill",
+      "reason": "This asks for a definition, not execution of recursive research. Keyword matching alone would overmatch ordinary factual Q&A."
+    },
+    {
+      "request": "I have a hypothesis; identify its hidden subject/predicate assumptions and discover other subject classes and higher-order processes to investigate.",
+      "decision": "route_to_skill",
+      "reason": "The requested subject substitution, predicate analysis and abstraction align with the named concept-expansion operations and discovery from hypotheses."
+    }
+  ]
+}

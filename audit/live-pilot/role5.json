@@ -1,0 +1,531 @@
+{
+  "round": 1,
+  "agent_id": "/root/noemorph_live_subject_abstraction",
+  "role": "subject_abstraction",
+  "execution_mode": "live delegated independent breadth research",
+  "anchor_ids": [
+    "S",
+    "P",
+    "C",
+    "X"
+  ],
+  "directions": [
+    {
+      "id": "R1-A5-1",
+      "question": "When a decentralized organizational team realizes a complex adaptive system, how does reorganization of local interaction patterns regain workable alignment after coordination impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "S → G_S",
+        "G_S": "Complex adaptive systems of interacting adaptive agents",
+        "relation": "Conditional realization of a broader dynamical system class, rather than substitution of another kind of team. Distributed authority alone does not establish adaptive dynamics.",
+        "membership_justification": "Represent members/units as agents, their interdependent exchanges as interactions, and changes in action rules as adaptation; the representation requires observed local adaptation and system-level emergent patterns.",
+        "invariants": [
+          "Multiple interacting components",
+          "Interdependence that yields system-level patterns",
+          "Local agency and adaptation under changing conditions"
+        ],
+        "non_coercive_conditions": [
+          "Members can adjust coordination through consent and local discretion",
+          "Interaction evidence comes from work processes or voluntary reports rather than employee surveillance",
+          "No military-command cases are used"
+        ]
+      },
+      "discovery_target": "Whether altered interaction connectivity and enabling conditions, rather than replacement of a single leader, precede recovery of interdependent task alignment.",
+      "search_route": {
+        "calls": [
+          "Q1",
+          "Q3"
+        ],
+        "queries": [
+          "Uhl-Bien Marion McKelvey 2007 complexity leadership theory organizations complex adaptive systems pdf",
+          "\"complex adaptive\" \"coordination\" \"disruption\" organizations recovery research"
+        ],
+        "opened": [
+          "E1"
+        ]
+      },
+      "bridge_test": "First show that an actual team has distributed decision rights plus adaptive interacting agents; document impaired task alignment, changes in local interaction patterns, and subsequent workable alignment. Compare recovery and failed recovery while separating coordination outcomes from innovation or generic adaptability. Reject the bridge if adaptation occurs without regained coordination.",
+      "novelty_reason": "Introduces emergence, interaction topology and adaptive dynamics as measurable system properties; it is not a new label for decentralization.",
+      "unknowns": [
+        "Whether all or which anchor teams satisfy CAS criteria",
+        "Whether the retrieved adaptive capacity framework predicts recovery rather than innovation",
+        "Decision-right distribution and non-coercion in the retrieved emergency-team study are unverified",
+        "Recovery threshold and counterfactual remain unspecified"
+      ],
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or units; membership of any broader theoretical class remains to be tested.",
+        "P": "Regain a workable capacity to align interdependent activity after impairment; earlier or different workable arrangement allowed.",
+        "C": "After a disruption, with onset/end, duration and severity unspecified; temporal order alone does not establish causation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "subject_level": "Team → agent-interaction dynamical system representation",
+        "predicate": "P is retained; adaptation is a candidate explanatory variable, not a replacement outcome"
+      },
+      "finding": "The primary article abstract frames organizational leadership through interactions from which adaptive outcomes emerge. A separate primary search result describes emergency medical teams and temporal coordination restructuring. These support a theoretical framing and an adjacent empirical route, respectively; neither establishes recovery transfer to non-coercive teams with distributed authority.",
+      "evidence_refs": [
+        "E1",
+        "E2"
+      ],
+      "status": "conditional_framing_supported_recovery_unverified",
+      "candidate_validity": {
+        "verdict": "provisional_conditional_type_lift",
+        "is_universal_superordinate_of_anchor": false,
+        "reason": "The CAS class is broader than organizational teams, but adaptive interaction is an additional membership requirement absent from the anchor. A universal lift would be unsupported.",
+        "recovery_transfer": "not established"
+      }
+    },
+    {
+      "id": "R1-A5-2",
+      "question": "For a decentralized team that instantiates a polycentric institutional system, can coordination recovery after impairment be explained by renegotiating interfaces among autonomous decision centers?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "S → G_S",
+        "G_S": "Polycentric institutional systems with mutually adjusting decision centers",
+        "relation": "Conditional institutional representation spanning collectives at multiple scales, not replacement by another team sector.",
+        "membership_justification": "Members or units must have actual autonomous decision jurisdictions, recognize interdependence, and sustain workable inter-center arrangements. Mere delegation or multiple physical locations is insufficient.",
+        "invariants": [
+          "Multiple autonomous decision centers",
+          "Interdependence among centers",
+          "Rules or workable interfaces for mutual adjustment"
+        ],
+        "non_coercive_conditions": [
+          "Use voluntary horizontal coordination and participants able to negotiate arrangements",
+          "Inspect civil-society cooperation separately from compulsory or militarized crisis structures",
+          "Do not import punitive enforcement or member monitoring as a recovery recommendation"
+        ]
+      },
+      "discovery_target": "How recognition of autonomous participants, interface agreements and voluntarily assigned coordinating roles affect recovery.",
+      "search_route": {
+        "calls": [
+          "Q1",
+          "Q3"
+        ],
+        "queries": [
+          "Ostrom 2010 beyond markets and states polycentric governance complex economic systems pdf",
+          "\"polycentric\" \"coordination\" \"crisis\" \"voluntary\" governance research"
+        ],
+        "opened": []
+      },
+      "bridge_test": "Map actual team decision jurisdictions to distinct centers and specify how they can negotiate without compulsion. Trace a pre-impairment arrangement, actual breakdown, interface changes, and restored alignment. Civil-society crisis response demonstrates only a possible mechanism unless the same temporal impairment/recovery sequence is measured. Test whether class membership fails for teams with no institutionalized centers.",
+      "novelty_reason": "Moves from a bounded team to an institutional configuration of autonomous centers; predicts interface and legitimacy problems that a team label does not specify.",
+      "unknowns": [
+        "Shared-rule requirements remain theoretically contested",
+        "Whether an individual team has distinct centers rather than merely delegated tasks",
+        "The retrieved volunteer episode does not report a recovery baseline or threshold",
+        "Mixed crisis-management contexts contain out-of-scope command relations; no transfer from those relations is claimed"
+      ],
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or units; membership of any broader theoretical class remains to be tested.",
+        "P": "Regain a workable capacity to align interdependent activity after impairment; earlier or different workable arrangement allowed.",
+        "C": "After a disruption, with onset/end, duration and severity unspecified; temporal order alone does not establish causation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "subject_level": "Team → polycentric institutional configuration",
+        "predicate": "Coordination recovery remains P; crisis response performance alone is insufficient"
+      },
+      "finding": "A primary crisis-governance article defines polycentricity through autonomous, interdependent units. A separate primary civil-society study reports an emergent volunteer organization using shared rosters, task division and an assigned coordinator when coordination became difficult. Only the non-command volunteer episode is relevant here; the source also contains excluded command practices. This is a concrete candidate bridge, not established team recovery.",
+      "evidence_refs": [
+        "E3",
+        "E4"
+      ],
+      "status": "conditional_framing_and_search_excerpt_bridge_recovery_unverified",
+      "candidate_validity": {
+        "verdict": "provisional_conditional_type_lift",
+        "is_universal_superordinate_of_anchor": false,
+        "reason": "Distinct autonomous decision centers are a plausible institutional representation of some anchor teams, but distributed authority alone does not prove those centers or their interfaces exist.",
+        "recovery_transfer": "not established; candidate episode lacks baseline and authority audit"
+      }
+    },
+    {
+      "id": "R1-A5-3",
+      "question": "If a decentralized team and its shared work artifacts realize a distributed cognitive system, how does reestablishing propagation of task-relevant representations restore coordination after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "S → G_S",
+        "G_S": "Distributed cognitive systems spanning people, artifacts and work practice",
+        "relation": "Explicit realization/representation relation; the team alone is not literally identical to the people-plus-artifacts system.",
+        "membership_justification": "The joint task must depend on transformations or propagation of information across members and material/digital representations. The system boundary is enlarged transparently to include artifacts actually used in the team task.",
+        "invariants": [
+          "Task-dependent information transformations",
+          "Representations distributed over interacting components",
+          "Cross-component dependencies necessary for joint task performance"
+        ],
+        "non_coercive_conditions": [
+          "Use shared task artifacts with participant consent",
+          "No personal tracking or employee-surveillance systems",
+          "Retain distributed decision authority; informational centrality is not decision centrality"
+        ]
+      },
+      "discovery_target": "Whether repair of shared representations, handoffs and artifact availability explains recovery independently of formal reporting lines.",
+      "search_route": {
+        "calls": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ],
+        "queries": [
+          "Hutchins distributed cognition cognitive system people artifacts organization pdf",
+          "Hollan Hutchins Kirsh 2000 distributed cognition human computer interaction dynamic configure subsystems coordination pdf author",
+          "\"distributed cognition\" \"disruption\" coordination recovery repair work"
+        ],
+        "opened": [
+          "E5"
+        ]
+      },
+      "bridge_test": "Locate a specific impaired interdependent task; trace which shared representation or handoff failed, what actors/artifacts repaired it, and whether task alignment recovered. Hold the people/artifact boundary constant over time. Verify decision authority separately, because successful distributed cognition can coexist with centralized authority.",
+      "novelty_reason": "Adds representational media and propagation paths as elements of the subject; distinguishes cognitive distribution from distribution of authority.",
+      "unknowns": [
+        "Whether the anchor task is appropriately modeled as cognitive work",
+        "Whether the manufacturing case had distributed decision rights or non-coercive coordination",
+        "The control-room-centered case is not evidence that authority was decentralized",
+        "No causal estimate of artifact repair on recovery was retrieved"
+      ],
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or units; membership of any broader theoretical class remains to be tested.",
+        "P": "Regain a workable capacity to align interdependent activity after impairment; earlier or different workable arrangement allowed.",
+        "C": "After a disruption, with onset/end, duration and severity unspecified; temporal order alone does not establish causation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "subject_level": "Team → realized cognitive system including relevant artifacts",
+        "predicate": "P retained; representational propagation is a proposed mechanism"
+      },
+      "finding": "The primary author-hosted abstract explicitly focuses on interactions among people and technologies and coordination in whole work environments. A primary manufacturing-study search excerpt reports cognitive artifacts mediating interruption handling. The latter also mentions control-room-centered communication, so its success cannot establish transfer to decentralized authority. The representation is plausible; recovery remains to be tested.",
+      "evidence_refs": [
+        "E5",
+        "E6"
+      ],
+      "status": "conditional_representation_supported_recovery_unverified",
+      "candidate_validity": {
+        "verdict": "provisional_structural_representation",
+        "is_universal_superordinate_of_anchor": false,
+        "reason": "A broader theoretical object can represent some teams, but it requires a task-specific cognition/artifact mapping; it is not a strict set-inclusion assertion for every team.",
+        "recovery_transfer": "not established"
+      }
+    },
+    {
+      "id": "R1-A5-4",
+      "question": "When a decentralized team is modeled as a sociotechnical work system, does restoring the fit between social decision arrangements and technical task dependencies recover coordination after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "S → G_S",
+        "G_S": "Sociotechnical work systems with coupled social and technical subsystems",
+        "relation": "Conditional work-system representation, broader than teams because it also covers organizational systems with many units and technologies.",
+        "membership_justification": "Specify an actual work task and its technical/material/procedural constraints alongside member roles and distributed decision rights. Their coupling, not mere co-presence of humans and tools, warrants the model.",
+        "invariants": [
+          "A bounded work transformation/task",
+          "Coupled social and technical dependencies",
+          "Local choices affect system-level task performance"
+        ],
+        "non_coercive_conditions": [
+          "Participants can shape work design and renegotiate roles",
+          "Use work-relevant feedback rather than employee surveillance",
+          "Do not equate self-regulation or a managerial design label with consent"
+        ]
+      },
+      "discovery_target": "Whether repair should target coupled work design and resource/authority mismatches rather than communication volume alone.",
+      "search_route": {
+        "calls": [
+          "Q2",
+          "Q4"
+        ],
+        "queries": [
+          "sociotechnical systems theory organizational work systems self regulating groups joint optimization Cherns 1976 abstract",
+          "\"sociotechnical\" \"coordination\" \"recovery\" disruption autonomous groups",
+          "\"Principles of Sociotechnical Design\" \"variance\" \"participation\" Cherns"
+        ],
+        "opened": [
+          "E8"
+        ]
+      },
+      "bridge_test": "Before applying the model, map technical task dependencies and who has authority/resources to alter them. Observe an impairment that creates a mismatch, a participatory repair, and subsequent alignment. Model-based network recovery is not sufficient evidence: reject transfer if the model only restores infrastructure service or assumes away consent, power or team cognition.",
+      "novelty_reason": "Changes the analytic unit to a coupled work system and introduces joint design constraints, distinguishing it from a cognition-only representation.",
+      "unknowns": [
+        "The original anchor does not specify a technical subsystem",
+        "The retrieved recovery model was not opened and its assumptions and outcome measures remain unverified",
+        "A participative design principle does not establish post-impairment recovery efficacy",
+        "How to operationalize non-coercion in resource/authority changes"
+      ],
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or units; membership of any broader theoretical class remains to be tested.",
+        "P": "Regain a workable capacity to align interdependent activity after impairment; earlier or different workable arrangement allowed.",
+        "C": "After a disruption, with onset/end, duration and severity unspecified; temporal order alone does not establish causation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "subject_level": "Team → coupled sociotechnical work system",
+        "predicate": "P unchanged; generic resilience or infrastructure restoration does not substitute for coordination recovery"
+      },
+      "finding": "Cummings’s primary abstract locates self-regulating work groups in sociotechnical systems theory, providing a direct organizational class bridge. A separate primary paper’s search excerpt describes a decentralized recovery model with heterogeneous agents and bottom-up dynamics. That model is a lead, not verified evidence of team coordination recovery. Cherns’s primary full text could not be read in the returned PDF text.",
+      "evidence_refs": [
+        "E7",
+        "E8",
+        "E9"
+      ],
+      "status": "conditional_framing_supported_model_transfer_unverified",
+      "candidate_validity": {
+        "verdict": "provisional_structural_representation",
+        "is_universal_superordinate_of_anchor": false,
+        "reason": "A genuinely broader work-system structure is available, but task coupling and non-coercive design conditions must be established for an actual anchor team.",
+        "recovery_transfer": "not established; model lead only"
+      }
+    },
+    {
+      "id": "R1-A5-5",
+      "question": "For those decentralized teams that qualify as group agents, does repair of collectively coherent judgments and goals explain coordination recovery after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "S → G_S",
+        "G_S": "Group agents with collective representational and goal-seeking states",
+        "relation": "Attempted conditional inclusion in an agent-theoretic class; rejected as an unconditional superordinate of S.",
+        "membership_justification": "A team must sustain collective beliefs/goals, revise them coherently, and act on them through its members. None follows merely from distributed decision authority. Many coordinated teams may lack a single group-level agent.",
+        "invariants": [
+          "Collective representational states",
+          "Collective goals",
+          "A mechanism linking member contributions to collective action"
+        ],
+        "non_coercive_conditions": [
+          "Members authorize and can contest collective decision procedures",
+          "No spokesperson or majority procedure is treated as evidence of consent by itself",
+          "No coercive enforcement or employee surveillance is inferred from group rationality"
+        ]
+      },
+      "discovery_target": "Whether collective judgment inconsistency can produce misaligned actions and whether authorized revision repairs that particular failure.",
+      "search_route": {
+        "calls": [
+          "Q2",
+          "Q4"
+        ],
+        "queries": [
+          "Christian List Philip Pettit group agency organizational groups agent rationality institutional pdf",
+          "\"group agency\" \"disruption\" coordination repair"
+        ],
+        "opened": [
+          "E10"
+        ]
+      },
+      "bridge_test": "Establish independent behavioral evidence of group-level judgments/goals before testing recovery. Compare a judgment-inconsistency impairment with coordination impairments caused by missing resources or incompatible tasks. Test whether deliberative revision restores the specified alignment; reject the lift if collective agency is merely attributed from team membership.",
+      "novelty_reason": "Introduces requirements for collective agency and judgment aggregation, distinct from interaction dynamics, institutional centers, information propagation and sociotechnical fit.",
+      "unknowns": [
+        "Anchor supplies no collective rationality or group-state evidence",
+        "No pertinent primary recovery study was returned by the targeted query",
+        "The opened author PDF had no text lines available",
+        "Group coherence need not be necessary or sufficient for coordination"
+      ],
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or units; membership of any broader theoretical class remains to be tested.",
+        "P": "Regain a workable capacity to align interdependent activity after impairment; earlier or different workable arrangement allowed.",
+        "C": "After a disruption, with onset/end, duration and severity unspecified; temporal order alone does not establish causation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "subject_level": "Team → hypothesized group agent",
+        "predicate": "Coordination recovery retained; collective rationality is a possible explanatory property, not a replacement for P"
+      },
+      "finding": "The primary author-paper search excerpt specifies representational and goal-seeking states with rationality conditions, while the publisher’s introduction presents group agency as a substantive theoretical position. This establishes a distinct theoretical object, but supplies neither membership evidence for the anchor teams nor a recovery mechanism. The proposed unconditional lift fails; the question remains a conditional hypothesis for a restricted subset.",
+      "evidence_refs": [
+        "E10",
+        "E11"
+      ],
+      "status": "unsupported_as_general_lift_no_recovery_evidence",
+      "candidate_validity": {
+        "verdict": "invalid_as_unconditional_superordinate",
+        "is_universal_superordinate_of_anchor": false,
+        "reason": "Group agents are not shown to contain all decentralized teams. Claiming S ⊆ G_S would silently add substantive agency and rationality conditions; the anchor does not license them.",
+        "recovery_transfer": "unsupported"
+      }
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "E1",
+      "url": "https://www.sciencedirect.com/science/article/pii/S1048984307000689",
+      "title": "Complexity Leadership Theory: Shifting leadership from the industrial age to the knowledge era",
+      "source_type": "primary theoretical article; publisher",
+      "access": "Primary abstract returned in Q1; attempted open failed HTTP 403.",
+      "supported_claim": "The authors frame leadership as interactive dynamics enabling adaptive capacity in organizational complex adaptive systems.",
+      "does_not_support": "That distributed authority is sufficient for CAS membership or that CAS dynamics cause coordination recovery.",
+      "retrieval_ref": "turn18search1; turn25view0"
+    },
+    {
+      "id": "E2",
+      "url": "https://journals.sagepub.com/doi/10.1177/10464964251405195",
+      "title": "Coordination Restructuring in Team Training: Navigating Through Order and Disorder",
+      "source_type": "primary empirical article; publisher",
+      "access": "Q3 search excerpt only; not opened.",
+      "supported_claim": "The study analyzes emergency medical teams’ coordination restructuring over time using sliding-window entropy and distinguishes ordered/disordered phases.",
+      "does_not_support": "Distributed authority, consent conditions, or measured recovery under the anchor definition.",
+      "retrieval_ref": "turn23search7"
+    },
+    {
+      "id": "E3",
+      "url": "https://link.springer.com/article/10.1007/s11077-023-09510-9",
+      "title": "Polycentric disaster governance in a federalising Nepal: interplay between people, bureaucracy and political leadership",
+      "source_type": "primary research article; publisher",
+      "access": "Q3 search excerpt only; not opened.",
+      "supported_claim": "The article defines a polycentric configuration through autonomous units that remain interdependent in rule and policy making.",
+      "does_not_support": "A non-coercive team recovery effect; public governance cases are not silently imported into scope.",
+      "retrieval_ref": "turn23search2"
+    },
+    {
+      "id": "E4",
+      "url": "https://www.cambridge.org/core/journals/voluntas/article/legitimizing-the-informal-a-polycentric-argument-for-inclusive-crisis-management/BEED36DCF94534A4EA6E716B2FCBE9EC",
+      "title": "Legitimizing the Informal: A Polycentric Argument for Inclusive Crisis Management",
+      "source_type": "primary qualitative research article; publisher",
+      "access": "Substantial Q3 search excerpt including methods and findings; not opened.",
+      "supported_claim": "In an emergent volunteer episode, participants used shared rosters, task allocation and a coordinator when coordination became difficult; the article separately discusses hierarchical command relations.",
+      "does_not_support": "A measured before/after coordination recovery effect or that all crisis coordination is non-coercive. Only the autonomous volunteer episode is retained as a lead.",
+      "retrieval_ref": "turn23search3"
+    },
+    {
+      "id": "E5",
+      "url": "https://interactivity.ucsd.edu/articles/DCog/DCog.pdf",
+      "title": "Distributed Cognition: Toward a New Foundation for Human-Computer Interaction Research",
+      "source_type": "primary author-institution hosted paper",
+      "access": "Q2 primary abstract returned; open failed because PDF size exceeded tool limit (29,518,665 bytes).",
+      "supported_claim": "The framework studies whole work environments and interactions among people and technologies, including coordination of activity.",
+      "does_not_support": "Distribution of decision authority or recovery after a specified impairment.",
+      "retrieval_ref": "turn21search12; turn25view1"
+    },
+    {
+      "id": "E6",
+      "url": "https://link.springer.com/article/10.1007/s10111-016-0399-6",
+      "title": "Interruptions in the wild: portraying the handling of interruptions in manufacturing from a distributed cognition lens",
+      "source_type": "primary empirical article; publisher",
+      "access": "Q3 search excerpt only; not opened.",
+      "supported_claim": "The study describes cognitive artifacts as coordination mechanisms during manufacturing interruption handling and notes control-room-centered information flows.",
+      "does_not_support": "Decentralized decision rights, non-coercion or causal artifact-repair effects.",
+      "retrieval_ref": "turn23search10"
+    },
+    {
+      "id": "E7",
+      "url": "https://journals.aom.org/doi/10.5465/amr.1978.4305900",
+      "title": "Self-Regulating Work Groups: A Socio-Technical Synthesis",
+      "source_type": "primary theoretical article; publisher",
+      "access": "Q2 primary abstract returned; not opened.",
+      "supported_claim": "Self-regulating work groups are explicitly situated within sociotechnical systems theory and field experimentation.",
+      "does_not_support": "All decentralized teams are sociotechnical systems or a post-impairment recovery mechanism.",
+      "retrieval_ref": "turn21search1"
+    },
+    {
+      "id": "E8",
+      "url": "https://journals.sagepub.com/doi/pdf/10.1177/001872677602900806",
+      "title": "The Principles of Sociotechnical Design",
+      "source_type": "primary article; publisher",
+      "access": "Q2 primary excerpt identified article and organizational-design framing. Open returned a 10-page PDF but only a copyright text line. Two screenshot requests returned references without inspectable images in this tool response.",
+      "supported_claim": "Primary search excerpt establishes organizational-design subject matter and bibliographic identity only.",
+      "does_not_support": "Full-text participation or variance-control claims; those details were not verified from this primary PDF.",
+      "retrieval_ref": "turn21search13; turn25view3; turn26view2; turn26view3"
+    },
+    {
+      "id": "E9",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0951832024001595",
+      "title": "Building back better: Modeling decentralized recovery in sociotechnical systems using strategic network dynamics",
+      "source_type": "primary modeling article; publisher",
+      "access": "Q4 primary search excerpt only; not opened.",
+      "supported_claim": "The paper models decentralized post-disruption recovery using heterogeneous agents and bottom-up dynamic mechanisms, acknowledging objective misalignment and coordination challenges.",
+      "does_not_support": "Empirical team recovery, decision-right details, non-coercive assumptions or the model’s external validity.",
+      "retrieval_ref": "turn24search2"
+    },
+    {
+      "id": "E10",
+      "url": "https://ppettit.scholar.princeton.edu/document/1686",
+      "title": "Group Agency and Supervenience",
+      "source_type": "primary author-institution hosted paper",
+      "access": "Q2 primary excerpt returned; open returned a 12-page PDF with zero text lines. Two screenshot requests returned references without inspectable images in this tool response.",
+      "supported_claim": "The primary excerpt states representational/goal-seeking states and rationality conditions as group-agency requirements.",
+      "does_not_support": "Any particular decentralized team satisfies them, or that coherence repair produces coordination recovery.",
+      "retrieval_ref": "turn21search15; turn25view2; turn26view0; turn26view1"
+    },
+    {
+      "id": "E11",
+      "url": "https://academic.oup.com/book/3619/chapter-abstract/144918327",
+      "title": "Introduction, Group Agency: The Possibility, Design, and Status of Corporate Agents",
+      "source_type": "primary authors’ book chapter; publisher",
+      "access": "Q2 primary abstract returned; not opened.",
+      "supported_claim": "The authors defend a substantive individualistic realism about group agents, distinguishing it from spokesperson authorization alone.",
+      "does_not_support": "Recovery mechanisms or automatic agency membership for teams.",
+      "retrieval_ref": "turn21search2"
+    }
+  ],
+  "retrieval_limits": {
+    "max_search_calls": 4,
+    "actual_search_calls": 4,
+    "queries_per_call": {
+      "Q1": 3,
+      "Q2": 3,
+      "Q3": 3,
+      "Q4": 3
+    },
+    "max_primary_source_opens": 4,
+    "actual_primary_source_opens": 4,
+    "open_attempts": [
+      "E1: 403 Forbidden",
+      "E5: content too large",
+      "E10: PDF zero extracted text lines",
+      "E8: PDF copyright-only extracted text"
+    ],
+    "additional_new_source_opens": 0,
+    "screenshot_calls": 1,
+    "screenshot_pages_requested": 4,
+    "screenshot_result": "References returned; no inspectable screenshot images were exposed in this response. No visual-reading claim is made.",
+    "search_excerpt_only_sources": [
+      "E2",
+      "E3",
+      "E4",
+      "E6",
+      "E7",
+      "E9",
+      "E11"
+    ],
+    "limitations": [
+      "Search excerpts are preliminary evidence, not full-text review.",
+      "Q3 response was truncated by the retrieval service; only returned text was used.",
+      "No universal membership claim follows from a theoretical framework.",
+      "No source established the full non-coercive decentralized-team impairment-to-recovery bridge.",
+      "No selected direction, ranking, depth sequence, or additional agent was produced."
+    ]
+  },
+  "execution_note": {
+    "inputs_read": [
+      "noemorph/audit/live-pilot/anchor.json",
+      "Only relevant role definition, breadth template and type-lift constraint excerpts from noemorph/references/EXPLORATION_OPERATORS.md"
+    ],
+    "path_resolution": "The initially requested references/EXPLORATION_OPERATORS.md path did not exist; a filename-only rg search located noemorph/references/EXPLORATION_OPERATORS.md. No sibling outputs or prior audits were read.",
+    "actual_research": "Four web search calls and four attempted primary-source opens executed live. Evidence includes returned primary abstracts and excerpts; failed full-text access is recorded.",
+    "macro_rounds": 1,
+    "top_n": 1,
+    "later_depth_minimum": 3,
+    "selection_performed": false,
+    "depth_performed": false,
+    "subagents_spawned": false,
+    "completion": "Five distinct candidate questions were formulated and investigated. Four remain conditional framing/representation hypotheses; the fifth is unsupported as an unconditional superordinate. Five validated lifts and recovery transfer were not achieved; this breadth role is incomplete if the criterion requires five validated lifts."
+  }
+}

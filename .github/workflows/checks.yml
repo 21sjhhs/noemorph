@@ -1,0 +1,25 @@
+name: Checks
+# Manual only: publishing must not resume the user-stopped acceptance tests.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python scripts/validate_skill.py
+      - run: python scripts/check_upstream.py
+      - run: python scripts/release_scan.py
+      - run: python -m unittest discover -s scripts -p 'test_run_state.py' -v
+      - run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - run: node --test tests/graph-core.test.cjs tests/languages.test.cjs
+      - run: node --check plugins/knowledge-map/app.js
+      - run: node --check plugins/knowledge-map/settings.js

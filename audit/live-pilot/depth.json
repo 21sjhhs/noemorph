@@ -1,0 +1,322 @@
+{
+  "round": 1,
+  "agent_id": "/root/noemorph_live_subject_abstraction",
+  "direction_id": "R1-A5-2",
+  "role": "depth_worker",
+  "original_question": "How do decentralized teams recover coordination after disruption?",
+  "anchor_ids": [
+    "S",
+    "P",
+    "C",
+    "X"
+  ],
+  "fixed_scope": "Non-coercive organizational coordination; exclude employee surveillance and military command. Decentralization refers provisionally to distributed decision authority. Recovery means regained workable alignment after impairment, including a changed workable arrangement.",
+  "hops": [
+    {
+      "hop": 1,
+      "question": "Does the original E4 lead establish both a polycentric organizational representation and an observed impairment-to-recovery sequence, or only a candidate cooperative process?",
+      "finding": "The study describes autonomous volunteer cooperation and disclaims generalizable causality; retrieved material does not establish measured coordination recovery.",
+      "relation": {
+        "from": "Selected direction R1-A5-2 and breadth lead E4",
+        "to": "D1-C1: evidential boundary between cooperation accounts and observed recovery",
+        "type": "source verification and premise test",
+        "class_membership": "Unresolved for the unspecified anchor team.",
+        "conceptual_representation": "Conditional representation remains investigable.",
+        "recovery_observation": "Not established under the anchor outcome criterion.",
+        "causal_mechanism": "Not established."
+      },
+      "evidence_refs": [
+        "D1"
+      ],
+      "status": "supported_with_limits",
+      "why_next": "The initial bridge does not satisfy the original outcome criterion. Before pursuing mechanisms, test which properties distinguish a polycentric arrangement from a functioning system; otherwise coordinated functioning could be assumed in the class definition and misreported as recovery.",
+      "actual_retrieval_action": [
+        {
+          "action_id": "O1",
+          "tool": "web.run open",
+          "url_ref": "D1",
+          "performed": true,
+          "access_outcome": "Accessible primary publisher HTML, 991 indexed lines; returned passage includes abstract and introduction. No claim of full-article review."
+        }
+      ],
+      "access_outcome": "Primary abstract and introduction accessible; no access failure. Evidential premise, rather than access, failed to establish the entire anchor relation."
+    },
+    {
+      "hop": 2,
+      "question": "Given that cooperation alone does not establish recovery, what additional institutional properties warrant modeling an organizational team as a polycentric system without assuming successful coordination by definition?",
+      "finding": "The model separates multiple semiautonomous centers from a coordinated system; centers must possess domain-specific rule-making independence and account for one another. Formal autonomy does not guarantee practical autonomy. These are membership/representation criteria, not evidence of recovery, consent, or superior performance.",
+      "relation": {
+        "from": "Hop 1 outcome-evidence gap",
+        "to": "D2-C1: independent membership criteria and the arrangement/system distinction",
+        "type": "boundary clarification driven by the failed recovery premise",
+        "class_membership": "A team-to-polycentric mapping requires empirical decision-right and rule-making evidence absent from the anchor.",
+        "conceptual_representation": "Supported conditionally; it is a theoretical representation of qualifying teams, not S being universally included in the class.",
+        "recovery_observation": "Must be measured separately from the institutional classification.",
+        "causal_mechanism": "A definitional condition cannot itself identify a causal recovery effect."
+      },
+      "evidence_refs": [
+        "D2"
+      ],
+      "status": "supported_with_limits",
+      "why_next": "Separate institutional mapping from outcome measurement. Seek episode-level evidence linking a specific coordination impairment to attempted repairs, then assess practical autonomy and non-coercion rather than inferring either from labels.",
+      "actual_retrieval_action": [
+        {
+          "action_id": "Q1",
+          "tool": "web.run search_query",
+          "performed": true,
+          "queries": [
+            "polycentric governance autonomous decision centers mutual adjustment decentralized not necessarily polycentric definition Ostrom",
+            "polycentric governance organizational teams autonomy consent non coercive coordination empirical recovery"
+          ],
+          "access_outcome": "Returned primary conceptual sources; result was truncated, and only returned material was used."
+        },
+        {
+          "action_id": "O2",
+          "tool": "web.run open",
+          "url_ref": "D2",
+          "performed": true,
+          "access_outcome": "Accessible primary publisher HTML; substantive theory and membership sections returned."
+        }
+      ],
+      "access_outcome": "Relevant conceptual primary text accessible. No anchor-specific membership or recovery data were established."
+    },
+    {
+      "hop": 3,
+      "question": "Given the need for an independent outcome and actual autonomy evidence, do primary studies of organizational volunteer coordination document breakdown followed by repair, and what prevents treating that sequence as proof of non-coercive polycentric recovery?",
+      "finding": {
+        "D3-C1": "A qualitative process-study abstract reports observable workflow repairs following coordination strain, but explicitly describes repair as partial and uneven. Full text is gated, so decision-right distribution, consent, episode measurements and alternative explanations remain unaudited.",
+        "D4-C1": "An accessible institutional field report identifies information/access barriers and contested affiliation, undermining an inference from volunteer status to frictionless autonomous cooperation.",
+        "researcher_assessment": "This narrows a plausible explanation to conditional repair of task interfaces. It does not establish a recovered threshold of workable alignment, qualifying polycentric centers in the same case, or a causal effect of decentralization."
+      },
+      "relation": {
+        "from": "Hop 2 requirement to separate class structure from performance",
+        "to": "D3-C1: bounded process observation; D4-C1: participation/access boundary",
+        "type": "empirical process search followed by a distinct alternative-access and boundary attempt",
+        "class_membership": "Still unresolved for both the anchor and the full empirical episodes.",
+        "conceptual_representation": "Potentially applicable if actual autonomous, interdependent decision centers are established separately.",
+        "recovery_observation": "Some repair-process observations are supported; complete recovery under the anchor definition remains unverified.",
+        "causal_mechanism": "Interface repair is a hypothesis supported by limited process evidence; causal identification and the autonomy/non-coercion bridge remain unresolved."
+      },
+      "evidence_refs": [
+        "D3",
+        "D4"
+      ],
+      "status": "supported_with_limits",
+      "why_next": "No fourth research hop was performed. The next substantive test would require access to episode-level evidence and an independent audit of decision rights, participant choice, alignment thresholds and competing explanations within the same organizational collective.",
+      "actual_retrieval_action": [
+        {
+          "action_id": "Q2",
+          "tool": "web.run search_query",
+          "performed": true,
+          "queries": [
+            "volunteer teams coordination breakdown recovery empirical self organized disaster coordination repair research",
+            "\"polycentric\" \"recovery\" \"coordination\" \"volunteer\" empirical",
+            "\"Coordinating Expertise Among Emergent Groups Responding to Disasters\" empirical coordination"
+          ],
+          "access_outcome": "Returned a primary process-study lead, primary alternatives and modeling/conceptual sources. Response truncated; only returned text used."
+        },
+        {
+          "action_id": "O3",
+          "tool": "web.run open",
+          "url_ref": "D3",
+          "performed": true,
+          "access_outcome": "Primary publisher abstract and bibliographic record accessible. Full article explicitly requires access; no episode-level full-text inspection occurred."
+        },
+        {
+          "action_id": "Q3",
+          "tool": "web.run search_query",
+          "performed": true,
+          "queries": [
+            "\"When volunteer mobilization outpaces coordination\" manuscript pdf",
+            "\"Relationships Between Affiliated and Unaffiliated Disaster Response Volunteers\" coordination autonomy"
+          ],
+          "access_outcome": "No accessible manuscript copy was located in returned results. An independent institutional field-report alternative was returned; response truncated."
+        },
+        {
+          "action_id": "O4",
+          "tool": "web.run open",
+          "url_ref": "D4",
+          "performed": true,
+          "access_outcome": "Institutional primary field report accessible, with methods and substantive findings in returned material. Later returned search passages were also available. No participant identifiers or quotations are reproduced."
+        }
+      ],
+      "access_outcome": "The first empirical lead was abstract-only. A distinct alternative-retrieval and boundary investigation was actually performed, rather than assuming its missing premises were true."
+    }
+  ],
+  "new_concepts": [
+    {
+      "term": "Polycentric arrangement versus functioning system",
+      "role_in_chain": "Analytic distinction tracked in D2-C1.",
+      "origin": "D2-C1",
+      "evidence_status": "supported_with_limits"
+    },
+    {
+      "term": "Practical autonomy",
+      "role_in_chain": "Membership check tracked in D2-C1.",
+      "origin": "D2-C1",
+      "evidence_status": "supported_with_limits"
+    },
+    {
+      "term": "Bounded workflow repair",
+      "role_in_chain": "A candidate process smaller than complete recovery; may occur while the original coordination outcome remains below threshold.",
+      "origin": "D3-C1 and researcher operational distinction",
+      "evidence_status": "supported_with_limits"
+    },
+    {
+      "term": "Participation/access boundary",
+      "role_in_chain": "Separate reasons for engagement, non-engagement and inability to engage; none establishes consent by itself.",
+      "origin": "D4-C1 and researcher scope test",
+      "evidence_status": "inferred"
+    }
+  ],
+  "bridges": [
+    {
+      "id": "B1",
+      "from": "S: teams with distributed authority",
+      "to": "G_S: polycentric institutional representation",
+      "test": "Identify multiple overlapping domains with real rule-making discretion and interdependence. Document actual rules-in-use and who may challenge, revise or leave an arrangement.",
+      "status": "unresolved",
+      "reason": "The anchor provides distributed authority in general, not these additional institutional observations.",
+      "evidence_refs": [
+        "D2"
+      ]
+    },
+    {
+      "id": "B2",
+      "from": "G_S: independently established institutional structure",
+      "to": "P: restored workable coordination after C",
+      "test": "Track the same collective across impairment, repair attempts and an independently defined alignment threshold. Allow failed and partial repair; do not infer P from classification.",
+      "status": "unresolved",
+      "reason": "Retrieved evidence supports a bounded repair route, not the complete within-case bridge.",
+      "evidence_refs": [
+        "D3"
+      ]
+    },
+    {
+      "id": "B3",
+      "from": "Candidate interface-repair mechanism",
+      "to": "Non-coercive organizational applicability",
+      "test": "Verify authority and ability to refuse or renegotiate without punitive compulsion, using consented work-process evidence. Do not rely on volunteer labels or membership alone.",
+      "status": "unresolved",
+      "reason": "No retrieved same-case evidence closed both the institutional and consent conditions.",
+      "evidence_refs": [
+        "D2",
+        "D3",
+        "D4"
+      ]
+    }
+  ],
+  "boundary_change": {
+    "scope_relaxed": false,
+    "original_exclusions_retained": [
+      "Employee surveillance",
+      "Military command"
+    ],
+    "analytic_refinement": "The selected lift is conditional structural representation, not a universal set-inclusion claim. Partial repair is retained as an observed candidate process and never substituted for complete recovery.",
+    "case_handling": "Cross-organizational volunteer cases are comparative evidence-seeking probes. They are not substituted for every organizational team, and mixed official-command settings are not treated as authorized mechanisms.",
+    "new_assumptions_accepted": []
+  },
+  "limits": {
+    "new_search_calls": 3,
+    "max_new_search_calls": 3,
+    "new_source_open_attempts": 4,
+    "max_new_source_open_attempts": 4,
+    "actual_major_attempts": 3,
+    "hop_3_subattempts": "Primary empirical retrieval, followed by a separate alternative-access/boundary retrieval after full text was gated.",
+    "access": "Three publisher/institution pages provided relevant text; D3 provided an abstract, not its full article.",
+    "retrieval_truncation": "All three search outputs were truncated; no missing content was inferred.",
+    "paraphrase_policy": "Source-specific substantive summaries are recorded once in the findings, with source_checks pointing to those records. D1 finding contains 18 whitespace-delimited words, under its 25-word cap. Each new source finding is under 80 words; remaining tests and bridge requirements are explicitly the worker’s analytic proposals. No long quotations or participant identifiers are reproduced.",
+    "outcome": "Three real evidence-seeking attempts were performed; a complete recovery mechanism or universal class inclusion was not established.",
+    "evidence_status_scope": "Each hop status rates the exact bounded finding in that hop, not the truth or effectiveness of polycentricity as an entire theory."
+  },
+  "unresolved": [
+    "Whether the unspecified organizational team has multiple rule-making centers rather than only distributed task execution.",
+    "Whether a single empirical case simultaneously satisfies practical autonomy, interdependent jurisdictions, non-coercive participation and documented coordination impairment.",
+    "Which baseline, threshold and observation interval establish restoration of workable alignment.",
+    "Whether repair effects differ from changes in demand, resources, participant learning, selection or external intervention.",
+    "Whether the post-repair arrangement is sustained and whether any participants lose meaningful choice.",
+    "Whether enough primary episode data are accessible to test the hypothesized sequence rather than only the authors’ summarized interpretation."
+  ],
+  "source_checks": {
+    "D1": {
+      "url": "https://www.cambridge.org/core/journals/voluntas/article/legitimizing-the-informal-a-polycentric-argument-for-inclusive-crisis-management/BEED36DCF94534A4EA6E716B2FCBE9EC",
+      "title": "Legitimizing the Informal: A Polycentric Argument for Inclusive Crisis Management",
+      "source_type": "Primary qualitative research; publisher HTML",
+      "original_breadth_ref": "E4",
+      "claim_id": "D1-C1",
+      "supported_claim_location": "hops[0].finding",
+      "locator": "Returned abstract lines 459–464 and introduction lines 495–514",
+      "access_outcome": "Open successful; relevant returned abstract/introduction inspected.",
+      "retrieval_refs": [
+        "turn27view0"
+      ],
+      "source_specific_paraphrase_words": 18
+    },
+    "D2": {
+      "url": "https://onlinelibrary.wiley.com/doi/10.1111/psj.12212",
+      "title": "Polycentric Systems of Governance: A Theoretical Model for the Commons",
+      "authors": [
+        "Keith Carlisle",
+        "Rebecca L. Gruby"
+      ],
+      "source_type": "Primary theoretical model; publisher HTML",
+      "claim_id": "D2-C1",
+      "supported_claim_location": "hops[1].finding",
+      "locator": "Returned introduction lines 90–107 and attributes sections lines 126–157",
+      "access_outcome": "Open successful; substantive primary text returned and inspected.",
+      "retrieval_refs": [
+        "turn28search1",
+        "turn29view0"
+      ],
+      "source_specific_finding_paraphrase_words": 40
+    },
+    "D3": {
+      "url": "https://www.emerald.com/dpm/article-abstract/doi/10.1108/DPM-07-2026-0384/1403746/When-volunteer-mobilization-outpaces-coordination?redirectedFrom=fulltext",
+      "title": "When volunteer mobilization outpaces coordination: workflow repair in disaster response",
+      "source_type": "Primary qualitative process study; publisher abstract",
+      "claim_id": "D3-C1",
+      "supported_claim_location": "hops[2].finding.D3-C1",
+      "locator": "Returned abstract lines 155–166; access statement line 177",
+      "access_outcome": "Abstract accessible; full text gated. Alternative manuscript search returned no accessible copy.",
+      "retrieval_refs": [
+        "turn30search0",
+        "turn31view0",
+        "turn32search0"
+      ],
+      "source_specific_finding_paraphrase_words": 34
+    },
+    "D4": {
+      "url": "https://hazards.colorado.edu/quick-response-report/relationships-between-affiliated-and-unaffiliated-disaster-response-volunteers",
+      "title": "Relationships Between Affiliated and Unaffiliated Disaster Response Volunteers: Challenges and Opportunities",
+      "authors": [
+        "Darien Alexander Williams"
+      ],
+      "source_type": "Primary institutional field report; Natural Hazards Center, University of Colorado Boulder",
+      "claim_id": "D4-C1",
+      "supported_claim_location": "hops[2].finding.D4-C1",
+      "locator": "Returned abstract/methods and findings; Q3 returned additional nonparticipation discussion.",
+      "access_outcome": "Open successful; relevant primary report text accessible.",
+      "retrieval_refs": [
+        "turn32search1",
+        "turn33view0"
+      ],
+      "source_specific_finding_paraphrase_words": 21
+    }
+  },
+  "execution_note": {
+    "stage_switch": "Explicitly switched from independent SUBJECT ABSTRACTION breadth worker to DEPTH WORKER only for selected R1-A5-2, after parent reported breadth closure and selection.",
+    "same_actual_identity": true,
+    "selection_authority": "Parent selected n=1; worker did not rank, reselect or inspect selection.json.",
+    "chronology": [
+      "O1 established the first recovery-evidence gap.",
+      "Q1 → O2 investigated institutional membership and performance separation because of that gap.",
+      "Q2 → O3 sought episode-level repair evidence; gated full text triggered Q3 → O4 as a distinct alternative-access and boundary investigation."
+    ],
+    "sibling_breadth_outputs_read": false,
+    "shared_state_modified": false,
+    "only_output_written": "noemorph/audit/live-pilot/depth.json",
+    "subagents_spawned": false,
+    "overall_pilot_completion_claimed": false,
+    "handoff": "Return this record for the main agent’s evidence audit and pilot closure decision."
+  }
+}

@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Noemorph — Multi-Agent Knowledge Exploration. Explore evidence, follow connections, and open the next question.">
+  <title>Noemorph — Multi-Agent Knowledge Exploration.</title>
+  <style>@charset "UTF-8";
+:root{--bg:#0d1016;--panel:#11151c;--panel-alt:#161b24;--canvas:#0b0f15;--fg:#e8ecef;--muted:#788391;--faint:#4c5765;--border:#222a35;--teal:#9bd9c6;--teal-soft:#203a34;--violet:#b6a0e4;--blue:#86b6dc;--gold:#dbbd7b;--rose:#d98f92;--edge-color:#384552;--grid:#1f2834;--shadow:0 20px 70px #0006;--sidebar:254px;--inspector:310px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--fg);background:var(--bg);font-synthesis:none}
+[data-theme=light]{--bg:#f4f3ef;--panel:#f9f8f5;--panel-alt:#efeee8;--canvas:#f3f3ee;--fg:#26342f;--muted:#6b7a73;--faint:#8c9690;--border:#dddfd6;--teal:#377c64;--teal-soft:#e1ece4;--violet:#8060ab;--blue:#487da4;--gold:#967233;--rose:#b45860;--edge-color:#bac7bd;--grid:#dce1d8;--shadow:0 20px 70px #29332912}
+*{box-sizing:border-box}body{margin:0;overflow:hidden;font-size:13px}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer;color:inherit;border:0;background:none}button:disabled{cursor:default;opacity:.45}a{color:inherit;text-decoration:none}button,input,select,a{-webkit-font-smoothing:antialiased}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--teal);outline-offset:4px}button:hover{color:var(--teal)}button{transition:background .16s,color .16s,border-color .16s}button[hidden],[hidden]{display:none!important}.workspace{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr) var(--inspector);height:100dvh;min-height:500px}.workspace.inspector-closed{grid-template-columns:var(--sidebar) minmax(0,1fr)}.sidebar{padding:30px 22px 16px;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;z-index:30}.brand{display:flex;align-items:center;gap:13px;font:29px Georgia,"Times New Roman",serif;letter-spacing:-1px}.brand-mark{width:38px;height:38px;position:relative;border:1px solid #6a8e7f;border-radius:50%;display:grid;place-items:center;font-size:33px;line-height:1;color:var(--teal);font-style:italic}.brand-mark>span{position:absolute;font:13px sans-serif;right:-6px;top:-2px;background:var(--panel);padding:2px}.brand-version{font:8px ui-monospace,SFMono-Regular,monospace;letter-spacing:2.2px;color:var(--muted);display:block;margin-top:7px}.tagline{font:italic 14px/1.6 Georgia,serif;color:var(--muted);margin:23px 0 21px 2px;letter-spacing:.2px}.sidebar-rule{height:1px;background:var(--border);margin-bottom:24px}.eyebrow{font:9px/1.5 ui-monospace,SFMono-Regular,monospace;color:var(--muted);letter-spacing:1.5px;display:flex;align-items:center;gap:10px}.live-dot{display:inline-block;width:5px;height:5px;background:var(--teal);border-radius:50%;box-shadow:0 0 8px #9bd9c62b;flex-shrink:0}.project-card{display:flex;width:100%;align-items:center;gap:10px;text-align:left;border:1px solid var(--border);border-radius:8px;padding:13px 11px;margin:12px 0 0;background:var(--panel-alt)}.project-icon{font-size:21px;color:var(--teal)}.project-card>span:nth-child(2){min-width:0;flex:1}.project-card strong{font-size:11px;font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.project-card small{display:block;font-size:9px;color:var(--muted);margin-top:6px}.project-arrow{color:var(--muted)}.demo-notice{font-size:9px;color:var(--gold);line-height:1.6;margin-top:10px}.section-heading{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);margin:27px 2px 12px}.section-heading>span{font:8px ui-monospace,monospace;letter-spacing:1px;color:var(--faint)}.text-button{font-size:10px;padding:0;color:var(--faint)}.view-nav{display:grid;gap:4px}.view-nav>button{display:flex;align-items:center;gap:11px;padding:11px 12px;text-align:left;border-radius:6px;font-size:12px;color:var(--muted)}.view-nav>button.active{color:var(--teal);background:var(--teal-soft)}.view-nav>button>span:first-child{font-size:16px;width:18px}.nav-count{font:10px ui-monospace,monospace;margin-left:auto;opacity:.8}.role-filters{display:grid;gap:7px}.role-filter{display:flex;gap:9px;align-items:center;text-align:left;width:100%;padding:5px 2px;font-size:11px;color:var(--fg)}.role-filter[aria-pressed=false]{opacity:.35}.role-dot{width:6px;height:6px;border-radius:50%;background:var(--role);box-shadow:0 0 0 3px color-mix(in srgb,var(--role) 9%,transparent);flex-shrink:0}.role-filter .role-count{font:9px ui-monospace,monospace;color:var(--muted);margin-left:auto}.role-check{width:11px;height:11px;border:1px solid var(--faint);border-radius:3px;margin-right:3px;display:grid;place-items:center;font-size:9px;color:var(--muted)}.round-pills{display:flex;flex-wrap:wrap;gap:6px}.round-pills button{font:10px ui-monospace,monospace;color:var(--muted);padding:6px 9px;border:1px solid var(--border);border-radius:4px}.round-pills button.active{background:var(--teal-soft);color:var(--teal);border-color:color-mix(in srgb,var(--teal) 35%,transparent)}.status-select-label{display:block;font-size:10px;color:var(--muted);margin:20px 2px 8px}select{color:var(--fg);background:var(--panel-alt);border:1px solid var(--border);border-radius:5px;padding:9px;font-size:11px;width:100%}.sidebar-bottom{margin-top:auto;padding-top:30px}.local-label{font:8px ui-monospace,monospace;letter-spacing:1.2px;color:var(--muted);display:flex;gap:7px;align-items:center}.import-button{display:flex;gap:10px;align-items:center;margin-top:15px;border:1px solid var(--border);border-radius:6px;padding:11px;font-size:11px;width:100%}.import-button>span{font-size:18px;color:var(--muted)}kbd{font:9px ui-monospace,monospace;color:var(--faint);border:1px solid var(--border);border-radius:3px;padding:2px 4px}.import-button kbd{margin-left:auto;font-size:8px}.sidebar-bottom p{font-size:9px;color:var(--faint);text-align:center;margin:17px 0 0}.main{min-width:0;display:flex;flex-direction:column;height:100dvh;min-height:500px;position:relative}.topbar{height:68px;flex-shrink:0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px}.breadcrumb{display:flex;gap:13px;align-items:center;font-size:10px;color:var(--muted)}.breadcrumb strong{font-weight:500;color:var(--fg)}.slash{color:var(--faint)}.small-tag{font:7px ui-monospace,monospace;letter-spacing:1px;padding:4px 6px;border:1px solid var(--border);border-radius:3px;color:var(--muted)}.topbar-actions{display:flex;align-items:center;gap:12px;position:relative}.icon-button{min-width:30px;height:30px;border:1px solid transparent;border-radius:5px;font-size:16px;display:grid;place-items:center;color:var(--muted)}.icon-button:hover,.icon-button.active{background:var(--panel-alt);border-color:var(--border);color:var(--fg)}#help-button{font:12px Georgia,serif;border:1px solid var(--border);width:23px;min-width:23px;height:23px;border-radius:50%}.button{font-size:11px;border:1px solid var(--border);border-radius:5px;padding:9px 13px;background:var(--panel-alt)}.export-button{display:flex;align-items:center;gap:9px}.chevron{color:var(--muted)}.popover{position:absolute;right:0;top:44px;z-index:60;background:var(--panel);padding:6px;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:8px;min-width:210px}.popover button{display:block;width:100%;text-align:left;padding:11px;font-size:12px;border-radius:4px}.popover button:hover{background:var(--panel-alt)}.popover button>span{display:block;color:var(--muted);font-size:9px;margin-top:5px}.research-header{padding:31px 32px 29px;display:flex;align-items:center;gap:28px;justify-content:space-between;border-bottom:1px solid var(--border)}.research-header>div:first-child{min-width:0}.research-header .eyebrow{font-size:8px;letter-spacing:1.65px;color:var(--teal)}h1{font-size:25px;font-weight:450;letter-spacing:-.7px;margin:12px 0 10px;line-height:1.5}h1 em{font-style:normal;color:var(--muted)}#question-title{font-size:11px;color:var(--muted);margin:0;line-height:1.7;max-width:620px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.research-stats{display:flex;gap:25px;flex-shrink:0}.research-stats>div{display:flex;flex-direction:column;gap:9px;min-width:52px}.research-stats strong{font:30px/1 Georgia,serif;font-weight:normal}.research-stats span{font-size:9px;color:var(--muted);white-space:nowrap}.research-stats>div:last-child strong{color:var(--teal)}.map-toolbar{height:64px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:0 25px;border-bottom:1px solid var(--border);gap:12px}.map-title{display:flex;gap:10px;align-items:center;white-space:nowrap}.map-title strong{font-size:11px;font-weight:500}.map-title .muted{font:9px ui-monospace,monospace}.muted{color:var(--muted)}.map-indicator{width:5px;height:5px;background:var(--teal);border-radius:50%}.toolbar-actions{display:flex;align-items:center;gap:8px}.search-box{display:flex;gap:9px;align-items:center;position:relative;border:1px solid var(--border);border-radius:5px;padding:7px 9px;color:var(--muted);background:var(--panel)}.search-box input{background:none;border:none;outline:none;color:var(--fg);font-size:10px;width:170px;min-width:0}.search-box input::placeholder{color:var(--faint)}.search-box kbd{border:0}.search-results{position:absolute;top:39px;right:0;min-width:320px;width:100%;max-height:380px;overflow:auto;border:1px solid var(--border);border-radius:7px;background:var(--panel);box-shadow:var(--shadow);padding:6px;z-index:50}.search-results>button{padding:11px;text-align:left;display:flex;align-items:flex-start;gap:10px;width:100%;font-size:11px;line-height:1.5;border-radius:4px}.search-results>button:hover,.search-results>button:focus{background:var(--panel-alt)}.search-results small{display:block;color:var(--muted);font-size:9px;margin-top:4px}.search-results p{padding:10px;font-size:11px}.map-area{position:relative;flex:1;min-height:200px;overflow:hidden;background-color:var(--canvas);background-image:radial-gradient(var(--grid) .65px,transparent .65px);background-size:22px 22px}.map-ambient{position:absolute;width:700px;height:700px;left:50%;top:42%;transform:translate(-50%,-50%);background:radial-gradient(ellipse, color-mix(in srgb,var(--teal) 3%,transparent),transparent 63%);pointer-events:none}#graph{width:100%;height:100%;display:block;cursor:grab;touch-action:none;position:relative;user-select:none}#graph.dragging{cursor:grabbing}.canvas-caption{position:absolute;top:23px;left:26px;display:flex;gap:10px;pointer-events:none;color:var(--faint)}.canvas-caption .compass{font-size:24px;opacity:.7}.canvas-caption>div{font:7px ui-monospace,monospace;letter-spacing:1.5px;padding-top:4px}.canvas-caption small{font:9px/1.4 sans-serif;letter-spacing:.4px;display:block;margin-top:7px;color:var(--faint)}.map-bottom{position:absolute;bottom:20px;left:26px;right:22px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;pointer-events:none}.map-bottom>*{pointer-events:auto}.map-legend{display:flex;gap:14px;flex-wrap:wrap;padding-bottom:7px;font-size:8px;color:var(--muted);max-width:65%}.map-legend>span{display:flex;gap:6px;align-items:center}.map-legend i{display:block;width:16px;height:0;border-top:1px solid var(--muted);opacity:.7}.map-legend i.legend-dashed{border-top-style:dashed}.map-legend i.legend-frontier{width:6px;height:6px;border:1px dashed var(--muted);border-radius:50%}.zoom-controls{display:flex;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:6px;box-shadow:0 3px 12px #0002;padding:3px}.zoom-controls>button{width:28px;height:28px;font-size:17px;color:var(--muted);border-radius:3px}.zoom-controls>button:hover{background:var(--panel-alt);color:var(--fg)}.zoom-controls #zoom-level{font:9px ui-monospace,monospace;width:45px}.zoom-controls>span{height:16px;width:1px;background:var(--border);margin:0 3px}.minimap-wrap{position:absolute;bottom:77px;right:22px;background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--border);border-radius:5px;width:150px;padding:9px}.minimap-label{font:6px ui-monospace,monospace;letter-spacing:1px;color:var(--faint);display:flex;justify-content:space-between;margin-bottom:4px}#minimap{width:100%;height:77px;display:block;cursor:crosshair}.minimap-viewport{fill:color-mix(in srgb,var(--teal) 6%,transparent);stroke:var(--teal);stroke-width:.6;rx:3}.node{cursor:pointer;outline:none;--node-color:var(--teal)}.node circle.halo{fill:var(--node-color);opacity:0;transition:opacity .25s}.node .disc{fill:var(--canvas);stroke:var(--node-color);stroke-width:1.4;transition:fill .15s,stroke-width .15s}.node .inner-disc{fill:var(--node-color);opacity:.09}.node.frontier .disc,.node.blocked .disc{stroke-dasharray:3 4;opacity:.7}.node.question .disc{fill:var(--teal-soft);stroke-width:1.5}.node.selected .halo{opacity:.11}.node.selected .disc,.node:focus-visible .disc{stroke-width:2.7}.node:hover .halo{opacity:.1}.node.selected .orbit{opacity:.5}.node .orbit{fill:none;stroke:var(--node-color);stroke-width:.6;opacity:0;stroke-dasharray:2 5}.node .node-symbol{font:16px Georgia,serif;fill:var(--node-color);text-anchor:middle;dominant-baseline:central}.node.question .node-symbol{font-size:28px;font-style:italic}.node .node-label{font-size:12px;fill:var(--fg);text-anchor:middle;paint-order:stroke;stroke:var(--canvas);stroke-width:5px;stroke-linejoin:round;pointer-events:none}.node .node-meta{font:8px ui-monospace,monospace;fill:var(--muted);text-anchor:middle;paint-order:stroke;stroke:var(--canvas);stroke-width:4px;pointer-events:none}.node .expand-badge circle{fill:var(--panel-alt);stroke:var(--node-color);stroke-width:.8}.node .expand-badge text{font:8px ui-monospace,monospace;text-anchor:middle;dominant-baseline:central;fill:var(--node-color)}.node .node-link-button circle{fill:var(--panel);stroke:var(--border);stroke-width:1}.node .node-link-button text{font:11px sans-serif;fill:var(--muted);text-anchor:middle;dominant-baseline:central}.node .node-link-button:hover circle{stroke:var(--node-color)}.node .node-link-button:hover text{fill:var(--node-color)}.edge-path{fill:none;stroke:var(--edge-color);stroke-width:1;opacity:.75}.edge-path.analogy,.edge-path.transfer,.edge-path.related{stroke-dasharray:4 5}.edge-path.conflict{stroke:var(--rose);stroke-dasharray:3 4}.edge-path.highlight{stroke:var(--teal);opacity:.75;stroke-width:1.5}.edge-label{font-size:8px;fill:var(--faint);text-anchor:middle;paint-order:stroke;stroke:var(--canvas);stroke-width:5px;pointer-events:none}.node.dim{opacity:.18}.edge.dim{opacity:.12}.lod-low .node-meta,.lod-low .node-link-button,.lod-low .edge-label{display:none}.lod-low .node-label{font-size:14px}.hide-edge-labels .edge-label{display:none}.statusbar{height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 24px;border-top:1px solid var(--border);font-size:8px;color:var(--muted)}.statusbar>span:first-child{display:flex;align-items:center;gap:8px;min-width:0}.statusbar #status-message{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#status-hint{color:var(--faint);white-space:nowrap}.inspector{background:var(--panel);border-left:1px solid var(--border);height:100dvh;overflow:hidden;display:flex;flex-direction:column;z-index:25}.inspector-top{height:68px;flex-shrink:0;padding:0 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}.inspector-top .eyebrow{font-size:8px}.inspector-scroll{padding:25px 23px;overflow-y:auto;flex:1;scrollbar-width:thin;scrollbar-color:var(--border) transparent}.node-kicker{display:flex;gap:8px;align-items:center;font-size:9px;color:var(--muted);margin-bottom:15px}.node-kicker .role-dot{width:5px;height:5px}.node-number{margin-left:auto;font:8px ui-monospace,monospace;color:var(--faint)}.inspector h2{font-size:21px;line-height:1.65;font-weight:500;letter-spacing:-.4px;margin:0 0 17px;overflow-wrap:anywhere}.node-badges{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 20px}.badge{font-size:9px;line-height:1.5;padding:4px 7px;background:var(--panel-alt);border:1px solid var(--border);border-radius:4px;color:var(--muted)}.badge.evidence{color:var(--teal);background:var(--teal-soft);border-color:transparent}.badge.uncertain{color:var(--gold)}.inspector-tabs{display:flex;border-bottom:1px solid var(--border);gap:22px;margin:0 0 21px}.inspector-tabs>button{font-size:10px;color:var(--muted);padding:0 0 12px;border-bottom:1px solid transparent}.inspector-tabs>button.active{color:var(--fg);border-color:var(--teal)}.inspector-section{margin-top:23px}.inspector-section>h3{font-size:9px;font-weight:500;letter-spacing:.8px;color:var(--muted);display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.inspector-section>p,.inspector-description{font-size:11px;line-height:1.95;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}.inspector-description{color:var(--fg);opacity:.84}.importance-scale{display:flex;gap:4px;align-items:center;margin:8px 0}.importance-scale i{height:3px;flex:1;background:var(--border);border-radius:2px}.importance-scale i.filled{background:var(--teal);opacity:.65}.importance-note{font-size:8px;color:var(--faint);line-height:1.8}.reference-card{padding:11px;border:1px solid var(--border);border-radius:6px;background:var(--panel-alt);margin-bottom:8px}.reference-title{font-size:10px;line-height:1.6;color:var(--fg);display:flex;align-items:flex-start;gap:8px;overflow-wrap:anywhere}.reference-title>span:first-child{color:var(--teal);font-size:12px;flex-shrink:0}.reference-card small{display:block;font:8px/1.7 ui-monospace,monospace;color:var(--faint);margin:6px 0 0 20px;overflow-wrap:anywhere}.reference-card a{display:inline-flex;gap:5px;font-size:9px;color:var(--teal);margin:10px 0 0 20px}.reference-card a:hover{text-decoration:underline}.reference-empty{font-size:10px;line-height:1.8;color:var(--faint);border:1px dashed var(--border);border-radius:5px;padding:12px}.next-question{background:color-mix(in srgb,var(--teal) 5%,var(--panel));border:1px solid color-mix(in srgb,var(--teal) 16%,transparent);border-radius:7px;padding:13px;margin-top:22px}.next-question>span{display:block;font:8px ui-monospace,monospace;color:var(--teal);letter-spacing:1.5px}.next-question>p{font-size:11px;line-height:1.9;color:var(--fg);margin:10px 0}.next-question button{padding:0;color:var(--teal);font-size:10px;margin-top:2px}.inspector-actions{display:flex;gap:7px;margin-top:22px}.inspector-actions button{flex:1;padding:10px 6px;font-size:10px;border:1px solid var(--border);border-radius:5px}.inspector-actions button:first-child{background:var(--teal-soft);color:var(--teal);border-color:transparent}.origin-id{font:8px/1.8 ui-monospace,monospace;color:var(--faint);margin-top:23px;overflow-wrap:anywhere}.connection-card{display:block;width:100%;text-align:left;border:1px solid var(--border);padding:12px;border-radius:6px;margin-bottom:8px;font-size:11px;line-height:1.7}.connection-card small{display:block;color:var(--muted);font-size:8px;margin-bottom:4px}.path-crumbs{display:flex;flex-wrap:wrap;gap:5px;font-size:9px;color:var(--muted);line-height:1.8}.path-crumbs button{color:var(--muted);padding:0;font-size:9px;max-width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.path-crumbs button:hover{color:var(--teal)}.inspector-details{margin-top:20px}.inspector-details summary{font-size:10px;color:var(--muted);cursor:pointer}.inspector-details dt{font:8px ui-monospace,monospace;color:var(--faint);margin-top:12px}.inspector-details dd{font-size:10px;line-height:1.8;color:var(--muted);margin:5px 0;white-space:pre-wrap;overflow-wrap:anywhere}.reopen-inspector{position:absolute;right:14px;top:84px;border-color:var(--border);background:var(--panel);z-index:24}.empty-state{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);text-align:center;padding:25px;width:300px;background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow)}.empty-state>span{font-size:30px;color:var(--teal);display:block;margin-bottom:18px}.empty-state strong{font-size:13px}.empty-state p{font-size:11px;color:var(--muted);line-height:1.8}.empty-state button{margin-top:10px}.toast{position:fixed;bottom:52px;left:50%;transform:translateX(-50%);z-index:100;background:var(--fg);color:var(--bg);font-size:12px;line-height:1.7;padding:12px 20px;border-radius:6px;box-shadow:var(--shadow);max-width:calc(100vw - 30px)}dialog{background:var(--panel);color:var(--fg);border:1px solid var(--border);border-radius:12px;width:500px;max-width:90vw;padding:26px;box-shadow:var(--shadow)}dialog::backdrop{background:#0009;backdrop-filter:blur(3px)}.dialog-title{display:flex;align-items:center;justify-content:space-between;font-size:19px}dialog>p{font-size:12px;line-height:1.9;color:var(--muted)}.help-grid{display:grid;grid-template-columns:115px 1fr;gap:14px;margin:24px 0;align-items:start}.help-grid kbd{font-size:10px;width:fit-content}.help-grid span{font-size:11px;color:var(--muted);line-height:1.6}dialog .help-footnote{font-size:10px;border-top:1px solid var(--border);padding-top:16px}.drop-target{position:absolute;inset:12px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px dashed var(--teal);border-radius:10px;display:grid;place-items:center;font-size:20px;z-index:60;pointer-events:none}.mobile-menu{display:none}.map-area:fullscreen{height:100dvh;width:100vw}.map-area:fullscreen .minimap-wrap{width:200px}
+@media(min-width:1600px){:root{--sidebar:276px;--inspector:350px}.research-header{padding:36px 40px}h1{font-size:29px}.research-stats{gap:35px}.inspector-scroll{padding:30px 27px}.tagline{font-size:15px}}
+@media(max-width:1250px){:root{--sidebar:218px;--inspector:280px}.sidebar{padding:26px 16px 16px}.research-header{padding:24px;gap:15px;align-items:flex-start}h1{font-size:22px}.research-stats{gap:15px}.research-stats strong{font-size:26px}.research-stats span{font-size:8px}.search-box input{width:125px}.topbar{padding:0 24px}.map-toolbar{padding:0 20px;gap:8px}.map-title{gap:7px}.map-title .muted{font-size:8px}.map-legend{gap:9px}.inspector-scroll{padding:22px 19px}}
+@media(max-width:1060px){:root{--sidebar:210px;--inspector:290px}.workspace{grid-template-columns:var(--sidebar) minmax(0,1fr)}.inspector{position:fixed;right:0;top:68px;bottom:0;height:calc(100dvh - 68px);width:var(--inspector);box-shadow:-20px 0 50px #0003}.inspector-top{height:48px}.inspector-closed .inspector{display:none}.research-stats{gap:26px}.map-legend{max-width:55%}.reopen-inspector{right:14px}.research-header{padding:28px}.map-toolbar{padding:0 24px}}
+@media(max-height:800px){.sidebar{padding-top:22px}.sidebar-rule{margin-bottom:20px}.tagline{margin:18px 0}.section-heading{margin-top:22px}.sidebar-bottom{padding-top:20px}.research-header{padding-top:23px;padding-bottom:23px}.inspector-scroll{padding-top:22px}}
+@media(max-width:720px){.workspace,.workspace.inspector-closed{grid-template-columns:minmax(0,1fr)}.sidebar{position:fixed;inset:0 auto 0 0;width:254px;transform:translateX(-100%);transition:transform .2s;box-shadow:10px 0 50px #0004}.workspace.sidebar-open .sidebar{transform:translateX(0)}.mobile-menu{display:grid;min-width:25px;width:25px;height:25px;font-size:12px}.breadcrumb{gap:9px}.small-tag{display:none}.topbar{height:55px;padding:0 16px}.topbar-actions{gap:8px}.research-header{padding:22px 20px;display:block}.research-header .eyebrow{font-size:7px;letter-spacing:1.3px}h1{font-size:21px;margin-top:9px}#question-title{font-size:10px}.research-stats{margin-top:19px;gap:25px}.research-stats>div{display:flex;flex-direction:row;gap:8px;align-items:baseline}.research-stats strong{font-size:24px}.research-stats span{font-size:8px}.map-toolbar{height:56px;padding:0 15px}.map-title .muted{display:none}.search-box{padding:6px 7px;gap:6px}.search-box input{width:105px;font-size:9px}.search-box kbd{display:none}.toolbar-actions{gap:3px}.toolbar-actions .icon-button{min-width:27px;font-size:14px}.search-results{min-width:270px;right:-52px}.canvas-caption{top:17px;left:18px}.canvas-caption small{display:none}.canvas-caption>div{font-size:6px}.map-bottom{left:16px;right:16px;bottom:15px}.map-legend{max-width:45%;gap:8px;font-size:7px}.minimap-wrap{right:16px;bottom:68px;width:110px}#minimap{height:55px}.statusbar{padding:0 15px;height:28px;font-size:7px}#status-hint{display:none}.inspector{top:auto;bottom:0;height:60dvh;width:100%;border-top:1px solid var(--border);border-radius:16px 16px 0 0;box-shadow:0 -20px 80px #0004}.inspector-top{height:47px}.inspector-scroll{padding:18px 22px 35px}.inspector h2{font-size:19px}.reopen-inspector{top:auto;bottom:42px;right:14px}.node .node-label{font-size:13px}.brand{font-size:28px}.map-area:fullscreen .map-legend{max-width:55%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media(max-height:550px){.main,.workspace{min-height:0}.topbar{height:43px}.research-header{padding:13px 20px}.research-header .eyebrow{display:none}.research-header h1{font-size:17px;margin:0 0 5px}.research-header p{font-size:9px}.research-stats{margin-top:10px;gap:20px}.research-stats strong{font-size:21px}.map-toolbar{height:47px}.map-area{min-height:100px}.canvas-caption,.minimap-wrap{display:none}.statusbar{height:24px}.map-bottom{bottom:10px}.map-legend{display:none}.inspector{top:auto;bottom:0;height:80dvh}.sidebar{padding-top:18px}.sidebar .tagline{display:none}.sidebar-rule{margin-top:20px}.sidebar-bottom{margin-top:20px}.section-heading{margin-top:20px}}
+@media(max-width:360px){.topbar{padding:0 10px}.breadcrumb{font-size:9px;gap:6px}.topbar-actions{gap:5px}.export-button{font-size:9px;padding:7px 9px;gap:5px}.research-header{padding-left:15px;padding-right:15px}.research-header h1{font-size:17px;letter-spacing:-.4px}.search-box input{width:85px}.toolbar-actions #labels-button{display:none}.map-title{gap:5px}.map-title strong{font-size:10px}.map-toolbar{padding:0 10px}.map-bottom{right:10px;left:10px}}
+.node.primary .node-label{font-size:13px;font-weight:500}.node:not(.primary) .node-label{font-size:11px;opacity:.87}.lod-low .node.primary .node-link-button{display:initial}.minimap-wrap{top:22px;bottom:auto}.minimap-label{align-items:center}.minimap-label>button{font:11px ui-monospace,monospace;padding:0 2px;color:var(--muted)}
+@media(max-width:720px){.minimap-wrap{top:17px;bottom:auto}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.language-switch{display:flex;gap:2px;padding:3px;background:var(--panel-alt);border:1px solid var(--border);border-radius:5px;flex-shrink:0}.language-switch button{font:10px ui-monospace,monospace;min-width:27px;height:23px;border-radius:3px;color:var(--muted)}.language-switch button[aria-pressed=true]{background:var(--teal-soft);color:var(--teal)}.content-language-control{margin-right:auto;min-width:0}.content-language-control select{width:136px;max-width:100%;font-size:10px;padding:7px 20px 7px 8px;height:31px;text-overflow:ellipsis}.run-settings-dialog{width:640px;max-height:90dvh;overflow:auto}.settings-form{margin-top:24px}.setting-field{display:flex;flex-direction:column;gap:9px;margin-bottom:18px;min-width:0}.setting-field>label,.setting-languages legend{font-size:11px;color:var(--muted);line-height:1.6}.setting-field input,.setting-field textarea,.setting-field select{width:100%;font-family:inherit;font-size:12px;line-height:1.6;color:var(--fg);background:var(--panel-alt);border:1px solid var(--border);padding:11px 12px;border-radius:6px;resize:vertical}.setting-field input::placeholder,.setting-field textarea::placeholder{color:var(--faint);font-size:11px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.setting-note{font-size:10px;line-height:1.9;color:var(--muted);margin:0 0 22px}.setting-languages{border:0;border-top:1px solid var(--border);margin:22px 0 0;padding:20px 0 0;display:flex;flex-wrap:wrap;gap:12px}.setting-languages legend{padding-right:12px}.language-choice{display:flex;align-items:center;gap:9px;padding:12px 14px;border:1px solid var(--border);border-radius:6px;font-size:12px;cursor:pointer;background:var(--panel-alt)}.language-choice input{accent-color:var(--teal)}.language-choice code{color:var(--faint);font-size:9px}.setting-wide{width:100%}.setting-languages .setting-field{margin:3px 0 0}.language-policy{padding:13px;border:1px solid color-mix(in srgb,var(--teal) 18%,transparent);border-radius:6px;background:color-mix(in srgb,var(--teal) 4%,var(--panel));margin:14px 0 20px}.settings-actions{display:flex;gap:10px;flex-wrap:wrap}.settings-actions .button{padding:11px 17px}.settings-actions .setting-primary{background:var(--teal-soft);color:var(--teal);border-color:color-mix(in srgb,var(--teal) 20%,transparent)}.settings-preview{margin:20px 0;font-size:10px;color:var(--muted)}.settings-preview summary{cursor:pointer}.config-preview{font:10px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;padding:14px;background:var(--canvas);border:1px solid var(--border);border-radius:6px}.setting-error{color:var(--rose);font-size:11px;line-height:1.8}.setting-saved{color:var(--teal);font-size:11px;line-height:1.8}.run-card-page{overflow:auto;min-height:100dvh}.run-card-shell{max-width:650px;margin:0 auto;padding:30px 24px 45px}.run-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}.card-brand{font:30px Georgia,serif;letter-spacing:-1px}.run-card-shell h1{font-size:27px;line-height:1.7;margin:14px 0}.run-card-shell .eyebrow{color:var(--teal);font-size:9px}
+@media(max-width:1250px){.content-language-control select{width:113px}.search-box input{width:110px}.topbar-actions{gap:8px}.map-toolbar{gap:9px}}
+@media(max-width:1060px){.content-language-control select{width:140px}}
+@media(max-width:720px){.content-language-control select{width:102px;font-size:9px;padding-right:12px}.search-box input{width:80px}.map-title{gap:6px}.map-toolbar{gap:7px}.toolbar-actions{gap:2px}.topbar{padding:0 12px}.topbar-actions{gap:4px}.topbar-actions .icon-button{min-width:26px;width:26px;font-size:14px}.language-switch{padding:2px}.language-switch button{min-width:23px;font-size:9px;height:21px}.topbar .breadcrumb>span:not(.slash){display:none}.topbar .breadcrumb .slash{display:none}.run-settings-dialog{padding:20px;max-height:93dvh}.settings-grid{gap:0 12px}.setting-field input,.setting-field textarea,.setting-field select{font-size:12px}.run-card-shell{padding:23px 20px}.run-card-header{margin-bottom:30px}.run-card-shell h1{font-size:23px}.settings-actions .button{font-size:11px}.map-toolbar .toolbar-actions #labels-button{display:none}}
+@media(max-width:360px){.content-language-control select{width:88px}.search-box input{width:65px}.topbar #help-button{display:none}.topbar .breadcrumb{display:none}.topbar-actions{width:100%;justify-content:flex-end}.topbar-actions .language-switch{margin-right:auto}.settings-grid{grid-template-columns:1fr}.run-card-shell{padding:20px 16px}}
+:lang(en) .research-header h1 em::before{content:' '}
+
+/* Compact overviews keep long translated titles away from neighboring nodes. */
+.lod-compact .node-meta{display:none}.lod-compact .node.primary .node-label{font-size:11.5px}
+</style>
+</head>
+<body>
+  <div class="workspace" id="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="图谱导航">
+      <a class="brand" href="#" aria-label="Noemorph 首页" id="brand-home"><span class="brand-mark" aria-hidden="true">n<span>✦</span></span><span>Noemorph<span class="brand-version">KNOWLEDGE EXPLORATION</span></span></a>
+      <div class="tagline">Discover What You<br>Didn't Know to Ask.</div>
+      <div class="sidebar-rule"></div>
+      <div class="eyebrow">RESEARCH SPACE <span class="live-dot"></span></div>
+      <button class="project-card" id="project-home"><span class="project-icon">◈</span><span><strong id="project-title">知识探索地图</strong><small id="project-subtitle">本地研究空间</small></span><span class="project-arrow">↗</span></button>
+      <div id="demo-notice" class="demo-notice" hidden>交互演示 · 示例不构成研究证据</div>
+      <div class="section-heading">浏览图谱 <span>EXPLORE</span></div>
+      <nav class="view-nav" aria-label="显示范围">
+        <button data-view="overview" class="active" aria-pressed="true"><span>◎</span>主要发现<span class="nav-count" id="overview-count">—</span></button>
+        <button data-view="all" aria-pressed="false"><span>⌘</span>完整网络<span class="nav-count" id="all-count">—</span></button>
+        <button data-view="frontier" aria-pressed="false"><span>✧</span>待探索分支<span class="nav-count" id="frontier-count">—</span></button>
+      </nav>
+      <div class="section-heading">逻辑探索路径 <button id="reset-filters" class="text-button">重置</button></div>
+      <div id="role-filters" class="role-filters"></div>
+      <div class="section-heading">研究轮次 <span id="round-caption">ALL ROUNDS</span></div>
+      <div class="round-pills" id="round-filters"></div>
+      <label class="status-select-label" for="status-filter">探索状态</label>
+      <select id="status-filter"><option value="all">所有状态</option><option value="explored">已做深度探索</option><option value="frontier">尚未深入</option><option value="blocked">未解决 / 受阻</option><option value="contradicted">存在反证</option></select>
+      <div class="sidebar-bottom"><div class="local-label"><span class="live-dot"></span> LOCAL · OFFLINE READY</div><button class="import-button" id="import-button"><span>↥</span> 导入研究图谱 <kbd>JSON</kbd></button><p>跟随证据，让问题继续生长。</p></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb"><button id="menu-button" class="icon-button mobile-menu" aria-label="打开导航">☰</button><span>工作空间</span><span class="slash">/</span><strong>知识图谱</strong><span class="small-tag">INTERACTIVE</span></div><div class="topbar-actions"><div class="language-switch" aria-label="界面语言"><button data-ui-lang="zh-CN" aria-pressed="true" title="中文界面">中</button><button data-ui-lang="en" aria-pressed="false" title="English interface">EN</button></div><button id="run-settings-button" class="icon-button" title="运行参数" aria-label="运行参数">⚙</button><button id="theme-button" class="icon-button" title="切换明暗主题" aria-label="切换明暗主题">☼</button><button id="help-button" class="icon-button" title="操作指南" aria-label="打开操作指南">?</button><button id="export-button" class="button export-button" aria-expanded="false" aria-controls="export-menu"><span>↗</span> 导出 <span class="chevron">⌄</span></button><div id="export-menu" class="popover" hidden><button data-export="html">独立交互 HTML<span>可离线打开</span></button><button data-export="json">全部语言 JSON<span>包含全部节点与视图</span></button><button data-export="current-json">当前语言 JSON<span>完整图谱 JSON</span></button><button data-export="svg">当前视图 SVG<span>可编辑矢量图</span></button></div></div></header>
+      <section class="research-header"><div><div class="eyebrow">THE ATLAS OF UNASKED QUESTIONS</div><h1>每一个发现，<em>都是新的起点。</em></h1><p id="question-title">正在打开研究空间…</p></div><div class="research-stats"><div><strong id="stat-nodes">—</strong><span>知识节点</span></div><div><strong id="stat-links">—</strong><span>探索连接</span></div><div><strong id="stat-frontier">—</strong><span>待深入方向</span></div></div></section>
+      <div class="map-toolbar"><div class="map-title"><span class="map-indicator"></span><strong id="view-title">主要发现</strong><span id="visible-count" class="muted">—</span></div><div class="content-language-control"><label for="content-language" class="sr-only">图谱内容语言</label><select id="content-language" aria-label="图谱内容语言"><option value="auto">跟随界面</option></select></div><div class="toolbar-actions"><div class="search-box"><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m12 12 5 5" stroke="currentColor" stroke-width="1.5"/></svg><input id="search-input" type="search" placeholder="寻找概念、线索或问题…" autocomplete="off" aria-label="搜索所有节点"><kbd>/</kbd><div id="search-results" class="search-results" role="listbox" hidden></div></div><button id="labels-button" class="icon-button active" aria-label="切换连线标签" title="切换连线标签" aria-pressed="true">Aa</button><button id="fit-button" class="icon-button" aria-label="适应窗口" title="适应窗口 · F">⛶</button></div></div>
+      <section class="map-area" id="map-area" aria-label="可拖动缩放的交互知识图谱">
+        <div class="map-ambient" aria-hidden="true"></div>
+        <svg id="graph" xmlns="http://www.w3.org/2000/svg" tabindex="0" role="group" aria-label="知识图谱。拖动空白移动，滚轮缩放；Tab 选择节点，Enter 打开详情。">
+          <defs><filter id="node-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter><marker id="edge-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 6 3 0 6" fill="var(--edge-color)"/></marker></defs>
+          <g id="viewport"><g id="edge-layer"></g><g id="node-layer"></g></g>
+        </svg>
+        <div class="canvas-caption"><span class="compass">✥</span><div>KNOWLEDGE IS A LANDSCAPE<small>缩小看见联系，靠近看见细节。</small></div></div>
+        <div id="empty-state" class="empty-state" hidden><span>⌕</span><strong>这里还没有匹配的线索</strong><p>调整路径、轮次或探索状态，再看看。</p><button id="empty-reset" class="button">重置筛选</button></div>
+        <div class="map-bottom"><div class="map-legend"><span><i class="legend-solid"></i>探索路径</span><span><i class="legend-dashed"></i>类比 / 待验证联系</span><span><i class="legend-frontier"></i>尚未深入</span></div><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-level" title="重置为 100%" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">+</button><span></span><button id="fullscreen-button" title="全屏图谱" aria-label="全屏图谱">⤢</button></div></div>
+        <div class="minimap-wrap"><div class="minimap-label">NAVIGATOR <button id="minimap-toggle" aria-label="收起缩略导航" aria-expanded="true">−</button></div><svg id="minimap" viewBox="0 0 180 112" role="button" tabindex="0" aria-label="缩略导航图，点击定位；按 Enter 适应全部节点"></svg></div>
+        <div id="drop-target" class="drop-target" hidden>松开以导入图谱 JSON</div>
+      </section>
+      <footer class="statusbar"><span><span class="live-dot"></span><span id="status-message">研究记录仅在当前设备中处理</span></span><span id="status-hint">拖动移动 · 滚轮缩放 · 双击节点展开</span></footer>
+    </main>
+
+    <aside class="inspector" id="inspector" aria-label="节点详情"><div class="inspector-top"><span class="eyebrow">NODE INSIGHTS</span><button id="close-inspector" class="icon-button" aria-label="收起节点详情" title="收起节点详情">→</button></div><div class="inspector-scroll" id="inspector-content"></div></aside>
+    <button id="reopen-inspector" class="reopen-inspector icon-button" hidden title="打开节点详情" aria-label="打开节点详情">←</button>
+  </div>
+  <input id="file-input" type="file" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="help-dialog"><div class="dialog-title"><span>探索，从一个问题开始。</span><button id="close-help" class="icon-button" aria-label="关闭指南">×</button></div><p>地图只呈现已有记录。大小与主次表示阅读优先级；证据等级单独标注。未入选纵深研究的发现依然保留。</p><div class="help-grid"><kbd>拖动空白</kbd><span>移动地图</span><kbd>滚轮 / 双指</kbd><span>以指针为中心缩放；触屏支持双指缩放</span><kbd>拖动节点</kbd><span>调整位置；导出会保留布局</span><kbd>单击 / Enter</kbd><span>查看发现、证据与下一问</span><kbd>双击 / +n</kbd><span>展开或收起下一级线索</span><kbd>/</kbd><span>搜索完整图谱，包括隐藏节点</span><kbd>F</kbd><span>适应当前窗口</span><kbd>Esc</kbd><span>退出搜索或关闭详情</span></div><p class="help-footnote">“探索路径”是研究记录的先后关系，不自动表示因果。类比、迁移及冲突关系必须以节点记录和原始证据为准。</p></dialog>
+  <dialog id="run-dialog" class="run-settings-dialog"><div class="dialog-title"><span>新研究配置</span><button id="close-run-dialog" class="icon-button" aria-label="关闭参数卡">×</button></div><div id="run-dialog-form"></div></dialog>
+  <script id="graph-data" type="application/json">{"bundle_version":"1.0","source_fingerprint":"c7aa78efdba7ea1bd8dd7f92592203bd87ec5aece1cd3b29491cd2ad757ad71a","default_language":"zh-CN","graphs":[{"schema_version":"1.0","meta":{"title":"提问的边界","question":"如何从一个研究问题，发现自己尚未意识到的知识？","description":"交互演示 · 不构成研究证据","demo":true,"rounds":2,"language":"zh-CN","language_label":"简体中文"},"nodes":[{"id":"question","label":"如何发现尚未提出的问题？","summary":"一个问题，是一片未知地形的入口。沿四条逻辑路径寻找新的对象、过程与抽象层次，再追踪每条发现的证据与边界。","type":"question","role":"anchor","status":"discovered","evidence":"unresolved","importance":5,"depth":0,"round":0,"parent_id":null,"origin_ids":["question"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"当我们改变问题中的对象或过程，会出现怎样的新方向？"},{"id":"process","label":"让过程向外生长","summary":"研究相邻过程，而不只是给同一概念换一个名字。\n\n界面演示状态；不构成实际研究证据。","type":"direction","role":"predicate","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["process"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"哪些相邻过程可能改变最初的解释？"},{"id":"process:1","label":"过程之间的桥接","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"predicate","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"process","origin_ids":["process:1"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"process:1:next","label":"把解释转化为可检验的问题","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"frontier","role":"predicate","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"process:1","origin_ids":["process:1:next"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"下一条独立证据应当来自哪里？"},{"id":"process:2","label":"机制成立的边界","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"predicate","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"process","origin_ids":["process:2"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"process:3","label":"改变条件会怎样？","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"direction","role":"predicate","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"process","origin_ids":["process:3"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"需要什么新的观测，才能区分目前的解释？"},{"id":"subject","label":"换一个对象重新提问","summary":"保持过程与条件，观察其他对象是否满足机制的前提。\n\n界面演示状态；不构成实际研究证据。","type":"direction","role":"subject","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["subject"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"这个过程还会出现在哪些不同对象上？"},{"id":"subject:1","label":"不同对象，共同过程","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"subject","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"subject","origin_ids":["subject:1"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"subject:1:next","label":"把解释转化为可检验的问题","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"frontier","role":"subject","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"subject:1","origin_ids":["subject:1:next"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"下一条独立证据应当来自哪里？"},{"id":"subject:2","label":"骨架与参与者的区别","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"subject","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"subject","origin_ids":["subject:2"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"subject:3","label":"还有哪些替代对象？","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"direction","role":"subject","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"subject","origin_ids":["subject:3"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"需要什么新的观测，才能区分目前的解释？"},{"id":"abstract-process","label":"看见更一般的规律","summary":"把具体过程提升到上位范畴；区分类比、可迁移模型与严格等价。\n\n界面演示状态；不构成实际研究证据。","type":"direction","role":"predicate_abstraction","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["abstract-process"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"这些过程能够共享什么模型，又在哪里失效？"},{"id":"abstract-process:1","label":"现象不等于机制","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"predicate_abstraction","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"abstract-process","origin_ids":["abstract-process:1"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-process:1:next","label":"把解释转化为可检验的问题","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"frontier","role":"predicate_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"abstract-process:1","origin_ids":["abstract-process:1:next"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"下一条独立证据应当来自哪里？"},{"id":"abstract-process:2","label":"可迁移模型的条件","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"predicate_abstraction","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"abstract-process","origin_ids":["abstract-process:2"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-process:3","label":"类比何时会失效？","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"direction","role":"predicate_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"abstract-process","origin_ids":["abstract-process:3"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"需要什么新的观测，才能区分目前的解释？"},{"id":"abstract-subject","label":"寻找对象背后的类别","summary":"追溯对象的上位类别，研究可以返回原问题的通用性质。\n\n界面演示状态；不构成实际研究证据。","type":"direction","role":"subject_abstraction","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["abstract-subject"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"换一个分类尺度，会出现什么新的联系？"},{"id":"abstract-subject:1","label":"对象的上位类别","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"subject_abstraction","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"abstract-subject","origin_ids":["abstract-subject:1"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-subject:1:next","label":"把解释转化为可检验的问题","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"frontier","role":"subject_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"abstract-subject:1","origin_ids":["abstract-subject:1:next"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"下一条独立证据应当来自哪里？"},{"id":"abstract-subject:2","label":"开放系统与环境","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"finding","role":"subject_abstraction","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"abstract-subject","origin_ids":["abstract-subject:2"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-subject:3","label":"改变分类的尺度","summary":"此条为交互演示；不是经过真实检索的研究结论。","type":"direction","role":"subject_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"abstract-subject","origin_ids":["abstract-subject:3"],"links":[{"label":"探索方法与证据边界","url":"notes/guide.md","kind":"file"}],"next_question":"需要什么新的观测，才能区分目前的解释？"}],"edges":[{"id":"question:process","source":"question","target":"process","label":"探索路径","kind":"path"},{"id":"process:process:1","source":"process","target":"process:1","label":"探索路径","kind":"path"},{"id":"process:1:process:1:next","source":"process:1","target":"process:1:next","label":"探索路径","kind":"path"},{"id":"process:process:2","source":"process","target":"process:2","label":"探索路径","kind":"path"},{"id":"process:process:3","source":"process","target":"process:3","label":"探索路径","kind":"path"},{"id":"question:subject","source":"question","target":"subject","label":"探索路径","kind":"path"},{"id":"subject:subject:1","source":"subject","target":"subject:1","label":"探索路径","kind":"path"},{"id":"subject:1:subject:1:next","source":"subject:1","target":"subject:1:next","label":"探索路径","kind":"path"},{"id":"subject:subject:2","source":"subject","target":"subject:2","label":"探索路径","kind":"path"},{"id":"subject:subject:3","source":"subject","target":"subject:3","label":"探索路径","kind":"path"},{"id":"question:abstract-process","source":"question","target":"abstract-process","label":"探索路径","kind":"path"},{"id":"abstract-process:abstract-process:1","source":"abstract-process","target":"abstract-process:1","label":"探索路径","kind":"path"},{"id":"abstract-process:1:abstract-process:1:next","source":"abstract-process:1","target":"abstract-process:1:next","label":"探索路径","kind":"path"},{"id":"abstract-process:abstract-process:2","source":"abstract-process","target":"abstract-process:2","label":"探索路径","kind":"path"},{"id":"abstract-process:abstract-process:3","source":"abstract-process","target":"abstract-process:3","label":"探索路径","kind":"path"},{"id":"question:abstract-subject","source":"question","target":"abstract-subject","label":"探索路径","kind":"path"},{"id":"abstract-subject:abstract-subject:1","source":"abstract-subject","target":"abstract-subject:1","label":"探索路径","kind":"path"},{"id":"abstract-subject:1:abstract-subject:1:next","source":"abstract-subject:1","target":"abstract-subject:1:next","label":"探索路径","kind":"path"},{"id":"abstract-subject:abstract-subject:2","source":"abstract-subject","target":"abstract-subject:2","label":"探索路径","kind":"path"},{"id":"abstract-subject:abstract-subject:3","source":"abstract-subject","target":"abstract-subject:3","label":"探索路径","kind":"path"},{"id":"cross:1","source":"process:1","target":"abstract-process:2","label":"模型迁移（示例）","kind":"transfer"},{"id":"cross:2","source":"subject:2","target":"abstract-subject:1","label":"分类联系（示例）","kind":"analogy"}]},{"schema_version":"1.0","meta":{"title":"The Frontiers of Inquiry","question":"How can a research question reveal knowledge you did not know to seek?","description":"Interactive demo · Does not constitute research evidence","demo":true,"rounds":2,"language":"en","language_label":"English","translation":{"source_fingerprint":"c7aa78efdba7ea1bd8dd7f92592203bd87ec5aece1cd3b29491cd2ad757ad71a","source_language":"zh-CN","target_language":"en","translator":"independent-translation-agent (demo)"}},"nodes":[{"id":"question","label":"How do we discover questions we have not yet asked?","summary":"A question opens a path into unknown terrain. Follow four logical paths to find new entities, processes, and levels of abstraction, then trace the evidence and limitations of each discovery.","type":"question","role":"anchor","status":"discovered","evidence":"unresolved","importance":5,"depth":0,"round":0,"parent_id":null,"origin_ids":["question"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new directions emerge when we change the entity or process in a question?"},{"id":"process","label":"Extend the Process Outward","summary":"Study neighboring processes rather than merely rename the same concept.\n\nInterface demonstration only; does not constitute actual research evidence.","type":"direction","role":"predicate","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["process"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Which neighboring processes might change the initial explanation?"},{"id":"process:1","label":"Bridging Processes","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"predicate","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"process","origin_ids":["process:1"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"process:1:next","label":"Turn Explanations into Testable Questions","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"frontier","role":"predicate","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"process:1","origin_ids":["process:1:next"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Where should the next independent piece of evidence come from?"},{"id":"process:2","label":"The Limits of a Mechanism","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"predicate","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"process","origin_ids":["process:2"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"process:3","label":"What Happens When Conditions Change?","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"direction","role":"predicate","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"process","origin_ids":["process:3"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new observations would distinguish the current explanations?"},{"id":"subject","label":"Ask Again with a Different Entity","summary":"Keep the process and conditions fixed, and examine whether other entities meet the prerequisites of the mechanism.\n\nInterface demonstration only; does not constitute actual research evidence.","type":"direction","role":"subject","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["subject"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"In which other entities might this process occur?"},{"id":"subject:1","label":"Different Entities, Shared Process","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"subject","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"subject","origin_ids":["subject:1"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"subject:1:next","label":"Turn Explanations into Testable Questions","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"frontier","role":"subject","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"subject:1","origin_ids":["subject:1:next"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Where should the next independent piece of evidence come from?"},{"id":"subject:2","label":"Distinguishing the Framework from Its Participants","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"subject","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"subject","origin_ids":["subject:2"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"subject:3","label":"What Other Entities Could Be Considered?","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"direction","role":"subject","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"subject","origin_ids":["subject:3"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new observations would distinguish the current explanations?"},{"id":"abstract-process","label":"See More General Principles","summary":"Place specific processes within broader categories; distinguish analogies, transferable models, and strict equivalence.\n\nInterface demonstration only; does not constitute actual research evidence.","type":"direction","role":"predicate_abstraction","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["abstract-process"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Which models can these processes share, and where do those models fail?"},{"id":"abstract-process:1","label":"A Phenomenon Is Not a Mechanism","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"predicate_abstraction","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"abstract-process","origin_ids":["abstract-process:1"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-process:1:next","label":"Turn Explanations into Testable Questions","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"frontier","role":"predicate_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"abstract-process:1","origin_ids":["abstract-process:1:next"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Where should the next independent piece of evidence come from?"},{"id":"abstract-process:2","label":"Conditions for Model Transfer","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"predicate_abstraction","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"abstract-process","origin_ids":["abstract-process:2"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-process:3","label":"When Does an Analogy Fail?","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"direction","role":"predicate_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"abstract-process","origin_ids":["abstract-process:3"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new observations would distinguish the current explanations?"},{"id":"abstract-subject","label":"Find the Categories Behind Entities","summary":"Trace an entity to its broader categories and study general properties that can inform the original question.\n\nInterface demonstration only; does not constitute actual research evidence.","type":"direction","role":"subject_abstraction","status":"explored","evidence":"supported_with_limits","importance":4,"depth":0,"round":1,"parent_id":"question","origin_ids":["abstract-subject"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new connections emerge at a different level of classification?"},{"id":"abstract-subject:1","label":"Broader Categories of Entities","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"subject_abstraction","status":"explored","evidence":"supported_with_limits","importance":3,"depth":2,"round":1,"parent_id":"abstract-subject","origin_ids":["abstract-subject:1"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-subject:1:next","label":"Turn Explanations into Testable Questions","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"frontier","role":"subject_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":3,"round":2,"parent_id":"abstract-subject:1","origin_ids":["abstract-subject:1:next"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"Where should the next independent piece of evidence come from?"},{"id":"abstract-subject:2","label":"Open Systems and Their Environment","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"finding","role":"subject_abstraction","status":"explored","evidence":"unresolved","importance":3,"depth":2,"round":1,"parent_id":"abstract-subject","origin_ids":["abstract-subject:2"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":""},{"id":"abstract-subject:3","label":"Change the Level of Classification","summary":"This item is an interactive demonstration, not a research conclusion based on an actual literature search.","type":"direction","role":"subject_abstraction","status":"frontier","evidence":"unresolved","importance":2,"depth":2,"round":2,"parent_id":"abstract-subject","origin_ids":["abstract-subject:3"],"links":[{"label":"Exploration Methods and Evidence Limitations","url":"notes/guide.md","kind":"file"}],"next_question":"What new observations would distinguish the current explanations?"}],"edges":[{"id":"question:process","source":"question","target":"process","label":"Exploration Path","kind":"path"},{"id":"process:process:1","source":"process","target":"process:1","label":"Exploration Path","kind":"path"},{"id":"process:1:process:1:next","source":"process:1","target":"process:1:next","label":"Exploration Path","kind":"path"},{"id":"process:process:2","source":"process","target":"process:2","label":"Exploration Path","kind":"path"},{"id":"process:process:3","source":"process","target":"process:3","label":"Exploration Path","kind":"path"},{"id":"question:subject","source":"question","target":"subject","label":"Exploration Path","kind":"path"},{"id":"subject:subject:1","source":"subject","target":"subject:1","label":"Exploration Path","kind":"path"},{"id":"subject:1:subject:1:next","source":"subject:1","target":"subject:1:next","label":"Exploration Path","kind":"path"},{"id":"subject:subject:2","source":"subject","target":"subject:2","label":"Exploration Path","kind":"path"},{"id":"subject:subject:3","source":"subject","target":"subject:3","label":"Exploration Path","kind":"path"},{"id":"question:abstract-process","source":"question","target":"abstract-process","label":"Exploration Path","kind":"path"},{"id":"abstract-process:abstract-process:1","source":"abstract-process","target":"abstract-process:1","label":"Exploration Path","kind":"path"},{"id":"abstract-process:1:abstract-process:1:next","source":"abstract-process:1","target":"abstract-process:1:next","label":"Exploration Path","kind":"path"},{"id":"abstract-process:abstract-process:2","source":"abstract-process","target":"abstract-process:2","label":"Exploration Path","kind":"path"},{"id":"abstract-process:abstract-process:3","source":"abstract-process","target":"abstract-process:3","label":"Exploration Path","kind":"path"},{"id":"question:abstract-subject","source":"question","target":"abstract-subject","label":"Exploration Path","kind":"path"},{"id":"abstract-subject:abstract-subject:1","source":"abstract-subject","target":"abstract-subject:1","label":"Exploration Path","kind":"path"},{"id":"abstract-subject:1:abstract-subject:1:next","source":"abstract-subject:1","target":"abstract-subject:1:next","label":"Exploration Path","kind":"path"},{"id":"abstract-subject:abstract-subject:2","source":"abstract-subject","target":"abstract-subject:2","label":"Exploration Path","kind":"path"},{"id":"abstract-subject:abstract-subject:3","source":"abstract-subject","target":"abstract-subject:3","label":"Exploration Path","kind":"path"},{"id":"cross:1","source":"process:1","target":"abstract-process:2","label":"Model Transfer (Demo)","kind":"transfer"},{"id":"cross:2","source":"subject:2","target":"abstract-subject:1","label":"Classification Link (Demo)","kind":"analogy"}]}]}</script>
+  
+  <script>/* Noemorph graph data + deterministic layout. No DOM, network, or dependencies. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.SocratesGraph = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const ROLES = {
+    anchor: { label: '问题与概念', short: '概念锚点', color: 'var(--teal)', angle: -Math.PI / 2 },
+    predicate: { label: '谓词拓展', short: '拓展过程', color: 'var(--teal)', angle: -2.4 },
+    subject: { label: '主词替换', short: '替换对象', color: 'var(--blue)', angle: -.75 },
+    predicate_abstraction: { label: '谓词抽象', short: '抽象过程', color: 'var(--violet)', angle: .75 },
+    subject_abstraction: { label: '主词抽象', short: '抽象对象', color: 'var(--gold)', angle: 2.4 }
+  };
+  const STATUSES = { discovered: '已发现', explored: '已做深度探索', frontier: '尚未深入', blocked: '未解决 / 受阻', contradicted: '存在反证' };
+  const EVIDENCE = { verified_direct: '直接证据', supported_with_limits: '有限支持', inferred: '推断', unresolved: '尚未证实', contradicted: '证据冲突' };
+  function safeURL(url) {
+    if (typeof url !== 'string' || !url.trim() || /[\x00-\x20\x7f\\]/.test(url) || url.startsWith('//')) return null;
+    const scheme = url.match(/^([a-z][a-z\d+.-]*):/i);
+    if (scheme && !['http:', 'https:', 'file:'].includes(scheme[0].toLowerCase())) return null;
+    try { const u = new URL(url, 'https://local.invalid/'); if (['http:', 'https:'].includes(u.protocol) && !u.hostname) return null; } catch (_) { return null; }
+    return url;
+  }
+  function normalize(input) {
+    if (!input || input.schema_version !== '1.0') throw new Error('需要 schema_version 为 1.0 的图谱 JSON。运行状态请先使用 knowledge_map.py 导出。');
+    if (!input.meta || typeof input.meta !== 'object' || Array.isArray(input.meta) || !Array.isArray(input.nodes) || !input.nodes.length || !Array.isArray(input.edges)) throw new Error('图谱缺少 meta、nodes 或 edges。');
+    if (input.meta.warnings != null && (!Array.isArray(input.meta.warnings) || input.meta.warnings.some(w => typeof w !== 'string'))) throw new Error('meta.warnings 必须是文字数组。');
+    if (input.nodes.length > 5000 || input.edges.length > 20000) throw new Error('此阅读器支持最多 5,000 个节点和 20,000 条连线；请按研究批次导出。');
+    const graph = JSON.parse(JSON.stringify(input));
+    const byId = new Map();
+    graph.nodes = graph.nodes.map(n => {
+      if (!n || typeof n.id !== 'string' || !n.id.trim() || byId.has(n.id) || typeof n.label !== 'string' || !n.label.trim()) throw new Error('节点 ID / label 为空或 ID 重复。');
+      const o = { summary: '', role: 'anchor', status: 'discovered', evidence: 'unresolved', importance: 2, depth: 0, round: 0, type: 'concept', parent_id: null, links: [], origin_ids: [], ...n };
+      if (!Object.hasOwn(ROLES, o.role) || !Object.hasOwn(STATUSES, o.status) || !Object.hasOwn(EVIDENCE, o.evidence)) throw new Error(`节点 ${n.id} 的角色、状态或证据等级无效。`);
+      if (!Array.isArray(o.origin_ids) || o.origin_ids.some(id => typeof id !== 'string') || (o.tags != null && (!Array.isArray(o.tags) || o.tags.some(t => typeof t !== 'string')))) throw new Error(`节点 ${n.id} 的 origin_ids / tags 必须是文字数组。`);
+      if (o.parent_id != null && (typeof o.parent_id !== 'string' || !o.parent_id.trim())) throw new Error(`节点 ${n.id} 的 parent_id 必须为非空 ID 或 null。`);
+      if (typeof o.importance !== 'number' || !Number.isFinite(o.importance) || o.importance < 1 || o.importance > 5) throw new Error(`节点 ${n.id} 的 importance 必须在 1–5 之间。`);
+      if (!Array.isArray(o.links) || o.links.some(l => !l || typeof l !== 'object' || (l.url != null && !safeURL(l.url)))) throw new Error(`节点 ${n.id} 存在无效链接。`);
+      byId.set(o.id, o);
+      return o;
+    });
+    const children = new Map(graph.nodes.map(n => [n.id, []]));
+    for (const n of graph.nodes) {
+      const visited = new Set([n.id]);
+      let p = n.parent_id;
+      while (p) {
+        if (!byId.has(p)) throw new Error(`父节点 ${p} 不存在。`);
+        if (visited.has(p)) throw new Error('parent_id 存在循环。');
+        visited.add(p); p = byId.get(p).parent_id;
+      }
+      if (n.parent_id) children.get(n.parent_id).push(n.id);
+    }
+    const eids = new Set();
+    graph.edges = graph.edges.map(e => {
+      if (!e || typeof e.id !== 'string' || !e.id.trim() || eids.has(e.id) || !byId.has(e.source) || !byId.has(e.target)) throw new Error('存在重复连线 ID 或缺失的连线端点。');
+      eids.add(e.id); return { label: '探索路径', kind: 'path', ...e };
+    });
+    const root = graph.nodes.find(n => n.type === 'question') || graph.nodes.find(n => !n.parent_id) || graph.nodes[0];
+    return { data: graph, byId, children, root };
+  }
+  function ancestors(model, id) {
+    const out = [];
+    let n = model.byId.get(id);
+    while (n && n.parent_id) { out.push(n.parent_id); n = model.byId.get(n.parent_id); }
+    return out;
+  }
+  function descendants(model, id) {
+    const out = [], stack = [...(model.children.get(id) || [])];
+    while (stack.length) { const next = stack.pop(); out.push(next); stack.push(...(model.children.get(next) || [])); }
+    return out;
+  }
+  function isFrontier(n) { return n.status === 'frontier' || n.status === 'blocked'; }
+  function visibleGraph(model, state) {
+    const ids = new Set([model.root.id]);
+    for (const n of model.data.nodes) {
+      if (state.mode === 'all' || (state.mode === 'frontier' ? isFrontier(n) : n.importance >= 4 || n.type === 'question')) {
+        ids.add(n.id); for (const p of ancestors(model, n.id)) ids.add(p);
+      }
+    }
+    for (const id of state.revealed || []) if (model.byId.has(id)) { ids.add(id); for (const p of ancestors(model, id)) ids.add(p); }
+    // Expansion reveals one level at a time; the entire data stays in the model.
+    for (const id of state.expanded || []) if (ids.has(id)) for (const child of model.children.get(id) || []) ids.add(child);
+    const nodes = model.data.nodes.filter(n => ids.has(n.id) && (n.id === model.root.id ||
+      ((!state.roles || state.roles.has(n.role)) && (!state.round || Number(n.round) === state.round || !n.round) &&
+       (!state.status || state.status === 'all' || n.status === state.status))));
+    const shown = new Set(nodes.map(n => n.id));
+    return { nodes, edges: model.data.edges.filter(e => shown.has(e.source) && shown.has(e.target)), ids: shown };
+  }
+  function search(model, query) {
+    const q = query.trim().toLocaleLowerCase();
+    if (!q) return [];
+    return model.data.nodes.filter(n => [n.label, n.summary, n.id, ...(n.origin_ids || []), ...(n.tags || [])].join(' ').toLocaleLowerCase().includes(q))
+      .sort((a, b) => Number(b.label.toLocaleLowerCase().includes(q)) - Number(a.label.toLocaleLowerCase().includes(q)) || b.importance - a.importance).slice(0, 40);
+  }
+  function layout(model, saved = {}) {
+    const positions = new Map(), angles = new Map();
+    positions.set(model.root.id, { x: 0, y: 0 }); angles.set(model.root.id, 0);
+    const grouped = {};
+    for (const n of model.data.nodes) if (n.id !== model.root.id && n.type !== 'finding' && (n.type === 'direction' || !n.parent_id || n.parent_id === model.root.id)) {
+      (grouped[n.role] ||= []).push(n);
+    }
+    for (const [role, group] of Object.entries(grouped)) {
+      group.sort((a, b) => b.importance - a.importance || String(a.id).localeCompare(String(b.id)));
+      group.forEach((n, i) => {
+        const base = ROLES[role].angle;
+        const ring = Math.floor(i / 4), slot = i % 4;
+        const count = Math.min(4, group.length - ring * 4);
+        const angle = base + (slot - (count - 1) / 2) * (role === 'anchor' ? .48 : .31);
+        const radius = role === 'anchor' ? 250 + ring * 220 : 410 + ring * 260;
+        positions.set(n.id, { x: Math.cos(angle) * radius * 1.15, y: Math.sin(angle) * radius * .85 });
+        angles.set(n.id, angle);
+      });
+    }
+    const pending = model.data.nodes.filter(n => !positions.has(n.id));
+    for (let pass = 0; pass < model.data.nodes.length && pending.length; pass++) {
+      let changed = false;
+      for (let i = pending.length - 1; i >= 0; i--) {
+        const n = pending[i], parent = positions.get(n.parent_id);
+        if (!parent) continue;
+        const siblings = model.children.get(n.parent_id) || [];
+        const index = siblings.indexOf(n.id), angle = (angles.get(n.parent_id) ?? ROLES[n.role].angle) + (index - (siblings.length - 1) / 2) * .36;
+        positions.set(n.id, { x: parent.x + Math.cos(angle) * 235, y: parent.y + Math.sin(angle) * 200 });
+        angles.set(n.id, angle); pending.splice(i, 1); changed = true;
+      }
+      if (!changed) break;
+    }
+    for (const n of pending) { const i = model.data.nodes.indexOf(n); positions.set(n.id, { x: Math.cos(i * 2.4) * 600, y: Math.sin(i * 2.4) * 600 }); }
+    // Resolve label collisions deterministically. Importance never changes evidence.
+    const free = model.data.nodes.filter(n => n.id !== model.root.id);
+    for (let step = 0; step < 45; step++) {
+      const cells = new Map();
+      for (let i = 0; i < free.length; i++) {
+        const a = positions.get(free[i].id), gx = Math.floor(a.x / 200), gy = Math.floor(a.y / 160);
+        const nearby = [];
+        for (let x = gx - 1; x <= gx + 1; x++) for (let y = gy - 1; y <= gy + 1; y++) nearby.push(...(cells.get(`${x},${y}`) || []));
+        for (const j of nearby) {
+        const b = positions.get(free[j].id);
+        let dx = a.x - b.x, dy = a.y - b.y;
+        if (Math.abs(dx) >= 190 || Math.abs(dy) >= 140) continue;
+        if (dx === 0 && dy === 0) { dx = 1; dy = .3; }
+        const d = Math.hypot(dx / 1.35, dy), min = 145;
+        if (d < min) { const push = (min - d) / min * 5; a.x += dx / (d || 1) * push; a.y += dy / (d || 1) * push; b.x -= dx / (d || 1) * push; b.y -= dy / (d || 1) * push; }
+        }
+        const key = `${gx},${gy}`; if (!cells.has(key)) cells.set(key, []); cells.get(key).push(i);
+      }
+    }
+    for (const [id, p] of Object.entries(saved || {})) if (positions.has(id) && p && Number.isFinite(p.x) && Number.isFinite(p.y) && Math.abs(p.x) < 1e7 && Math.abs(p.y) < 1e7) positions.set(id, { x: p.x, y: p.y });
+    return positions;
+  }
+  function bounds(nodes, positions) {
+    if (!nodes.length) return { x: -100, y: -100, width: 200, height: 200 };
+    const ps = nodes.map(n => positions.get(n.id)).filter(Boolean);
+    const x = Math.min(...ps.map(p => p.x)) - 110, y = Math.min(...ps.map(p => p.y)) - 70;
+    return { x, y, width: Math.max(220, Math.max(...ps.map(p => p.x)) + 110 - x), height: Math.max(200, Math.max(...ps.map(p => p.y)) + 120 - y) };
+  }
+  function wrapLabel(text, max = 22, lines = 3) {
+    const chars = Array.from(String(text)), result = []; let line = '', units = 0;
+    const measure = s => Array.from(s).reduce((sum, c) => sum + (c.charCodeAt(0) > 255 ? 2 : 1), 0);
+    for (let i = 0; i < chars.length; i++) {
+      const c = chars[i], size = c.charCodeAt(0) > 255 ? 2 : 1;
+      if (units + size > max && line) {
+        const split = line.lastIndexOf(' ');
+        if (split > max * .35) { result.push(line.slice(0, split).trim()); line = line.slice(split + 1); units = measure(line); }
+        else { result.push(line.trim()); line = ''; units = 0; }
+      }
+      if (result.length === lines) { result[lines - 1] = Array.from(result[lines - 1]).slice(0, -1).join('') + '…'; return result; }
+      line += c; units += size;
+    }
+    if (line) result.push(line.trim()); return result;
+  }
+  return { ROLES, STATUSES, EVIDENCE, normalize, safeURL, ancestors, descendants, isFrontier, visibleGraph, search, layout, bounds, wrapLabel };
+});
+</script>
+  <script>/* Portable multilingual graph contract. UI locale never changes research data. */
+(function (root, factory) {
+  const api = factory(typeof module === 'object' && module.exports ? require('./graph-core.js') : root.SocratesGraph);
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.SocratesLanguages = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (G) {
+  'use strict';
+  const protectedKeys = new Set(['id','ids','origin_ids','anchor_ids','typed_queries','formal_logic','source','target','parent_id','url','href','path','evidence','role','type']);
+  const metadata = new Set(['language','language_label','translation']);
+  const metaText = new Set(['title','question','description','provenance']);
+  const nodeText = new Set(['label','summary','next_question','evidence_note']);
+  function tag(value) {
+    if (typeof value !== 'string' || !/^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$/.test(value)) throw new Error('Invalid language tag: use zh-CN, en, ja, or und.');
+    const parts = value.split('-');
+    return parts.map((p, i) => !i ? p.toLowerCase() : p.length === 2 ? p.toUpperCase() : p.length === 4 ? p[0].toUpperCase() + p.slice(1).toLowerCase() : p.toLowerCase()).join('-');
+  }
+  function stripped(graph) {
+    const result = JSON.parse(JSON.stringify(graph)); delete result.view;
+    for (const key of metadata) delete result.meta[key];
+    return result;
+  }
+  function canonical(value) {
+    if (Array.isArray(value)) return '[' + value.map(canonical).join(',') + ']';
+    if (value && typeof value === 'object') return '{' + Object.keys(value).sort().map(k => JSON.stringify(k) + ':' + canonical(value[k])).join(',') + '}';
+    if (typeof value === 'number') {
+      if (!Number.isFinite(value)) throw new Error('Graph numbers must be finite.');
+      const bytes = new DataView(new ArrayBuffer(8)); bytes.setFloat64(0, value);
+      return 'n' + Array.from({ length: 8 }, (_, i) => bytes.getUint8(i).toString(16).padStart(2, '0')).join('');
+    }
+    return JSON.stringify(value);
+  }
+  async function fingerprint(graph) {
+    const bytes = new TextEncoder().encode(canonical(stripped(graph)));
+    const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes);
+    return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  function displayText(p) {
+    if (p[0] === 'meta') return p.length === 2 && metaText.has(p[1]) || p.length === 3 && p[1] === 'warnings';
+    if (p[0] === 'nodes') {
+      if (p.length === 3 && nodeText.has(p[2]) || p.length === 4 && p[2] === 'tags') return true;
+      if (p.length === 5 && p[2] === 'links' && ['label','note'].includes(p[4])) return true;
+      if (p[2] === 'details') return !p.slice(3).some(k => protectedKeys.has(k));
+    }
+    return p.length === 3 && p[0] === 'edges' && p[2] === 'label';
+  }
+  function lockedProjection(graph) {
+    function walk(value, path) {
+      if (typeof value === 'string' && value.trim() && displayText(path)) return { $display_text: true };
+      if (Array.isArray(value)) return value.map((v, i) => walk(v, [...path, String(i)]));
+      if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, walk(v, [...path, k])]));
+      return value;
+    }
+    return canonical(walk(stripped(graph), []));
+  }
+  async function prepare(input) {
+    const data = JSON.parse(JSON.stringify(input));
+    const bundled = data.bundle_version === '1.0';
+    const graphs = bundled ? data.graphs : [data];
+    if (!Array.isArray(graphs) || !graphs.length) throw new Error('The language bundle has no graphs.');
+    const models = new Map();
+    for (const graph of graphs) {
+      G.normalize(graph);
+      graph.meta.language = tag(graph.meta.language || 'und');
+      if (models.has(graph.meta.language)) throw new Error('Duplicate graph language: ' + graph.meta.language);
+      models.set(graph.meta.language, G.normalize(graph));
+    }
+    const hash = await fingerprint(graphs[0]), projection = lockedProjection(graphs[0]);
+    if (bundled && data.source_fingerprint !== hash) throw new Error('The language bundle does not match its source fingerprint.');
+    for (const translated of graphs.slice(1)) {
+      const info = translated.meta.translation;
+      if (translated.meta.language === 'und' || lockedProjection(translated) !== projection) throw new Error('Translation changed graph structure, IDs, URLs, or evidence.');
+      if (!info || info.source_fingerprint !== hash || info.target_language !== translated.meta.language || typeof info.translator !== 'string' || !info.translator.trim()) throw new Error('Translation is not bound to this source graph.');
+    }
+    const defaultLanguage = tag(bundled ? data.default_language : graphs[0].meta.language);
+    if (!models.has(defaultLanguage)) throw new Error('The default graph language is unavailable.');
+    return { models, sourceFingerprint: hash, data: { bundle_version: '1.0', source_fingerprint: hash, default_language: defaultLanguage, graphs, ...(data.view ? { view: data.view } : {}), ...(data.run_config ? { run_config: data.run_config } : {}) } };
+  }
+  function resolve(pack, requested, uiLanguage) {
+    if (requested !== 'auto' && pack.models.has(requested)) return requested;
+    if (requested === 'auto') {
+      if (pack.models.has(uiLanguage)) return uiLanguage;
+      const primary = uiLanguage.split('-')[0], match = [...pack.models.keys()].find(k => k.split('-')[0] === primary);
+      if (match) return match;
+    }
+    return pack.data.default_language;
+  }
+  return { tag, canonical, stripped, fingerprint, lockedProjection, prepare, resolve };
+});
+</script>
+  <script>/* Interface strings only. Graph translations live in separate declared variants. */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.SocratesI18n = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const pairs = [
+    ['研究范围与排除项','Scope and exclusions'],['可选：允许扩展的范围、必须排除的主题或限制条件','Optional: allowed expansion, excluded topics, or constraints'],
+    ['Noemorph 首页','Noemorph home'],['中文界面','Chinese interface'],['工作空间','Workspace'],['知识图谱','Knowledge map'],['知识探索地图','Knowledge atlas'],
+    ['每一个发现，','Every discovery,'],['都是新的起点。','a new beginning.'],
+    ['知识节点','Knowledge nodes'],['探索连接','Connections'],['待深入方向','Open directions'],
+    ['浏览图谱','Browse the map'],['主要发现','Key discoveries'],['完整网络','Full network'],['待探索分支','Open branches'],
+    ['逻辑探索路径','Logical exploration paths'],['重置','Reset'],['研究轮次','Research rounds'],['探索状态','Exploration status'],
+    ['所有状态','All statuses'],['已做深度探索','Explored in depth'],['尚未深入','Not yet explored in depth'],['未解决 / 受阻','Unresolved / blocked'],['存在反证','Contradicted'],
+    ['问题与概念','Question & concepts'],['谓词拓展','Predicate expansion'],['主词替换','Subject substitution'],['谓词抽象','Predicate abstraction'],['主词抽象','Subject abstraction'],
+    ['已发现','Discovered'],['直接证据','Direct evidence'],['有限支持','Supported with limits'],['推断','Inferred'],['尚未证实','Unverified'],['证据冲突','Conflicting evidence'],
+    ['全部','All'],['导出','Export'],['导入研究图谱','Import graph'],['跟随证据，让问题继续生长。','Follow the evidence. Let the question grow.'],
+    ['交互演示 · 示例不构成研究证据','Interactive demo · Examples are not research evidence'],
+    ['寻找概念、线索或问题…','Find a concept, lead, or question…'],['搜索所有节点','Search all nodes'],
+    ['缩小看见联系，靠近看见细节。','Zoom out for connections. Zoom in for detail.'],
+    ['这里还没有匹配的线索','No matching leads here yet'],['调整路径、轮次或探索状态，再看看。','Try different paths, rounds, or statuses.'],['重置筛选','Reset filters'],
+    ['探索路径','Exploration path'],['类比 / 待验证联系','Analogy / unverified link'],['界面语言','Interface language'],['图谱内容语言','Graph content language'],
+    ['跟随界面','Follow interface'],['原始记录（混合 / 未标注）','Source (mixed / untagged)'],['运行参数','Run settings'],
+    ['切换明暗主题','Toggle light / dark theme'],['打开操作指南','Open interaction guide'],['操作指南','Interaction guide'],
+    ['切换连线标签','Toggle connection labels'],['适应窗口','Fit to window'],['适应窗口 · F','Fit to window · F'],
+    ['缩小','Zoom out'],['放大','Zoom in'],['重置缩放','Reset zoom'],['重置为 100%','Reset to 100%'],['全屏图谱','Fullscreen map'],
+    ['打开导航','Open navigation'],['收起节点详情','Close node details'],['打开节点详情','Open node details'],
+    ['收起缩略导航','Collapse minimap'],['展开缩略导航','Expand minimap'],['缩略导航图，点击定位；按 Enter 适应全部节点','Minimap: click to navigate; Enter to fit all nodes'],
+    ['可拖动缩放的交互知识图谱','Interactive knowledge map with pan and zoom'],
+    ['知识图谱。拖动空白移动，滚轮缩放；Tab 选择节点，Enter 打开详情。','Knowledge map. Drag the background to pan, scroll to zoom; Tab to choose a node, Enter for details.'],
+    ['图谱导航','Map navigation'],['显示范围','View scope'],['节点详情','Node details'],['线索详情','Lead details'],
+    ['独立交互 HTML','Standalone interactive HTML'],['可离线打开','Works offline'],['完整图谱 JSON','Complete graph JSON'],['包含全部节点与视图','Includes all nodes and the view'],
+    ['当前视图 SVG','Current view as SVG'],['可编辑矢量图','Editable vector image'],['当前语言 JSON','Current language JSON'],['全部语言 JSON','All languages JSON'],
+    ['研究记录仅在当前设备中处理','Research records are processed on this device'],['拖动移动 · 滚轮缩放 · 双击节点展开','Drag to pan · Scroll to zoom · Double-click to expand'],
+    ['松开以导入图谱 JSON','Drop to import graph JSON'],['探索，从一个问题开始。','Exploration starts with a question.'],['关闭指南','Close guide'],
+    ['地图只呈现已有记录。大小与主次表示阅读优先级；证据等级单独标注。未入选纵深研究的发现依然保留。','The map presents existing records. Size indicates reading priority; evidence strength is shown separately. Findings not selected for deeper study are retained.'],
+    ['拖动空白','Drag background'],['移动地图','Pan the map'],['滚轮 / 双指','Scroll / pinch'],['以指针为中心缩放；触屏支持双指缩放','Zoom around the pointer; pinch to zoom on touchscreens'],
+    ['拖动节点','Drag a node'],['调整位置；导出会保留布局','Adjust its position; exports keep the layout'],['单击 / Enter','Click / Enter'],['查看发现、证据与下一问','Read findings, evidence, and the next question'],
+    ['双击 / +n','Double-click / +n'],['展开或收起下一级线索','Expand or collapse the next level'],['搜索完整图谱，包括隐藏节点','Search the whole graph, including hidden nodes'],
+    ['适应当前窗口','Fit the current window'],['退出搜索或关闭详情','Exit search or close details'],
+    ['“探索路径”是研究记录的先后关系，不自动表示因果。类比、迁移及冲突关系必须以节点记录和原始证据为准。','Exploration paths show the order of research records, not automatic causation. Check node records and original evidence for analogies, transfer, and conflicts.'],
+    ['交互演示 · 所有示例发现仅用于展示界面','Interactive demo · All example findings illustrate the interface only'],
+    ['本地图谱 · 阅读优先级与证据等级分别呈现','Local graph · Reading priority and evidence strength are separate'],
+    ['已载入研究记录 · {count} 条导入说明，详见主问题节点','Research loaded · {count} import notes in the original-question node'],
+    ['{rounds} 轮探索 · {nodes} 个节点','{rounds} rounds · {nodes} nodes'],['原始问题','Original question'],['研究起点','Research starting point'],
+    ['第 {round} 轮','Round {round}'],['连接 · {count}','Connections · {count}'],['当前没有记录关联。','No connections are recorded yet.'],
+    ['记录中的探索路径','Recorded exploration path'],['此节点保留为研究线索；尚未记录详细结论。','This node is retained as a lead; detailed findings are not recorded yet.'],
+    ['阅读优先级 {importance} / 5','Reading priority {importance} / 5'],['图谱中的阅读优先级','Reading priority in the map'],['表示展示主次，不代表证据更强。','Display priority does not imply stronger evidence.'],
+    ['回溯研究路径','Trace the research path'],['当前线索','Current lead'],['参考资料与原始文件','References & original files'],['参考资料','Reference'],
+    ['本地研究文件','Local research file'],['打开文件','Open file'],['打开来源','Open source'],['打开{label}','Open {label}'],
+    ['来源标识尚未解析为链接','Source identifier has not been resolved to a link'],['尚无可跳转的资料。此处不会自动生成引用或补造来源。','No source links are available yet. References are never invented here.'],
+    ['THE NEXT QUESTION','THE NEXT QUESTION'],['下一问','The next question'],['THE ORIGINAL QUESTION','THE ORIGINAL QUESTION'],
+    ['{count} 条已记录的下级线索尚未展开。它们会把这个问题带向哪里？','{count} recorded child leads are still collapsed. Where might they take this question?'],
+    ['展开 {count} 条线索 →','Explore {count} leads →'],['展开 {count} 个下级线索','Expand {count} child leads'],['收起下级线索','Collapse child leads'],
+    ['定位此节点 ⌖','Locate node ⌖'],['无下级线索','No child leads'],['展开下级 +','Expand children +'],['收起下级 −','Collapse children −'],['下级已展示','Children are visible'],
+    ['查看原始逻辑与边界记录','View logic and boundary records'],['导入说明 · {count}','Import notes · {count}'],
+    ['这是当前记录的末端线索。下一问可在节点详情中查看。','This is the end of the current recorded path. See node details for the next question.'],
+    ['当前浏览器不支持全屏，可使用窗口最大化。','Fullscreen is unavailable in this browser. You can maximize the window.'],['当前浏览器未允许全屏。','The browser did not allow fullscreen.'],
+    [' · 当前已折叠',' · Currently collapsed'],['没有找到匹配的线索。试试原始方向 ID。','No matching leads. Try an original direction ID.'],
+    ['文件超过 25 MB，请按研究批次导出。','The file exceeds 25 MB. Export smaller research batches.'],
+    ['已打开 {count} 个知识节点，完整数据保留在本地。','Opened {count} knowledge nodes. All data stays on this device.'],['导入失败：{error}','Import failed: {error}'],
+    ['当前文件模式无法打包外部资源。请运行 scripts/knowledge_map.py 生成独立 HTML，或通过本地服务打开。','External assets cannot be bundled in this file mode. Use scripts/knowledge_map.py to create standalone HTML, or open the viewer through a local server.'],
+    ['图谱未能打开','The graph could not be opened'],['此语言版本尚未生成，内容继续使用 {language}。','This language version has not been generated. Content remains in {language}.'],
+    ['已加入 {language} 图谱版本。','Added the {language} graph version.'],['语言版本与当前研究不匹配。请先打开对应原图。','This language version belongs to a different study. Open its source graph first.'],
+    ['新研究配置','Configure a study'],['开始前，选择你的探索方式。','Choose how to explore before you begin.'],['研究问题','Research question'],['写下本次研究问题…','Enter the research question…'],
+    ['思考轮数','Research rounds'],['并行子代理上限','Maximum parallel subagents'],['自动适配软件能力','Adapt to host capabilities'],['每轮深入路径数','Deep paths per round'],['自动筛选','Automatic selection'],
+    ['每条路径最少推进次数','Minimum depth attempts per path'],['最终内容呈现语言','Final content languages'],['简体中文','Simplified Chinese'],['英语','English'],['其他语言标签（可选）','Other language tags (optional)'],
+    ['例如 ja、de、fr，多个用逗号分隔','For example ja, de, fr; separate tags with commas'],
+    ['五个逻辑角色保持不变。这里设置并发上限，实际并发还受本地软件能力限制。','The five logical roles stay fixed. This sets a concurrency ceiling; actual concurrency also depends on the local host.'],
+    ['内容语言仅用于研究完成后的独立翻译子 Agent；不规定研究与思考使用的语言。','Content languages apply only to an independent translation subagent after research. They do not constrain the language used to think or investigate.'],
+    ['这张卡片只保存参数，不会自行开始研究。','This card saves settings; it does not start research by itself.'],['保存并返回 Agent','Save and return to Agent'],['下载配置 JSON','Download configuration JSON'],['复制配置','Copy configuration'],
+    ['参数已保存，返回 Agent 即可继续。','Settings saved. Return to the Agent to continue.'],['配置已复制。','Configuration copied.'],['复制未成功，可下载 JSON。','Copy was unavailable. Download the JSON instead.'],
+    ['请填写研究问题。','Enter a research question.'],['轮数必须是 1–1000 的整数。','Rounds must be an integer from 1 to 1000.'],['并发上限必须是自动或 1–5。','Parallelism must be automatic or an integer from 1 to 5.'],
+    ['深入路径数必须是自动或 1–20。','Deep paths must be automatic or an integer from 1 to 20.'],['深度尝试次数必须是 3–20 的整数。','Minimum depth attempts must be an integer from 3 to 20.'],['请至少选择一种最终呈现语言。','Choose at least one final content language.'],
+    ['语言标签无效：{language}','Invalid language tag: {language}'],['保存失败：{error}','Save failed: {error}'],['关闭参数卡','Close settings card'],['本地参数选择卡','Local run settings card'],
+    ['研究阶段语言：自由选择','Research language: unrestricted'],['界面语言与内容语言独立设置。','Interface and content languages are independent.'],['参数预览','Configuration preview']
+  ];
+  const forward = new Map(pairs), reverse = new Map(pairs.map(([zh, en]) => [en, zh]));
+  const escape = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const templates = pairs.filter(([zh]) => zh.includes('{')).map(([zh, en]) => {
+    const names = [...zh.matchAll(/\{(\w+)\}/g)].map(m => m[1]);
+    const build = s => new RegExp('^' + s.split(/(\{\w+\})/).map(p => /^\{/.test(p) ? '([\\s\\S]*?)' : escape(p)).join('') + '$');
+    return { zh, en, names, zhPattern: build(zh), enPattern: build(en) };
+  });
+  let language = 'zh-CN';
+  const sourceNodes = new WeakMap(), sourceAttrs = new WeakMap();
+  function t(value, vars = {}) {
+    if (typeof value !== 'string') return value;
+    let key = reverse.get(value) || value, captured = vars;
+    if (!forward.has(key)) {
+      for (const entry of templates) {
+        const match = entry.zhPattern.exec(value) || entry.enPattern.exec(value);
+        if (match) { key = entry.zh; captured = { ...Object.fromEntries(entry.names.map((name, i) => [name, match[i + 1]])), ...vars }; break; }
+      }
+    }
+    const out = language === 'en' ? forward.get(key) || value : key;
+    return out.replace(/\{(\w+)\}/g, (all, name) => captured[name] ?? all);
+  }
+  function setLanguage(next) {
+    language = next === 'en' ? 'en' : 'zh-CN';
+    if (typeof document !== 'undefined') document.documentElement.lang = language;
+    try { localStorage.setItem('noemorph-ui-language', language); } catch (_) {}
+    return language;
+  }
+  function getLanguage() { return language; }
+  function applyStatic(root = document) {
+    const skip = '#graph,#inspector-content,#project-home,#project-title,#question-title,#role-filters,#round-filters,#search-results,#content-language,[data-i18n-skip]';
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!node.parentElement || node.parentElement.closest(skip) || ['SCRIPT','STYLE'].includes(node.parentElement.tagName)) continue;
+      if (!sourceNodes.has(node)) sourceNodes.set(node, node.textContent);
+      const source = sourceNodes.get(node), trimmed = source.trim();
+      node.textContent = trimmed ? source.replace(trimmed, t(trimmed)) : source;
+    }
+    root.querySelectorAll('[title],[placeholder],[aria-label]').forEach(element => {
+      if (element.closest(skip)) return;
+      if (!sourceAttrs.has(element)) sourceAttrs.set(element, Object.fromEntries(['title','placeholder','aria-label'].filter(a => element.hasAttribute(a)).map(a => [a, element.getAttribute(a)])));
+      for (const [attribute, source] of Object.entries(sourceAttrs.get(element))) element.setAttribute(attribute, t(source));
+    });
+  }
+  return { t, setLanguage, getLanguage, applyStatic, pairs };
+});
+</script>
+  <script>/* A host-neutral parameter card. Saves configuration; never starts research. */
+(function (root, factory) {
+  const api = factory(root.SocratesI18n);
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else root.SocratesSettings = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (I) {
+  'use strict';
+  const defaults = { schema_version: 'noemorph-run-config/1.0', question: '', scope: '', macro_rounds: 3,
+    max_parallel_agents: null, top_n: null, depth_hops: 3, presentation_languages: ['zh-CN','en'],
+    ui_language: 'zh-CN', research_language_policy: 'unconstrained', logical_roles: 5, breadth_per_role: 5 };
+  function languageTag(value) {
+    if (typeof value !== 'string' || !/^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$/.test(value) || value.toLowerCase() === 'und') throw new Error('语言标签无效：' + value);
+    return value.split('-').map((p, i) => !i ? p.toLowerCase() : p.length === 2 ? p.toUpperCase() : p.length === 4 ? p[0].toUpperCase() + p.slice(1).toLowerCase() : p.toLowerCase()).join('-');
+  }
+  function validate(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).some(key => !Object.hasOwn(defaults, key))) throw new Error('Invalid run configuration fields.');
+    const c = { ...defaults, ...value };
+    if (typeof c.question !== 'string' || !c.question.trim()) throw new Error('请填写研究问题。');
+    c.question = c.question.trim();
+    if (typeof c.scope !== 'string') throw new Error('scope must be text');
+    c.scope = c.scope.trim();
+    if (c.schema_version === 'socrates-run-config/1.0') c.schema_version = defaults.schema_version;
+    if (!Number.isInteger(c.macro_rounds) || c.macro_rounds < 1 || c.macro_rounds > 1000) throw new Error('轮数必须是 1–1000 的整数。');
+    if (c.max_parallel_agents !== null && (!Number.isInteger(c.max_parallel_agents) || c.max_parallel_agents < 1 || c.max_parallel_agents > 5)) throw new Error('并发上限必须是自动或 1–5。');
+    if (c.top_n !== null && (!Number.isInteger(c.top_n) || c.top_n < 1 || c.top_n > 20)) throw new Error('深入路径数必须是自动或 1–20。');
+    if (!Number.isInteger(c.depth_hops) || c.depth_hops < 3 || c.depth_hops > 20) throw new Error('深度尝试次数必须是 3–20 的整数。');
+    if (!Array.isArray(c.presentation_languages) || !c.presentation_languages.length) throw new Error('请至少选择一种最终呈现语言。');
+    c.presentation_languages = [...new Set(c.presentation_languages.map(languageTag))];
+    if (c.schema_version !== defaults.schema_version || !['zh-CN','en'].includes(c.ui_language) || c.research_language_policy !== 'unconstrained' || c.logical_roles !== 5 || c.breadth_per_role !== 5) throw new Error('Invalid fixed workflow settings.');
+    return c;
+  }
+  function mount(container, initial = {}, options = {}) {
+    const T = I.t, c = { ...defaults, ...initial };
+    function h(tag, attrs = {}, ...children) {
+      const element = document.createElement(tag);
+      for (const [name, value] of Object.entries(attrs)) {
+        if (name.startsWith('on')) element.addEventListener(name.slice(2), value);
+        else element.setAttribute(name, String(value));
+      }
+      for (const child of children.flat()) if (child != null) element.append(child instanceof Node ? child : document.createTextNode(T(String(child))));
+      return element;
+    }
+    const controls = {};
+    const form = h('form', { class: 'settings-form', novalidate: '' });
+    function field(name, label, input, wide = false) {
+      input.id = 'setting-' + name; input.name = name; controls[name] = input;
+      return h('div', { class: 'setting-field' + (wide ? ' setting-wide' : '') }, h('label', { for: input.id }, label), input);
+    }
+    const question = h('textarea', { rows: 3, placeholder: T('写下本次研究问题…'), required: '' }); question.value = c.question;
+    const scope = h('textarea', { rows: 2, placeholder: T('可选：允许扩展的范围、必须排除的主题或限制条件') }); scope.value = c.scope;
+    const rounds = h('input', { type: 'number', min: 1, max: 1000, step: 1, value: c.macro_rounds });
+    const parallel = h('select', {}, h('option', { value: '' }, '自动适配软件能力'), ...[1,2,3,4,5].map(n => h('option', { value: n }, String(n)))); parallel.value = c.max_parallel_agents ?? '';
+    const top = h('input', { type: 'number', min: 1, max: 20, step: 1, placeholder: T('自动筛选'), value: c.top_n ?? '' });
+    const hops = h('input', { type: 'number', min: 3, max: 20, step: 1, value: c.depth_hops });
+    form.append(field('question', '研究问题', question, true), field('scope', '研究范围与排除项', scope, true), h('div', { class: 'settings-grid' },
+      field('macro_rounds','思考轮数',rounds), field('max_parallel_agents','并行子代理上限',parallel),
+      field('top_n','每轮深入路径数',top), field('depth_hops','每条路径最少推进次数',hops)));
+    form.append(h('p', { class: 'setting-note' }, '五个逻辑角色保持不变。这里设置并发上限，实际并发还受本地软件能力限制。'));
+    const languages = h('fieldset', { class: 'setting-languages' }, h('legend', {}, '最终内容呈现语言'));
+    const checks = {};
+    for (const [code, name] of [['zh-CN','简体中文'], ['en','英语']]) {
+      const check = h('input', { type: 'checkbox', value: code, name: 'presentation_language' }); check.checked = c.presentation_languages.includes(code); checks[code] = check;
+      languages.append(h('label', { class: 'language-choice' }, check, h('span', {}, name), h('code', { 'data-i18n-skip': '' }, code)));
+    }
+    const other = h('input', { type: 'text', placeholder: T('例如 ja、de、fr，多个用逗号分隔') }); other.value = c.presentation_languages.filter(code => !checks[code]).join(', ');
+    languages.append(field('other_languages','其他语言标签（可选）',other,true));
+    form.append(languages, h('p', { class: 'setting-note language-policy' }, '内容语言仅用于研究完成后的独立翻译子 Agent；不规定研究与思考使用的语言。'));
+    const error = h('p', { class: 'setting-error', role: 'alert', hidden: '' }), status = h('p', { class: 'setting-saved', role: 'status', hidden: '' });
+    const preview = h('pre', { class: 'config-preview', 'data-i18n-skip': '' });
+    const details = h('details', { class: 'settings-preview' }, h('summary', {}, '参数预览'), preview);
+    function read() {
+      return validate({ ...defaults, question: question.value, scope: scope.value, macro_rounds: Number(rounds.value), max_parallel_agents: parallel.value ? Number(parallel.value) : null,
+        top_n: top.value ? Number(top.value) : null, depth_hops: Number(hops.value), ui_language: I.getLanguage(),
+        presentation_languages: [...Object.entries(checks).filter(([,el]) => el.checked).map(([code]) => code), ...other.value.split(/[,，\s]+/).filter(Boolean)] });
+    }
+    function updatePreview() { try { preview.textContent = JSON.stringify(read(), null, 2); } catch (_) { preview.textContent = ''; } }
+    form.addEventListener('input', updatePreview); form.addEventListener('change', updatePreview);
+    function fail(err) { error.textContent = T(err.message); error.hidden = false; status.hidden = true; }
+    function saveFile(value) {
+      const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2) + '\n'], { type: 'application/json' }));
+      const link = h('a', { href: url, download: 'run-config.json' }); document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
+    }
+    form.addEventListener('submit', async event => {
+      event.preventDefault(); error.hidden = true;
+      try {
+        const value = read();
+        if (options.onSubmit) await options.onSubmit(value); else saveFile(value);
+        status.textContent = T('参数已保存，返回 Agent 即可继续。'); status.hidden = false;
+      } catch (err) { fail(err); }
+    });
+    const actions = h('div', { class: 'settings-actions' }, h('button', { type: 'submit', class: 'button setting-primary' }, options.onSubmit ? '保存并返回 Agent' : '下载配置 JSON'),
+      h('button', { type: 'button', class: 'button', onclick: async () => {
+        try { const value = read(); await navigator.clipboard.writeText(JSON.stringify(value, null, 2)); error.hidden = true; status.textContent = T('配置已复制。'); status.hidden = false; }
+        catch (err) { if (err.message && /[\u3400-\u9fff]/.test(err.message)) fail(err); else { status.textContent = T('复制未成功，可下载 JSON。'); status.hidden = false; } }
+      } }, '复制配置'));
+    form.append(error, status, actions, details, h('p', { class: 'setting-note' }, '这张卡片只保存参数，不会自行开始研究。'));
+    container.replaceChildren(form); updatePreview();
+    return { read, form, refresh: updatePreview };
+  }
+  return { defaults, validate, languageTag, mount };
+});
+</script>
+  <script>/* Noemorph Knowledge Map — local, dependency-free HTML visualization plugin. */
+(async function () {
+  'use strict';
+  const G = window.SocratesGraph, $ = id => document.getElementById(id);
+  const I = window.SocratesI18n, L = window.SocratesLanguages, T = value => I.t(value);
+  const NS = 'http://www.w3.org/2000/svg';
+  const symbols = { question: 'n', direction: '✧', concept: '◇', finding: '·', frontier: '?' };
+  let model, positions, shown, selected, inspectorTab = 'insight', sceneBounds;
+  let languagePack, contentLanguage = 'auto', preserveViewUntil = 0;
+  let state = { mode: 'overview', expanded: new Set(), revealed: new Set(), roles: new Set(Object.keys(G.ROLES)), round: 0, status: 'all' };
+  let camera = { x: 0, y: 0, k: 1 }, animation = 0, toastTimer, miniTransform;
+  let drag = null, suppressClick = 0, dragDepth = 0, frame = 0;
+  const pointers = new Map();
+  const graph = $('graph'), area = $('map-area'), viewport = $('viewport');
+  const nodeElements = new Map(), nodeAnnotations = new Map(), edgeElements = new Map();
+  function el(tag, attrs = {}, ...children) {
+    const n = document.createElement(tag);
+    for (const [key, val] of Object.entries(attrs)) {
+      if (key === 'class') n.className = val;
+      else if (key.startsWith('on')) n.addEventListener(key.slice(2), val);
+      else n.setAttribute(key, String(val));
+    }
+    for (const c of children.flat()) if (c != null) n.append(c instanceof Node ? c : document.createTextNode(String(c)));
+    return n;
+  }
+  function svg(tag, attrs = {}, text) {
+    const n = document.createElementNS(NS, tag);
+    for (const [key, val] of Object.entries(attrs)) n.setAttribute(key, String(val));
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function toast(message) { $('toast').textContent = T(message); $('toast').hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => $('toast').hidden = true, 4500); }
+  function format(value) { return typeof value === 'string' ? value : value == null ? '' : JSON.stringify(value, null, 2); }
+  function text(id, value) { $(id).textContent = ['project-title','question-title'].includes(id) ? value : T(value); }
+  function radius(n) { return n.type === 'question' ? 37 : n.importance >= 4 ? 23 : n.type === 'finding' ? 13 : 16; }
+  function css(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function isMobileInspector() { return matchMedia('(max-width:1060px)').matches; }
+  function setInspector(open) { $('workspace').classList.toggle('inspector-closed', !open); $('inspector').hidden = !open; $('reopen-inspector').hidden = open; }
+  async function mount(data) {
+    // Validate before replacing the current, usable document.
+    if (data.schema_version === '1.0' && data.meta?.translation && languagePack) {
+      if (data.meta.translation.source_fingerprint !== languagePack.sourceFingerprint) throw new Error(T('语言版本与当前研究不匹配。请先打开对应原图。'));
+      const code = L.tag(data.meta.language), graphs = languagePack.data.graphs.filter(g => g.meta.language !== code);
+      const nextPack = await L.prepare({ ...languagePack.data, graphs: [...graphs, data] });
+      languagePack = nextPack; contentLanguage = code; switchContent(); toast(I.t('已加入 {language} 图谱版本。', { language: languageName(code) })); return;
+    }
+    const nextPack = await L.prepare(data), view = nextPack.data.view || {};
+    const requested = view.content_language || 'auto';
+    const next = nextPack.models.get(L.resolve(nextPack, requested, I.getLanguage()));
+    const nextPositions = G.layout(next, view.positions);
+    languagePack = nextPack; contentLanguage = requested; model = next; positions = nextPositions;
+    state = { mode: ['overview', 'all', 'frontier'].includes(view.mode) ? view.mode : 'overview',
+      expanded: new Set((Array.isArray(view.expanded) ? view.expanded : []).filter(id => model.byId.has(id))),
+      revealed: new Set((Array.isArray(view.revealed) ? view.revealed : []).filter(id => model.byId.has(id))),
+      roles: new Set(Object.keys(G.ROLES)), round: 0, status: 'all' };
+    selected = model.byId.has(view.selected) ? view.selected : model.root.id;
+    inspectorTab = 'insight';
+    $('status-filter').value = 'all'; $('search-input').value = ''; $('search-results').hidden = true;
+    refreshHeader(); buildLanguageControl(); I.applyStatic(document); buildFilters(); render(); renderInspector(); fit(false);
+  }
+  function refreshHeader() {
+    text('project-title', model.data.meta.title || T('知识探索地图'));
+    text('project-subtitle', T(`${model.data.meta.rounds || Math.max(0, ...model.data.nodes.map(n => Number(n.round) || 0))} 轮探索 · ${model.data.nodes.length} 个节点`));
+    text('question-title', model.data.meta.question || model.root.label);
+    text('stat-nodes', model.data.nodes.length); text('stat-links', model.data.edges.length);
+    text('stat-frontier', model.data.nodes.filter(n => n.type === 'direction' && n.status === 'frontier').length);
+    $('demo-notice').hidden = !model.data.meta.demo;
+    text('overview-count', model.data.nodes.filter(n => n.importance >= 4).length);
+    text('all-count', model.data.nodes.length); text('frontier-count', model.data.nodes.filter(G.isFrontier).length);
+    const warnings = model.data.meta.warnings || [];
+    text('status-message', model.data.meta.demo ? T('交互演示 · 所有示例发现仅用于展示界面') : warnings.length ? T(`已载入研究记录 · ${warnings.length} 条导入说明，详见主问题节点`) : T('本地图谱 · 阅读优先级与证据等级分别呈现'));
+    document.title = `${model.data.meta.title || 'Knowledge map'} · Noemorph — Multi-Agent Knowledge Exploration`;
+    graph.setAttribute('aria-label', T('知识图谱。拖动空白移动，滚轮缩放；Tab 选择节点，Enter 打开详情。'));
+    document.querySelectorAll('[data-ui-lang]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.uiLang === I.getLanguage())));
+    const miniHidden = $('minimap').hasAttribute('hidden');
+    $('minimap-toggle').setAttribute('aria-label', T(miniHidden ? '展开缩略导航' : '收起缩略导航'));
+  }
+  function languageName(code) {
+    if (code === 'und') return T('原始记录（混合 / 未标注）');
+    const variant = languagePack?.data.graphs.find(g => g.meta.language === code);
+    return variant?.meta.language_label || code;
+  }
+  function buildLanguageControl() {
+    const control = $('content-language');
+    control.replaceChildren(el('option', { value: 'auto' }, T('跟随界面') + ' · ' + languageName(model.data.meta.language)),
+      ...[...languagePack.models.keys()].map(code => el('option', { value: code }, languageName(code) + (code === 'und' ? '' : ` [${code}]`))));
+    control.value = contentLanguage; control.title = T('图谱内容语言') + ': ' + languageName(model.data.meta.language); control.setAttribute('aria-label', T('图谱内容语言'));
+  }
+  function switchContent() {
+    cancelAnimationFrame(animation);
+    preserveViewUntil = Date.now() + 600;
+    model = languagePack.models.get(L.resolve(languagePack, contentLanguage, I.getLanguage()));
+    refreshHeader(); buildLanguageControl(); buildFilters(); render(); renderInspector();
+  }
+  function changeInterfaceLanguage(code) {
+    I.setLanguage(code); I.applyStatic(document); switchContent();
+    if (contentLanguage === 'auto' && model.data.meta.language.split('-')[0] !== code.split('-')[0]) toast(I.t('此语言版本尚未生成，内容继续使用 {language}。', { language: languageName(model.data.meta.language) }));
+  }
+  function buildFilters() {
+    const filters = $('role-filters'); filters.replaceChildren();
+    for (const [role, info] of Object.entries(G.ROLES)) {
+      const count = model.data.nodes.filter(n => n.role === role).length;
+      if (!count) continue;
+      const button = el('button', { class: 'role-filter', 'data-role': role, 'aria-pressed': state.roles.has(role), onclick: () => {
+        state.roles.has(role) ? state.roles.delete(role) : state.roles.add(role); buildFilters(); render(); fit();
+      } }, el('span', { class: 'role-dot', style: `--role:${info.color}` }), T(info.label),
+        el('span', { class: 'role-count' }, count), el('span', { class: 'role-check', 'aria-hidden': true }, state.roles.has(role) ? '✓' : ''));
+      filters.append(button);
+    }
+    const rounds = [...new Set(model.data.nodes.map(n => Number(n.round)).filter(n => n > 0))].sort((a, b) => a - b);
+    $('round-filters').replaceChildren(...[0, ...rounds].map(round => el('button', {
+      class: state.round === round ? 'active' : '', 'aria-pressed': state.round === round,
+      onclick: () => { state.round = round; buildFilters(); render(); fit(); }
+    }, round ? `R${String(round).padStart(2, '0')}` : T('全部'))));
+    text('round-caption', state.round ? `ROUND ${state.round}` : 'ALL ROUNDS');
+  }
+  function setMode(mode) { state.mode = mode; state.expanded.clear(); state.revealed.clear(); render(); renderInspector(); fit(); $('workspace').classList.remove('sidebar-open'); }
+  function resetFilters() { state.roles = new Set(Object.keys(G.ROLES)); state.round = 0; state.status = 'all'; $('status-filter').value = 'all'; buildFilters(); render(); fit(); }
+  function render() {
+    shown = G.visibleGraph(model, state);
+    $('edge-layer').replaceChildren(); $('node-layer').replaceChildren(); nodeElements.clear(); nodeAnnotations.clear(); edgeElements.clear();
+    document.querySelectorAll('[data-view]').forEach(b => { b.classList.toggle('active', b.dataset.view === state.mode); b.setAttribute('aria-pressed', String(b.dataset.view === state.mode)); });
+    const names = { overview: T('主要发现'), all: T('完整网络'), frontier: T('待探索分支') };
+    text('view-title', names[state.mode]); text('visible-count', `${shown.nodes.length} / ${model.data.nodes.length}`);
+    $('empty-state').hidden = shown.nodes.some(n => n.id !== model.root.id) || model.data.nodes.length === 1;
+    for (const e of shown.edges) {
+      const group = svg('g', { class: 'edge' });
+      const path = svg('path', { class: `edge-path ${e.kind}`, 'marker-end': 'url(#edge-arrow)' });
+      const label = svg('text', { class: 'edge-label' }, G.wrapLabel(e.label, 18, 1)[0]);
+      group.append(path, label); $('edge-layer').append(group); edgeElements.set(e.id, { group, path, label, e });
+    }
+    for (const n of shown.nodes) {
+      const r = radius(n), role = G.ROLES[n.role];
+      const group = svg('g', { class: `node ${n.type} ${n.status}${n.importance >= 4 ? ' primary' : ''}`, 'data-node-id': n.id, tabindex: '0', role: 'button', 'aria-label': `${n.label}，${T(G.STATUSES[n.status])}，${T(G.EVIDENCE[n.evidence])}`, style: `--node-color:${role.color}` });
+      group.append(svg('title', {}, n.label), svg('circle', { class: 'halo', r: r + 20, filter: 'url(#node-glow)' }),
+        svg('circle', { class: 'orbit', r: r + 9 }), svg('circle', { class: 'disc', r }), svg('circle', { class: 'inner-disc', r: r - 4 }),
+        svg('text', { class: 'node-symbol', y: n.type === 'question' ? -1 : 0 }, symbols[n.type] || '◇'));
+      const lines = G.wrapLabel(n.label, n.type === 'question' ? 25 : 26, 3);
+      const annotation = svg('g', { class: 'node-annotation' });
+      const label = svg('text', { class: 'node-label', y: 0 });
+      lines.forEach((line, i) => label.append(svg('tspan', { x: 0, dy: i ? 16 : 0 }, line)));
+      annotation.append(label, svg('text', { class: 'node-meta', y: 3 + lines.length * 16 }, n.type === 'question' ? T('原始问题') : `${n.round ? `R${n.round} · ` : ''}${n.type === 'finding' ? T(G.EVIDENCE[n.evidence]) : T(G.STATUSES[n.status])}`));
+      group.append(annotation); nodeAnnotations.set(n.id, { element: annotation, label, node: n, offset: r + 23, compact: null });
+      const children = model.children.get(n.id) || [], hidden = children.filter(id => !shown.ids.has(id));
+      if (children.length && (hidden.length || state.expanded.has(n.id))) {
+        const badge = svg('g', { class: 'expand-badge', transform: `translate(${r - 1},${-r + 1})`, role: 'button', tabindex: '0', 'aria-label': hidden.length ? T(`展开 ${hidden.length} 个下级线索`) : T('收起下级线索') });
+        badge.append(svg('circle', { r: 10 }), svg('text', {}, hidden.length ? `+${hidden.length}` : '−'));
+        badge.addEventListener('pointerdown', event => { event.stopPropagation(); cancelAnimationFrame(animation); });
+        badge.addEventListener('click', event => { event.stopPropagation(); if (Date.now() < suppressClick) return; toggleExpand(n.id); });
+        badge.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); toggleExpand(n.id); } });
+        group.append(badge);
+      }
+      const jump = n.links.find(l => G.safeURL(l.url) && l.kind === 'source') || n.links.find(l => G.safeURL(l.url));
+      if (jump) {
+        const a = svg('a', { class: 'node-link-button', href: jump.url, target: '_blank', rel: 'noopener noreferrer', transform: `translate(${-r - 7},${-r + 2})`, 'aria-label': T(`打开${jump.label || T('参考资料')}`) });
+        a.append(svg('title', {}, jump.label || T('打开参考资料')), svg('circle', { r: 9 }), svg('text', {}, '↗'));
+        a.addEventListener('click', event => event.stopPropagation()); group.append(a);
+      }
+      group.addEventListener('click', event => { if (Date.now() < suppressClick || event.target.closest('a')) return; select(n.id, false); });
+      group.addEventListener('dblclick', event => { event.preventDefault(); if (!event.target.closest('a')) toggleExpand(n.id); });
+      group.addEventListener('keydown', event => {
+        if (event.target !== group) return;
+        if (event.key === 'Enter') { event.preventDefault(); select(n.id, false); }
+        if (event.key === ' ') { event.preventDefault(); toggleExpand(n.id); }
+      });
+      group.addEventListener('mouseenter', () => highlight(n.id)); group.addEventListener('mouseleave', () => highlight(selected));
+      $('node-layer').append(group); nodeElements.set(n.id, group);
+    }
+    updateGeometry(); updateCamera(); highlight(selected);
+  }
+  function updateGeometry() {
+    for (const [id, element] of nodeElements) { const p = positions.get(id); element.setAttribute('transform', `translate(${p.x},${p.y})`); }
+    for (const { e, path, label } of edgeElements.values()) {
+      const a = positions.get(e.source), b = positions.get(e.target), dx = b.x - a.x, dy = b.y - a.y, distance = Math.hypot(dx, dy) || 1;
+      const ra = radius(model.byId.get(e.source)) + 4, rb = radius(model.byId.get(e.target)) + 7;
+      const x1 = a.x + dx / distance * ra, y1 = a.y + dy / distance * ra, x2 = b.x - dx / distance * rb, y2 = b.y - dy / distance * rb;
+      const bend = e.kind === 'path' ? .07 : .23, cx = (x1 + x2) / 2 - dy * bend, cy = (y1 + y2) / 2 + dx * bend;
+      path.setAttribute('d', `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`);
+      label.setAttribute('x', (x1 + x2 + 2 * cx) / 4); label.setAttribute('y', (y1 + y2 + 2 * cy) / 4 - 7);
+    }
+    sceneBounds = G.bounds(shown.nodes, positions); drawMinimap();
+  }
+  function highlight(id) {
+    const connected = new Set([id]);
+    for (const e of shown.edges) if (e.source === id || e.target === id) { connected.add(e.source); connected.add(e.target); }
+    for (const [nid, element] of nodeElements) { element.classList.toggle('selected', nid === selected); element.classList.toggle('dim', id !== model.root.id && shown.ids.has(id) && !connected.has(nid)); }
+    for (const { e, path, group } of edgeElements.values()) { const active = e.source === id || e.target === id; path.classList.toggle('highlight', active); group.classList.toggle('dim', id !== model.root.id && shown.ids.has(id) && !active); }
+  }
+  function select(id, center = true) {
+    if (!model.byId.has(id)) return;
+    selected = id; inspectorTab = 'insight';
+    if (!shown.ids.has(id)) {
+      state.revealed.add(id);
+      state.roles.add(model.byId.get(id).role); state.round = 0; state.status = 'all'; $('status-filter').value = 'all';
+      buildFilters(); render();
+    }
+    setInspector(true); renderInspector(); highlight(id);
+    if (center) { const p = positions.get(id), rect = area.getBoundingClientRect(); moveCamera({ x: rect.width / 2 - p.x * Math.max(.65, camera.k), y: rect.height * .44 - p.y * Math.max(.65, camera.k), k: Math.max(.65, camera.k) }); }
+  }
+  function toggleExpand(id) {
+    if (!(model.children.get(id) || []).length) { select(id, false); toast(T('这是当前记录的末端线索。下一问可在节点详情中查看。')); return; }
+    if (state.mode === 'all') state.mode = 'overview';
+    if (state.expanded.has(id)) { state.expanded.delete(id); for (const descendant of G.descendants(model, id)) { state.expanded.delete(descendant); state.revealed.delete(descendant); } }
+    else { state.revealed.add(id); state.expanded.add(id); }
+    selected = id; render(); renderInspector(); fit();
+  }
+  function renderInspector() {
+    const n = model.byId.get(selected) || model.root, info = G.ROLES[n.role], container = $('inspector-content'); container.replaceChildren();
+    container.append(el('div', { class: 'node-kicker' }, el('span', { class: 'role-dot', style: `--role:${info.color}` }), T(info.label),
+      el('span', { class: 'node-number' }, `${String(model.data.nodes.indexOf(n) + 1).padStart(2, '0')} / ${model.data.nodes.length}`)), el('h2', {}, n.label));
+    container.append(el('div', { class: 'node-badges' }, el('span', { class: 'badge' }, n.type === 'question' ? T('研究起点') : T(G.STATUSES[n.status])),
+      ...(n.type === 'question' ? [] : [el('span', { class: `badge ${['verified_direct', 'supported_with_limits'].includes(n.evidence) ? 'evidence' : 'uncertain'}` }, T(G.EVIDENCE[n.evidence]))]),
+      ...(n.round ? [el('span', { class: 'badge' }, T(`第 ${n.round} 轮`))] : [])));
+    const connections = model.data.edges.filter(e => e.source === n.id || e.target === n.id);
+    container.append(el('div', { class: 'inspector-tabs' }, ...[['insight', T('线索详情')], ['connections', T(`连接 · ${connections.length}`)]].map(([tab, label]) =>
+      el('button', { class: inspectorTab === tab ? 'active' : '', 'aria-pressed': inspectorTab === tab, onclick: () => { inspectorTab = tab; renderInspector(); } }, label))));
+    if (inspectorTab === 'connections') {
+      for (const e of connections) {
+        const other = model.byId.get(e.source === n.id ? e.target : e.source);
+        container.append(el('button', { class: 'connection-card', onclick: () => select(other.id) }, el('small', {}, T(`${e.source === n.id ? '→' : '←'} ${e.label} · ${e.kind === 'path' ? T('记录中的探索路径') : e.kind}`)), other.label));
+      }
+      if (!connections.length) container.append(el('p', { class: 'reference-empty' }, T('当前没有记录关联。')));
+      return;
+    }
+    container.append(el('p', { class: 'inspector-description' }, format(n.summary) || T('此节点保留为研究线索；尚未记录详细结论。')));
+    const scale = el('div', { class: 'importance-scale', 'aria-label': T(`阅读优先级 ${n.importance} / 5`) }, ...[1, 2, 3, 4, 5].map(i => el('i', { class: i <= n.importance ? 'filled' : '' })));
+    container.append(el('section', { class: 'inspector-section' }, el('h3', {}, T('图谱中的阅读优先级'), el('span', {}, `${n.importance} / 5`)), scale, el('div', { class: 'importance-note' }, T('表示展示主次，不代表证据更强。'))));
+    const path = G.ancestors(model, n.id).reverse();
+    if (path.length) container.append(el('section', { class: 'inspector-section' }, el('h3', {}, T('回溯研究路径')), el('div', { class: 'path-crumbs' }, ...path.flatMap(id => [el('button', { onclick: () => select(id) }, model.byId.get(id).label), el('span', {}, '›')]), el('span', {}, T('当前线索')))));
+    const links = el('section', { class: 'inspector-section' }, el('h3', {}, T('参考资料与原始文件'), el('span', {}, String(n.links.length).padStart(2, '0'))));
+    for (const link of n.links) {
+      const url = G.safeURL(link.url), card = el('div', { class: 'reference-card' }, el('div', { class: 'reference-title' }, el('span', {}, link.kind === 'file' ? '▤' : '↗'), el('span', {}, link.label || T('参考资料'))));
+      if (url) {
+        let domain = T('本地研究文件');
+        try { const u = new URL(url, document.baseURI); if (/^https?:$/.test(u.protocol) && /^https?:/i.test(url)) domain = u.hostname; } catch (_) { /* validated above */ }
+        card.append(el('small', {}, domain), el('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, link.kind === 'file' ? T('打开文件') : T('打开来源'), ' ↗'));
+      } else card.append(el('small', {}, link.note || T('来源标识尚未解析为链接')));
+      links.append(card);
+    }
+    if (!n.links.length) links.append(el('p', { class: 'reference-empty' }, T('尚无可跳转的资料。此处不会自动生成引用或补造来源。')));
+    container.append(links);
+    const kids = model.children.get(n.id) || [], hidden = kids.filter(id => !shown.ids.has(id));
+    if (n.next_question || hidden.length) container.append(el('div', { class: 'next-question' }, el('span', {}, T('下一问')),
+      el('p', {}, format(n.next_question) || T(`${hidden.length} 条已记录的下级线索尚未展开。它们会把这个问题带向哪里？`)),
+      ...(hidden.length ? [el('button', { onclick: () => toggleExpand(n.id) }, T(`展开 ${hidden.length} 条线索 →`))] : [])));
+    container.append(el('div', { class: 'inspector-actions' }, el('button', { onclick: () => select(n.id) }, T('定位此节点 ⌖')),
+      el('button', { onclick: () => toggleExpand(n.id), ...(kids.length && (hidden.length || state.expanded.has(n.id)) ? {} : { disabled: true }) }, !kids.length ? T('无下级线索') : hidden.length ? T('展开下级 +') : state.expanded.has(n.id) ? T('收起下级 −') : T('下级已展示'))));
+    if (n.details && Object.keys(n.details).length) container.append(el('details', { class: 'inspector-details' }, el('summary', {}, T('查看原始逻辑与边界记录')), el('dl', {}, ...Object.entries(n.details).flatMap(([k, v]) => [el('dt', {}, k), el('dd', {}, format(v))]))));
+    if (n.id === model.root.id && (model.data.meta.warnings || []).length) container.append(el('details', { class: 'inspector-details' }, el('summary', {}, T(`导入说明 · ${model.data.meta.warnings.length}`)), ...model.data.meta.warnings.map(w => el('p', { class: 'importance-note' }, w))));
+    container.append(el('div', { class: 'origin-id' }, `NODE / ${n.id}`, el('br'), T(`ORIGIN / ${(n.origin_ids || []).join(' · ') || T('原始问题')}`)));
+  }
+  function updateCamera() {
+    viewport.setAttribute('transform', `translate(${camera.x},${camera.y}) scale(${camera.k})`);
+    const labelScale = Math.max(.7, Math.min(2.2, 1 / camera.k)), compact = camera.k < .82;
+    graph.classList.toggle('lod-compact', compact);
+    for (const info of nodeAnnotations.values()) {
+      if (info.compact !== compact) {
+        const lines = G.wrapLabel(info.node.label, info.node.type === 'question' ? 25 : 26, compact ? 2 : 3);
+        info.label.replaceChildren(...lines.map((line, i) => svg('tspan', { x: 0, dy: i ? 16 : 0 }, line)));
+        info.lines = lines.length; info.compact = compact;
+      }
+      const above = compact && positions.get(info.node.id).y < positions.get(model.root.id).y - 30;
+      const offset = above ? -radius(info.node) - 16 - (info.lines - 1) * 16 * labelScale : info.offset;
+      info.element.setAttribute('transform', `translate(0,${offset}) scale(${labelScale})`);
+    }
+    text('zoom-level', `${Math.round(camera.k * 100)}%`); graph.classList.toggle('lod-low', camera.k < .55); updateMiniViewport();
+  }
+  function moveCamera(target, animate = true) {
+    cancelAnimationFrame(animation);
+    target.k = Math.min(3.5, Math.max(.08, target.k));
+    if (!animate || matchMedia('(prefers-reduced-motion:reduce)').matches) { camera = target; updateCamera(); return; }
+    const start = { ...camera }, time = performance.now();
+    function tick(now) { const progress = Math.min(1, (now - time) / 280), t = 1 - (1 - progress) ** 3;
+      camera = { x: start.x + (target.x - start.x) * t, y: start.y + (target.y - start.y) * t, k: start.k + (target.k - start.k) * t }; updateCamera(); if (progress < 1) animation = requestAnimationFrame(tick); }
+    animation = requestAnimationFrame(tick);
+  }
+  function fit(animate = true) {
+    if (!shown) return;
+    const rect = area.getBoundingClientRect(), b = G.bounds(shown.nodes, positions), padX = rect.width < 600 ? 35 : 65, padY = 140;
+    const k = Math.min(1.3, Math.max(.08, Math.min((rect.width - padX * 2) / b.width, (rect.height - padY) / b.height)));
+    moveCamera({ k, x: rect.width / 2 - (b.x + b.width / 2) * k, y: rect.height * .47 - (b.y + b.height / 2) * k }, animate);
+  }
+  function zoom(factor, point) {
+    cancelAnimationFrame(animation);
+    const rect = area.getBoundingClientRect(), at = point || { x: rect.width / 2, y: rect.height / 2 }, k = Math.max(.08, Math.min(3.5, camera.k * factor));
+    camera = { x: at.x - (at.x - camera.x) * k / camera.k, y: at.y - (at.y - camera.y) * k / camera.k, k }; updateCamera();
+  }
+  function localPoint(event) { const r = graph.getBoundingClientRect(); return { x: event.clientX - r.left, y: event.clientY - r.top }; }
+  function worldPoint(event) { const p = localPoint(event); return { x: (p.x - camera.x) / camera.k, y: (p.y - camera.y) / camera.k }; }
+  function drawMinimap() {
+    if (!shown) return;
+    const mini = $('minimap'); mini.replaceChildren(); const b = sceneBounds, k = Math.min(166 / b.width, 96 / b.height);
+    miniTransform = { k, x: 90 - (b.x + b.width / 2) * k, y: 56 - (b.y + b.height / 2) * k };
+    const point = p => ({ x: p.x * k + miniTransform.x, y: p.y * k + miniTransform.y });
+    for (const e of shown.edges) { const a = point(positions.get(e.source)), z = point(positions.get(e.target)); mini.append(svg('line', { x1: a.x, y1: a.y, x2: z.x, y2: z.y, stroke: css('--edge-color'), 'stroke-width': .5 })); }
+    for (const n of shown.nodes) { const p = point(positions.get(n.id)); mini.append(svg('circle', { cx: p.x, cy: p.y, r: n.id === model.root.id ? 2.5 : n.importance >= 4 ? 1.8 : 1, fill: css(G.ROLES[n.role].color.slice(4, -1)) })); }
+    mini.append(svg('rect', { id: 'mini-viewport', class: 'minimap-viewport' })); updateMiniViewport();
+  }
+  function updateMiniViewport() {
+    const box = $('mini-viewport'); if (!box || !miniTransform) return;
+    const { k, x, y } = miniTransform, rect = area.getBoundingClientRect();
+    const left = Math.max(0, -camera.x / camera.k * k + x), top = Math.max(0, -camera.y / camera.k * k + y);
+    const right = Math.min(180, (rect.width - camera.x) / camera.k * k + x), bottom = Math.min(112, (rect.height - camera.y) / camera.k * k + y);
+    box.setAttribute('x', left); box.setAttribute('y', top); box.setAttribute('width', Math.max(0, right - left)); box.setAttribute('height', Math.max(0, bottom - top));
+  }
+  graph.addEventListener('wheel', event => { event.preventDefault(); zoom(Math.exp(-event.deltaY * (event.deltaMode === 1 ? .035 : .0014)), localPoint(event)); }, { passive: false });
+  graph.addEventListener('pointerdown', event => {
+    if (event.button !== 0 || event.target.closest('a')) return;
+    cancelAnimationFrame(animation); pointers.set(event.pointerId, localPoint(event));
+    if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()]; drag = { type: 'pinch', distance: Math.hypot(a.x - b.x, a.y - b.y), center: { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, camera: { ...camera }, moved: true }; return;
+    }
+    const node = event.target.closest('.node'), p = worldPoint(event);
+    drag = { type: node && !event.target.closest('.expand-badge') ? 'node' : 'pan', id: node?.dataset.nodeId,
+      start: localPoint(event), world: p, camera: { ...camera }, position: node ? { ...positions.get(node.dataset.nodeId) } : null, moved: false };
+  });
+  graph.addEventListener('pointermove', event => {
+    if (!drag || !pointers.has(event.pointerId)) return;
+    const p = localPoint(event); pointers.set(event.pointerId, p);
+    if (drag.type === 'pinch' && pointers.size >= 2) {
+      const [a, b] = [...pointers.values()], mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, k = Math.max(.08, Math.min(3.5, drag.camera.k * Math.hypot(a.x - b.x, a.y - b.y) / (drag.distance || 1)));
+      camera = { k, x: mid.x - (drag.center.x - drag.camera.x) * k / drag.camera.k, y: mid.y - (drag.center.y - drag.camera.y) * k / drag.camera.k }; updateCamera(); return;
+    }
+    if (drag.type === 'pinch') return;
+    const dx = p.x - drag.start.x, dy = p.y - drag.start.y;
+    if (Math.hypot(dx, dy) > 4) { drag.moved = true; graph.setPointerCapture(event.pointerId); graph.classList.add('dragging'); }
+    if (!drag.moved) return;
+    if (drag.type === 'pan') { camera.x = drag.camera.x + dx; camera.y = drag.camera.y + dy; updateCamera(); }
+    else { positions.set(drag.id, { x: drag.position.x + dx / camera.k, y: drag.position.y + dy / camera.k });
+      if (!frame) frame = requestAnimationFrame(() => { frame = 0; updateGeometry(); }); }
+  });
+  function endPointer(event) {
+    if (drag?.moved) suppressClick = Date.now() + 200;
+    pointers.delete(event.pointerId); if (graph.hasPointerCapture(event.pointerId)) graph.releasePointerCapture(event.pointerId);
+    if (pointers.size === 0) { drag = null; graph.classList.remove('dragging'); }
+  }
+  graph.addEventListener('pointerup', endPointer); graph.addEventListener('pointercancel', endPointer);
+  $('minimap').addEventListener('click', event => {
+    const rect = $('minimap').getBoundingClientRect(), x = (event.clientX - rect.left) / rect.width * 180, y = (event.clientY - rect.top) / rect.height * 112;
+    const world = { x: (x - miniTransform.x) / miniTransform.k, y: (y - miniTransform.y) / miniTransform.k }, a = area.getBoundingClientRect();
+    moveCamera({ ...camera, x: a.width / 2 - world.x * camera.k, y: a.height / 2 - world.y * camera.k });
+  });
+  $('minimap').addEventListener('keydown', event => { if (event.key === 'Enter') fit(); });
+  $('minimap-toggle').onclick = () => { const hidden = !$('minimap').hasAttribute('hidden'); $('minimap').toggleAttribute('hidden', hidden); $('minimap-toggle').setAttribute('aria-expanded', String(!hidden)); $('minimap-toggle').setAttribute('aria-label', hidden ? T('展开缩略导航') : T('收起缩略导航')); $('minimap-toggle').textContent = hidden ? '+' : '−'; };
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.view)));
+  $('reset-filters').onclick = resetFilters; $('empty-reset').onclick = resetFilters;
+  $('status-filter').onchange = event => { state.status = event.target.value; if (state.status !== 'all') state.mode = 'all'; render(); renderInspector(); fit(); };
+  $('fit-button').onclick = () => fit(); $('zoom-in').onclick = () => zoom(1.25); $('zoom-out').onclick = () => zoom(.8); $('zoom-level').onclick = () => zoom(1 / camera.k);
+  $('labels-button').onclick = () => { const hidden = graph.classList.toggle('hide-edge-labels'); $('labels-button').classList.toggle('active', !hidden); $('labels-button').setAttribute('aria-pressed', String(!hidden)); };
+  $('close-inspector').onclick = () => setInspector(false); $('reopen-inspector').onclick = () => setInspector(true);
+  $('menu-button').onclick = () => $('workspace').classList.toggle('sidebar-open');
+  $('brand-home').onclick = event => { event.preventDefault(); resetFilters(); setMode('overview'); select(model.root.id, false); };
+  $('project-home').onclick = () => select(model.root.id);
+  $('help-button').onclick = () => $('help-dialog').showModal(); $('close-help').onclick = () => $('help-dialog').close();
+  $('help-dialog').onclick = event => { if (event.target === $('help-dialog')) { const b = $('help-dialog').getBoundingClientRect(); if (event.clientX < b.left || event.clientX > b.right || event.clientY < b.top || event.clientY > b.bottom) $('help-dialog').close(); } };
+  $('theme-button').onclick = () => { const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = theme; try { localStorage.setItem('noemorph-theme', theme); } catch (_) {} drawMinimap(); };
+  $('fullscreen-button').onclick = async () => { try { if (document.fullscreenElement) await document.exitFullscreen(); else if (area.requestFullscreen) await area.requestFullscreen(); else toast(T('当前浏览器不支持全屏，可使用窗口最大化。')); } catch (_) { toast(T('当前浏览器未允许全屏。')); } };
+  document.addEventListener('fullscreenchange', () => fit());
+  $('search-input').addEventListener('input', () => {
+    const input = $('search-input'), results = $('search-results'), matches = G.search(model, input.value); results.replaceChildren(); results.hidden = !input.value.trim();
+    for (const n of matches) results.append(el('button', { role: 'option', onclick: () => { results.hidden = true; input.value = ''; input.blur(); select(n.id); } },
+      el('span', { class: 'role-dot', style: `--role:${G.ROLES[n.role].color};margin-top:5px` }), el('span', {}, n.label, el('small', {}, T(`${T(G.ROLES[n.role].label)} · ${T(G.STATUSES[n.status])}${shown.ids.has(n.id) ? '' : T(' · 当前已折叠')}`)))));
+    if (!matches.length) results.append(el('p', {}, T('没有找到匹配的线索。试试原始方向 ID。')));
+  });
+  $('search-input').addEventListener('keydown', event => { if (event.key === 'ArrowDown') { event.preventDefault(); $('search-results').querySelector('button')?.focus(); } if (event.key === 'Enter') $('search-results').querySelector('button')?.click(); });
+  $('search-results').addEventListener('keydown', event => { const buttons = [...$('search-results').querySelectorAll('button')], i = buttons.indexOf(document.activeElement); if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); buttons[(i + (event.key === 'ArrowDown' ? 1 : buttons.length - 1)) % buttons.length]?.focus(); } });
+  document.addEventListener('keydown', event => {
+    const editing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName);
+    if (event.key === 'Escape') { $('search-results').hidden = true; $('export-menu').hidden = true; $('workspace').classList.remove('sidebar-open'); if (!$('help-dialog').open && !$('run-dialog').open) setInspector(false); }
+    if (editing || $('help-dialog').open || $('run-dialog').open) return;
+    if (event.key === '/') { event.preventDefault(); $('search-input').focus(); }
+    if (event.key.toLowerCase() === 'f' && !event.ctrlKey && !event.metaKey) { event.preventDefault(); fit(); }
+  });
+  document.addEventListener('click', event => { if (!event.target.closest('.search-box')) $('search-results').hidden = true; if (!event.target.closest('.topbar-actions')) { $('export-menu').hidden = true; $('export-button').setAttribute('aria-expanded', 'false'); } });
+  async function importFile(file) {
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) { toast(T('文件超过 25 MB，请按研究批次导出。')); return; }
+    try { const data = JSON.parse(await file.text()); await mount(data); setInspector(!isMobileInspector()); toast(T(`已打开 ${model.data.nodes.length} 个知识节点，完整数据保留在本地。`)); }
+    catch (error) { toast(T(`导入失败：${error.message}`)); }
+    finally { $('file-input').value = ''; }
+  }
+  $('import-button').onclick = () => $('file-input').click(); $('file-input').onchange = event => importFile(event.target.files[0]);
+  document.addEventListener('dragenter', event => { if (!event.dataTransfer?.types.includes('Files')) return; event.preventDefault(); dragDepth++; $('drop-target').hidden = false; });
+  document.addEventListener('dragover', event => { if (event.dataTransfer?.types.includes('Files')) event.preventDefault(); });
+  document.addEventListener('dragleave', () => { if (--dragDepth <= 0) { dragDepth = 0; $('drop-target').hidden = true; } });
+  document.addEventListener('drop', event => { event.preventDefault(); dragDepth = 0; $('drop-target').hidden = true; importFile(event.dataTransfer?.files[0]); });
+  function snapshot() {
+    return { ...languagePack.data, view: { mode: state.mode, selected, expanded: [...state.expanded], revealed: [...state.revealed], positions: Object.fromEntries(positions), theme: document.documentElement.dataset.theme, ui_language: I.getLanguage(), content_language: contentLanguage } };
+  }
+  function download(content, type, filename) {
+    const blob = new Blob([content], { type }), url = URL.createObjectURL(blob), link = el('a', { href: url, download: filename }); document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
+  }
+  async function exportHTML() {
+    const clone = document.documentElement.cloneNode(true);
+    for (const stylesheet of clone.querySelectorAll('link[rel="stylesheet"]')) {
+      const response = await fetch(new URL(stylesheet.getAttribute('href'), document.baseURI)); if (!response.ok) throw new Error(T('无法读取样式'));
+      const style = document.createElement('style'); style.textContent = await response.text(); stylesheet.replaceWith(style);
+    }
+    for (const script of clone.querySelectorAll('script[src]')) {
+      if (script.getAttribute('src').endsWith('demo.js')) { script.remove(); continue; }
+      const response = await fetch(new URL(script.getAttribute('src'), document.baseURI)); if (!response.ok) throw new Error(T('无法读取插件'));
+      script.textContent = (await response.text()).replaceAll('<\/script', '<\\/script'); script.removeAttribute('src');
+    }
+    clone.querySelector('#graph-data').textContent = JSON.stringify(snapshot()).replaceAll('<', '\\u003c');
+    clone.querySelector('#export-menu').hidden = true; clone.querySelector('#toast').hidden = true;
+    clone.querySelector('#search-results').hidden = true; clone.querySelector('#help-dialog').removeAttribute('open');
+    clone.querySelector('#run-dialog').removeAttribute('open'); clone.querySelector('#run-dialog-form').replaceChildren();
+    clone.querySelector('#node-layer').replaceChildren(); clone.querySelector('#edge-layer').replaceChildren();
+    download('<!doctype html>\n' + clone.outerHTML, 'text/html;charset=utf-8', 'noemorph-knowledge-map.html');
+  }
+  function exportSVG() {
+    const clone = graph.cloneNode(true), rect = graph.getBoundingClientRect(), originals = [graph, ...graph.querySelectorAll('*')], copies = [clone, ...clone.querySelectorAll('*')];
+    const properties = ['fill', 'fill-opacity', 'stroke', 'stroke-width', 'stroke-opacity', 'stroke-dasharray', 'opacity', 'font-family', 'font-size', 'font-style', 'font-weight', 'text-anchor', 'dominant-baseline', 'paint-order', 'stroke-linejoin', 'display'];
+    originals.forEach((node, i) => { const computed = getComputedStyle(node); for (const prop of properties) copies[i].style.setProperty(prop, computed.getPropertyValue(prop)); copies[i].removeAttribute('tabindex'); });
+    clone.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`); clone.setAttribute('width', rect.width); clone.setAttribute('height', rect.height);
+    clone.insertBefore(svg('rect', { width: '100%', height: '100%', fill: css('--canvas') }), clone.firstChild);
+    download(new XMLSerializer().serializeToString(clone), 'image/svg+xml;charset=utf-8', 'noemorph-current-view.svg');
+  }
+  $('export-button').onclick = () => { $('export-menu').hidden = !$('export-menu').hidden; $('export-button').setAttribute('aria-expanded', String(!$('export-menu').hidden)); };
+  document.querySelectorAll('[data-export]').forEach(button => button.addEventListener('click', async () => {
+    $('export-menu').hidden = true; $('export-button').setAttribute('aria-expanded', 'false');
+    try {
+      if (button.dataset.export === 'json') download(JSON.stringify(snapshot(), null, 2), 'application/json;charset=utf-8', 'noemorph.graph.json');
+      else if (button.dataset.export === 'current-json') download(JSON.stringify({ ...languagePack.data.graphs.find(g => g.meta.language === model.data.meta.language), view: snapshot().view }, null, 2), 'application/json;charset=utf-8', `noemorph.${model.data.meta.language}.graph.json`);
+      else if (button.dataset.export === 'svg') exportSVG(); else await exportHTML();
+    } catch (error) { toast(T('当前文件模式无法打包外部资源。请运行 scripts/knowledge_map.py 生成独立 HTML，或通过本地服务打开。')); }
+  }));
+  let resizeFrame;
+  new ResizeObserver(() => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (model) Date.now() < preserveViewUntil ? updateCamera() : fit(false); }); }).observe(area);
+  document.querySelectorAll('[data-ui-lang]').forEach(button => button.addEventListener('click', () => changeInterfaceLanguage(button.dataset.uiLang)));
+  $('content-language').onchange = event => { contentLanguage = event.target.value; switchContent(); };
+  $('run-settings-button').onclick = () => { window.SocratesSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };
+  $('close-run-dialog').onclick = () => $('run-dialog').close();
+  try {
+    const initial = JSON.parse($('graph-data').textContent) || window.SOCRATES_DEMO;
+    try { const theme = initial?.view?.theme || (localStorage.getItem('noemorph-theme') || localStorage.getItem('socrates-theme')); if (['dark', 'light'].includes(theme)) document.documentElement.dataset.theme = theme; } catch (_) {}
+    let uiLanguage = initial?.view?.ui_language || initial?.run_config?.ui_language;
+    try { uiLanguage ||= (localStorage.getItem('noemorph-ui-language') || localStorage.getItem('socrates-ui-language')); } catch (_) {}
+    I.setLanguage(uiLanguage || 'zh-CN'); I.applyStatic(document);
+    setInspector(!isMobileInspector()); await mount(initial);
+  } catch (error) { text('question-title', T('图谱未能打开')); toast(error.message); }
+})();
+</script>
+</body>
+</html>

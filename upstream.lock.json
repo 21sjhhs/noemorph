@@ -1,0 +1,62 @@
+{
+  "source": "socrates (local installed skill)",
+  "policy": "Original research sources are preserved byte-for-byte; the renamed entrypoint is documented in references/ARCHITECTURE.md.",
+  "files": {
+    "SKILL.md": {
+      "sha256": "28662dc9fab7bfe9f0052dc394793a6d34694434216263567a31edccf1d39e75",
+      "bytes": 8516,
+      "mode": "prefix",
+      "preserved_path": "references/SOCRATES_SKILL.original.md"
+    },
+    "references/01-logic.md": {
+      "sha256": "ff43810e250c9315601c45a310e34fd35bde0a548b1c4446d1777347def9f149",
+      "bytes": 4236,
+      "mode": "exact"
+    },
+    "references/02-breadth.md": {
+      "sha256": "6f39751eacfeff43399a45fd17da2553755bbf004445f53d1f8adbe035205385",
+      "bytes": 3397,
+      "mode": "exact"
+    },
+    "references/03-selection.md": {
+      "sha256": "fda264ddc83670f45b7753ec23c3907b6e40ac01b4675e83bbc51f6bfcb1e64b",
+      "bytes": 2230,
+      "mode": "exact"
+    },
+    "references/04-orchestration.md": {
+      "sha256": "7088efcde9968c4181c228085fbe6167a73edb0abe15cccf66b82a0c6351ff7e",
+      "bytes": 2414,
+      "mode": "exact"
+    },
+    "references/05-depth.md": {
+      "sha256": "6eba69f2cc2db3479c19e16e0766be814bfd611cf3ce9d6f7f3f91408740b25b",
+      "bytes": 2205,
+      "mode": "exact"
+    },
+    "references/06-evidence.md": {
+      "sha256": "d07163445739bbec728dc2ac3fb7227fa12f69039353dddc3d356952f91524f2",
+      "bytes": 2040,
+      "mode": "exact"
+    },
+    "references/07-report.md": {
+      "sha256": "e74ddc76b148a470ad5066dba896af00a5fe9c2a48d6bdf3a6a630f76460245f",
+      "bytes": 3019,
+      "mode": "exact"
+    },
+    "references/08-state.md": {
+      "sha256": "46c49e7e38778773d688c714d4d74474dac4a45b85348f6714febba12373ba1f",
+      "bytes": 3217,
+      "mode": "exact"
+    },
+    "scripts/run_state.py": {
+      "sha256": "5e7cee5f9a682c057fb188bb5618f692d215f0ac445d781ab11a45efbff0c623",
+      "bytes": 10590,
+      "mode": "exact"
+    },
+    "scripts/test_run_state.py": {
+      "sha256": "8487631d9b02e3a5e25ef76663dc4a5320abb5c1c65a7c95e762c1f0aa94b152",
+      "bytes": 4820,
+      "mode": "exact"
+    }
+  }
+}

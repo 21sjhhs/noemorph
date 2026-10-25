@@ -1,0 +1,377 @@
+{
+  "round": 1,
+  "agent_id": "/root/noemorph_live_predicate",
+  "role": "predicate",
+  "execution_mode": "live independent breadth retrieval",
+  "directions": [
+    {
+      "id": "R1-A2-1",
+      "question": "How do teams with distributed decision authority revise shared task knowledge following disruption?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? → P′(S,C)?, where P′ is revising shared task knowledge.",
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or constituent units to some degree.",
+        "C": "After a disruption; event severity, duration and boundaries remain unspecified.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "P": "Regaining alignment capacity → revising shared task knowledge."
+      },
+      "discovery_target": "Learning activities and evidence of changed shared understanding after an event; do not count restored coordination as proof of learning.",
+      "search_route": {
+        "search_calls": [
+          1
+        ],
+        "queries": [
+          "self managing teams disruption team learning research study"
+        ],
+        "retrieved_url": "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Organizational_Learning_and_Change/Edmondson_et_al_Disrupted_Routines.pdf",
+        "open_action": "Opened the institutional PDF in the four-source open batch."
+      },
+      "bridge_test": "Verify that an observed team actually distributes relevant decision authority, that disruption precedes knowledge revision, and that knowledge changes are measured independently of coordination outcomes. A hierarchical surgical-team example alone fails the subject bridge.",
+      "novelty_reason": "A team may acquire or revise knowledge while coordination remains impaired, or restore alignment without revising its task knowledge. This is a neighboring cognitive process rather than another label for recovery.",
+      "finding": "A qualitative study of 16 hospitals implementing a cardiac-surgery technology describes different team learning processes among successful and unsuccessful implementers. The paper supports studying learning under disrupted routines, but does not establish the anchor’s distributed-authority subject.",
+      "evidence_refs": [
+        "E1"
+      ],
+      "status": "open_direction_with_adjacent_primary_evidence",
+      "candidate_validity": {
+        "semantic": "valid predicate change",
+        "scope_fit": "unverified subject bridge",
+        "established_target_relationship": false
+      },
+      "unknowns": [
+        "Whether the relevant hospital teams meet S.",
+        "Whether voluntary knowledge revision after disruption also occurs when authority is distributed.",
+        "Learning indicators, timing, and causal direction."
+      ]
+    },
+    {
+      "id": "R1-A2-2",
+      "question": "How do teams with distributed decision authority distribute scarce resources among competing member or unit claims following disruption?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? → P′(S,C)?, where P′ is allocating scarce resources among claims.",
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or constituent units to some degree.",
+        "C": "After a disruption; no new assumption that all disruptions create scarcity.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "P": "Regaining alignment capacity → resource allocation outcomes and allocation authority in episodes where competing claims exist."
+      },
+      "discovery_target": "Allocation rules, resulting distribution and reasons accepted for competing claims; scarcity is a case characteristic to verify rather than a new universal condition.",
+      "search_route": {
+        "search_calls": [
+          1,
+          2,
+          3
+        ],
+        "queries": [
+          "decentralized teams disruption resource allocation study",
+          "self managing teams resource allocation shortage disruption research study",
+          "\"team autonomy\" \"resource\" \"disruption\"",
+          "\"self-managing teams\" \"resources\" \"crisis\"",
+          "\"decentralized teams\" \"allocation\" human organization research"
+        ],
+        "retrieved_url": "https://doi.org/10.1177%2F00018392241257372",
+        "open_action": "Not opened; publisher-indexed primary article text returned by search call 3."
+      },
+      "bridge_test": "Within a team or constituent-unit collective satisfying S, identify a disruption and trace actual competing resource claims, decision rights and allocations. Separate the amount or distributive pattern allocated from whether interdependent work becomes aligned. Do not infer that an organization-wide ethnography automatically establishes a team-level post-event relation.",
+      "novelty_reason": "An allocation can be more unequal or more efficient while the team remains equally coordinated. The target is the distribution of resources and authority over that distribution, not recovered alignment.",
+      "finding": "An 18-month ethnography examines enactments and reversions of decentralized authority in an organization granting role holders decision authority without managerial approval. It offers a subject/authority framing, but the retrieved text does not establish a post-disruption scarce-resource allocation relationship at team level.",
+      "evidence_refs": [
+        "E2"
+      ],
+      "status": "open_direction_target_unsupported",
+      "candidate_validity": {
+        "semantic": "valid if allocation is assessed as a distinct distribution outcome",
+        "scope_fit": "team-level and temporal bridges unverified",
+        "established_target_relationship": false
+      },
+      "unknowns": [
+        "Which allocation decisions remain within distributed authority.",
+        "Whether and when a disruption produces competing claims.",
+        "Team boundary and non-coercive allocation rules.",
+        "No direct target evidence verified within retrieval budget."
+      ]
+    },
+    {
+      "id": "R1-A2-3",
+      "question": "How does interpersonal trust change within teams with distributed decision authority following disruption?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? → P′(S,C)?, where P′ is change in interpersonal trust.",
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or constituent units to some degree.",
+        "C": "After disruption; do not presume disruption entails conflict or a trust violation.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "P": "Regaining alignment capacity → changes in willingness to rely on teammates and expectations of their conduct."
+      },
+      "discovery_target": "Trust trajectories after a verified disruption, including unchanged or declining trust, independent of coordination restoration.",
+      "search_route": {
+        "search_calls": [
+          1,
+          2
+        ],
+        "queries": [
+          "self managed teams trust violation repair research",
+          "self managing teams interpersonal trust broken commitments study repair"
+        ],
+        "retrieved_url": "https://journals.aom.org/doi/10.5465/amj.2007.26279196",
+        "open_action": "Attempted publisher open; HTTP 403 Forbidden. Only search-returned publisher abstract was available."
+      },
+      "bridge_test": "Check actual distribution of decision authority and a temporally defined disruption; measure trust independently. Conflict in the source is not automatically C, and a conflict–trust association does not prove a general post-disruption process.",
+      "novelty_reason": "Trust concerns relational expectations and vulnerability; teams can align through explicit agreements despite low trust. Neither trust recovery nor trust decline is synonymous with recovering coordination.",
+      "finding": "The publisher abstract for a longitudinal self-managing-team study proposes that conflict relates to lower intrateam trust, with possible reductions in autonomy and task interdependence. This provides a distinct relational question, not verified evidence for a disruption-to-trust mechanism in the anchor population.",
+      "evidence_refs": [
+        "E3"
+      ],
+      "status": "open_direction_full_source_fetch_failed",
+      "candidate_validity": {
+        "semantic": "valid predicate change",
+        "scope_fit": "self-managing subject is relevant; authority details and disruption bridge unverified",
+        "established_target_relationship": false
+      },
+      "unknowns": [
+        "Full methods and results inaccessible through attempted open.",
+        "Whether the source’s conflict episodes meet C.",
+        "Whether changed autonomy means the same teams cease to satisfy S over time."
+      ]
+    },
+    {
+      "id": "R1-A2-4",
+      "question": "How do members of teams with distributed decision authority express warnings and improvement suggestions following disruption?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? → P′(S,C)?, where P′ is speaking up about risks or improvements.",
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or constituent units to some degree.",
+        "C": "After disruption; its boundaries and intensity remain open.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "P": "Regaining alignment capacity → expression and uptake of warnings or improvement suggestions."
+      },
+      "discovery_target": "Who speaks, what is said, who can act, and whether uptake differs for warnings and suggestions, without defining voice by eventual performance recovery.",
+      "search_route": {
+        "search_calls": [
+          1
+        ],
+        "queries": [
+          "self managing teams disruption employee voice research"
+        ],
+        "retrieved_url": "https://pubmed.ncbi.nlm.nih.gov/34291959/",
+        "open_action": "Opened PubMed institutional record of primary research; author abstract accessible."
+      },
+      "bridge_test": "Confirm decision authority is distributed in the studied production teams or locate another organizational sample meeting S. Measure expression and uptake before testing any link to coordination. Performance trajectories cannot substitute for coordination evidence.",
+      "novelty_reason": "Speaking up is an observable communication behavior that may be ignored or occur without restored alignment; the target can be investigated even if no recovery occurs.",
+      "finding": "The author abstract reports a field study of 172 production teams and an experiment with 88 teams supporting different roles for warning-oriented and improvement-oriented voice around exogenous change. Distributed decision authority is not established in the accessible abstract.",
+      "evidence_refs": [
+        "E4"
+      ],
+      "status": "open_direction_with_primary_abstract_evidence",
+      "candidate_validity": {
+        "semantic": "valid predicate change",
+        "scope_fit": "organizational change relevant; distributed authority unverified",
+        "established_target_relationship": false
+      },
+      "unknowns": [
+        "Relevant decision rights in production teams.",
+        "Voluntary expression conditions and authority to implement suggestions.",
+        "Whether voice is caused by or merely occurs after disruption."
+      ]
+    },
+    {
+      "id": "R1-A2-5",
+      "question": "How do teams with distributed decision authority generate novel useful outputs following disruption?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? → P′(S,C)?, where P′ is producing novel useful outputs.",
+      "fixed": {
+        "S": "Organizational teams with decision authority distributed among members or constituent units to some degree.",
+        "C": "After disruption; technological turbulence is only one candidate context and cannot replace C wholesale.",
+        "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command."
+      },
+      "changed": {
+        "P": "Regaining alignment capacity → generating innovative outputs."
+      },
+      "discovery_target": "Novelty and usefulness of team outputs, rather than the resumption of old work or knowledge acquisition by itself.",
+      "search_route": {
+        "search_calls": [
+          2
+        ],
+        "queries": [
+          "self managing teams disruption innovation research autonomy crisis"
+        ],
+        "retrieved_url": "https://www.sciencedirect.com/science/article/pii/S0749597817302194",
+        "open_action": "Attempted publisher open; HTTP 403 Forbidden. Search returned publisher abstract/highlights."
+      },
+      "bridge_test": "Verify that autonomy includes distributed decision authority, identify an actual interruption episode rather than continuous environmental turbulence alone, and score novelty/usefulness separately from coordination and shared-knowledge change.",
+      "novelty_reason": "Innovation concerns outputs; learning concerns changed knowledge. A team can regain coordination and learn without producing a novel useful output, or innovate while alignment remains fragile.",
+      "finding": "Publisher-indexed text of two field studies reports relationships among technological turbulence, acquisition of new knowledge, reduced dependence on established experts, and innovation performance; team autonomy strengthens the reported mediated relationships. The post-disruption temporal sequence and distributed authority bridge remain unverified.",
+      "evidence_refs": [
+        "E5"
+      ],
+      "status": "open_direction_full_source_fetch_failed",
+      "candidate_validity": {
+        "semantic": "valid predicate change, distinct from learning and recovery",
+        "scope_fit": "autonomy and turbulence require explicit bridges to S and C",
+        "established_target_relationship": false
+      },
+      "unknowns": [
+        "Full methods/results not fetched.",
+        "Whether team autonomy means decision authority distributed within the team.",
+        "Whether turbulence constitutes a discrete disruption in observed cases.",
+        "Causal interpretation of the reported mediation."
+      ]
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "E1",
+      "url": "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Organizational_Learning_and_Change/Edmondson_et_al_Disrupted_Routines.pdf",
+      "title": "Disrupted Routines: Team Learning and New Technology Implementation in Hospitals",
+      "authors": "Amy C. Edmondson, Richard M. Bohmer, Gary P. Pisano",
+      "year": 2001,
+      "source_type": "Original empirical article hosted by MIT",
+      "retrieval": "Search call 1; successful open O1; PDF text accessible.",
+      "locator": "PDF page 1, abstract; PDF page 2, discussion of routine disruption.",
+      "supported_claim": "The authors studied technology implementation in 16 hospitals and describe different collective learning processes among more and less successful implementers.",
+      "support_limit": "Supports an adjacent learning process under routine disruption; does not verify a decentralized-team post-disruption mechanism."
+    },
+    {
+      "id": "E2",
+      "url": "https://doi.org/10.1177%2F00018392241257372",
+      "title": "Enacting Decentralized Authority: The Practices and Limits of Moving Beyond Hierarchy",
+      "authors": "Michael Y. Lee",
+      "year": 2024,
+      "source_type": "Original empirical article; publisher-indexed search text",
+      "retrieval": "Search call 3 only; not opened.",
+      "locator": "Search-returned abstract and introductory account of the 18-month ethnography.",
+      "supported_claim": "The case organization granted role holders authority to decide without managerial approval; the ethnography examined enactments and reversions of decentralized authority.",
+      "support_limit": "Does not establish resource distribution after disruption in a bounded team; framing only."
+    },
+    {
+      "id": "E3",
+      "url": "https://journals.aom.org/doi/10.5465/amj.2007.26279196",
+      "title": "The Downside of Self-Management: A Longitudinal Study of the Effects of Conflict on Trust, Autonomy, and Task Interdependence in Self-Managing Teams",
+      "authors": "Claus W. Langfred",
+      "year": 2007,
+      "source_type": "Original research article; publisher abstract indexed in search",
+      "retrieval": "Search call 2; attempted open O3 failed with HTTP 403 Forbidden.",
+      "locator": "Search-returned publisher abstract.",
+      "supported_claim": "The abstract proposes that conflict in self-managing teams relates to lower intrateam trust, possibly altering autonomy and interdependence.",
+      "support_limit": "The accessible text frames a proposed relation; full empirical details were not verified. Conflict is not automatically the anchor disruption."
+    },
+    {
+      "id": "E4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34291959/",
+      "title": "How employees’ voice helps teams remain resilient in the face of exogenous change",
+      "authors": "Alex Ning Li and Subrahmaniam Tangirala",
+      "year": 2022,
+      "source_type": "Institutional bibliographic record reproducing authors’ primary-research abstract",
+      "retrieval": "Search call 1; successful open O2.",
+      "locator": "Abstract, returned lines 242–244; DOI 10.1037/apl0000874.",
+      "supported_claim": "The abstract reports general support in a 172-team field study and an 88-team experiment for different roles of warning-oriented and improvement-oriented voice around exogenous change.",
+      "support_limit": "Authority distribution is not specified in the accessed abstract; performance and coordination remain distinct constructs."
+    },
+    {
+      "id": "E5",
+      "url": "https://www.sciencedirect.com/science/article/pii/S0749597817302194",
+      "title": "Innovate or die: How should knowledge-worker teams respond to technological turbulence?",
+      "authors": "Tingting Chen, Fuli Li, Xiao-Ping Chen, Zhanying Ou",
+      "year": 2018,
+      "source_type": "Original empirical article; publisher-indexed abstract/highlights",
+      "retrieval": "Search call 2; attempted open O4 failed with HTTP 403 Forbidden.",
+      "locator": "Search-returned abstract/highlights; DOI 10.1016/j.obhdp.2018.08.008.",
+      "supported_claim": "Two field studies report mediated associations of technological turbulence with innovation via new knowledge acquisition and reduced dependence on established experts, strengthened by team autonomy.",
+      "support_limit": "Full results not retrieved. Team autonomy need not establish distributed decision authority, and turbulence need not establish a post-disruption episode."
+    }
+  ],
+  "retrieval_limits": {
+    "maximum_search_calls": 4,
+    "actual_search_calls": 3,
+    "actual_search_queries": 10,
+    "maximum_primary_source_opens": 4,
+    "actual_primary_source_open_attempts": 4,
+    "successful_opens": 2,
+    "failed_opens": 2,
+    "search_call_log": [
+      {
+        "call": 1,
+        "queries": [
+          "self managing teams disruption team learning research study",
+          "decentralized teams disruption resource allocation study",
+          "self managed teams trust violation repair research",
+          "self managing teams disruption employee voice research"
+        ]
+      },
+      {
+        "call": 2,
+        "queries": [
+          "self managing teams disruption innovation research autonomy crisis",
+          "self managing teams resource allocation shortage disruption research study",
+          "self managing teams interpersonal trust broken commitments study repair"
+        ]
+      },
+      {
+        "call": 3,
+        "queries": [
+          "\"team autonomy\" \"resource\" \"disruption\"",
+          "\"self-managing teams\" \"resources\" \"crisis\"",
+          "\"decentralized teams\" \"allocation\" human organization research"
+        ]
+      }
+    ],
+    "open_call_log": [
+      {
+        "action": "O1",
+        "url": "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Organizational_Learning_and_Change/Edmondson_et_al_Disrupted_Routines.pdf",
+        "result": "success; PDF text"
+      },
+      {
+        "action": "O2",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34291959/",
+        "result": "success; author abstract in institutional record"
+      },
+      {
+        "action": "O3",
+        "url": "https://journals.aom.org/doi/10.5465/amj.2007.26279196",
+        "result": "failed; 403 Forbidden"
+      },
+      {
+        "action": "O4",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0749597817302194",
+        "result": "failed; 403 Forbidden"
+      }
+    ],
+    "excluded_retrievals": "Search also returned artificial-agent, military, employee behavior-control and general non-primary results. Those were not used as evidence for in-scope target claims.",
+    "depth_work_performed": false,
+    "path_selection_performed": false
+  },
+  "execution_note": "Actually executed by /root/noemorph_live_predicate. Read only anchor.json and the shared input / Role 2 / breadth / validity passages of noemorph/references/EXPLORATION_OPERATORS.md; did not read sibling outputs, demos or earlier reports. Initial attempt to read repository-root references/EXPLORATION_OPERATORS.md failed because the file was absent; rg --files located its noemorph path. Used actual web retrieval: three search calls containing ten queries, then one batch of four primary-source open attempts, two of which returned HTTP 403. Five semantically distinct open directions were investigated, but none is represented as an established complete relationship for S after C. Sources are partial framing evidence. No selected path, depth research, translation or subagent spawning was performed."
+}

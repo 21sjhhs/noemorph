@@ -1,0 +1,21 @@
+{
+  "id": "noemorph-knowledge-map",
+  "name": "Noemorph Knowledge Map",
+  "version": "0.1.0",
+  "description": "Discover What You Didn't Know to Ask.",
+  "entrypoint": "index.html",
+  "schema_version": "1.0",
+  "runtime": "static-html",
+  "dependencies": [],
+  "network_required": false,
+  "ui_languages": [
+    "zh-CN",
+    "en"
+  ],
+  "content_languages": "declared by each graph.meta.language",
+  "bundle_version": "1.0",
+  "settings_entrypoint": "run-card.html",
+  "data_contract": "../../docs/graph-format.md",
+  "exporter": "../../scripts/knowledge_map.py",
+  "note": "Self-contained visualization plugin. Not a Codex marketplace installer manifest."
+}

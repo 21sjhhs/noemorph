@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+local-runs/
+test-results/
+*.log
+runs/
+dist/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.secrets/
+audit/private/

@@ -1,0 +1,316 @@
+{
+  "evaluation": "bounded live QA pilot, not a discovery-performance benchmark",
+  "round": 1,
+  "user_top_n": 1,
+  "selected_ids": [
+    "R1-A5-2"
+  ],
+  "main_agent": "/root",
+  "criteria": "Preserved selection dimensions and weights; scores are explicit heuristic judgments, not objective measurements.",
+  "set_diversity": "A one-path request is honored. Other high-potential paths remain in the full catalogue; no extra branch is selected for a quota.",
+  "scores": [
+    {
+      "id": "R1-A2-1",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 3,
+        "Evidence": 3,
+        "Nonredundancy": 2,
+        "Risk": 2
+      },
+      "heuristic_score": 2.6,
+      "selected": false,
+      "reason": "A distinct learning predicate, but overlaps the learning-type question and lacks the distributed-authority bridge."
+    },
+    {
+      "id": "R1-A2-2",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 2
+      },
+      "heuristic_score": 2.65,
+      "selected": false,
+      "reason": "Allocation is separable from restored alignment; team/time evidence remains weak."
+    },
+    {
+      "id": "R1-A2-3",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 3
+      },
+      "heuristic_score": 2.5,
+      "selected": false,
+      "reason": "Trust is distinct, but full text and disturbance mapping are unresolved."
+    },
+    {
+      "id": "R1-A2-4",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 3,
+        "Evidence": 4,
+        "Nonredundancy": 3,
+        "Risk": 2
+      },
+      "heuristic_score": 2.85,
+      "selected": false,
+      "reason": "A testable voice predicate with primary abstract support; authority and coordination measures remain separate."
+    },
+    {
+      "id": "R1-A2-5",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 2,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 3
+      },
+      "heuristic_score": 2.18,
+      "selected": false,
+      "reason": "Innovation differs from recovery; environmental turbulence and autonomy are imperfect anchor matches."
+    },
+    {
+      "id": "R1-A3-1",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 3,
+        "Nonredundancy": 4,
+        "Risk": 3
+      },
+      "heuristic_score": 3.18,
+      "selected": false,
+      "reason": "A distinct organizational collective with an impairment lead; productivity is not coordination recovery."
+    },
+    {
+      "id": "R1-A3-2",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 2
+      },
+      "heuristic_score": 2.65,
+      "selected": false,
+      "reason": "A voluntary-governance comparison, without an observed recovery episode."
+    },
+    {
+      "id": "R1-A3-3",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 3,
+        "Bridge": 2,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 4
+      },
+      "heuristic_score": 2.41,
+      "selected": false,
+      "reason": "Rule enforcement conflicts with a naive non-coercion assumption; scope screening required before use."
+    },
+    {
+      "id": "R1-A3-4",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 3
+      },
+      "heuristic_score": 3.03,
+      "selected": false,
+      "reason": "Voluntary coalition comparison is promising; distinguish community disaster recovery from coalition coordination."
+    },
+    {
+      "id": "R1-A3-5",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 3,
+        "Bridge": 2,
+        "Evidence": 1,
+        "Nonredundancy": 4,
+        "Risk": 4
+      },
+      "heuristic_score": 1.98,
+      "selected": false,
+      "reason": "Consent, power asymmetry, scope and full-source access remain unresolved."
+    },
+    {
+      "id": "R1-A4-1",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 3
+      },
+      "heuristic_score": 2.65,
+      "selected": false,
+      "reason": "A conditional broader adaptation class; no universal inclusion is established."
+    },
+    {
+      "id": "R1-A4-2",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 3
+      },
+      "heuristic_score": 2.65,
+      "selected": false,
+      "reason": "A process/capability type distinction is useful, but a process segment is not automatically a subtype."
+    },
+    {
+      "id": "R1-A4-3",
+      "scores": {
+        "Boundary": 5,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 4,
+        "Risk": 4
+      },
+      "heuristic_score": 3.16,
+      "selected": false,
+      "reason": "A falsifiable regulation representation with high organizational-transfer risk."
+    },
+    {
+      "id": "R1-A4-4",
+      "scores": {
+        "Boundary": 2,
+        "Depth": 2,
+        "Bridge": 1,
+        "Evidence": 2,
+        "Nonredundancy": 1,
+        "Risk": 5
+      },
+      "heuristic_score": 0.93,
+      "selected": false,
+      "reason": "Reject the unrestricted recovery-is-learning lift; preserve the negative finding and link its overlap to R1-A2-1."
+    },
+    {
+      "id": "R1-A4-5",
+      "scores": {
+        "Boundary": 5,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 5,
+        "Risk": 3
+      },
+      "heuristic_score": 3.41,
+      "selected": false,
+      "reason": "A precise formal representation with explicit encoding tests; dynamic and organizational validity remain unresolved."
+    },
+    {
+      "id": "R1-A5-1",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 4,
+        "Bridge": 3,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 4
+      },
+      "heuristic_score": 2.78,
+      "selected": false,
+      "reason": "Adaptive-system membership requires observed dynamics; distributed authority alone is insufficient."
+    },
+    {
+      "id": "R1-A5-2",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 4,
+        "Bridge": 4,
+        "Evidence": 3,
+        "Nonredundancy": 4,
+        "Risk": 2
+      },
+      "heuristic_score": 3.55,
+      "selected": true,
+      "reason": "Selected for an inspectable institutional bridge and a primary voluntary-organizational episode lead, with explicit membership/recovery tests."
+    },
+    {
+      "id": "R1-A5-3",
+      "scores": {
+        "Boundary": 4,
+        "Depth": 4,
+        "Bridge": 4,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 3
+      },
+      "heuristic_score": 3.15,
+      "selected": false,
+      "reason": "A conditional people-artifact representation; cognitive distribution is not decision authority."
+    },
+    {
+      "id": "R1-A5-4",
+      "scores": {
+        "Boundary": 3,
+        "Depth": 4,
+        "Bridge": 4,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 2
+      },
+      "heuristic_score": 3.02,
+      "selected": false,
+      "reason": "Direct organizational class framing; coupling and consent must still be established."
+    },
+    {
+      "id": "R1-A5-5",
+      "scores": {
+        "Boundary": 2,
+        "Depth": 3,
+        "Bridge": 1,
+        "Evidence": 2,
+        "Nonredundancy": 3,
+        "Risk": 5
+      },
+      "heuristic_score": 1.38,
+      "selected": false,
+      "reason": "Reject universal group-agency membership; retain as a restricted hypothesis, not a general abstraction."
+    }
+  ],
+  "duplicates_and_invalid": {
+    "linked_overlap": [
+      [
+        "R1-A2-1",
+        "R1-A4-4"
+      ],
+      [
+        "R1-A3-4",
+        "R1-A5-2"
+      ]
+    ],
+    "rejected_universal_lifts": [
+      "R1-A4-4",
+      "R1-A5-5"
+    ],
+    "scope_review": [
+      "R1-A3-3",
+      "R1-A3-5"
+    ],
+    "semantic_limit": "Conditional representations are explored as hypotheses, not asserted as established superclasses or causal mechanisms."
+  },
+  "all_breadth_received_before_selection": true,
+  "anchor_sha256": "bc7946c0ea1a4e1d7044d73e5d98b0e2ca1d19b4e42d686e7becb52c495e1a1e"
+}

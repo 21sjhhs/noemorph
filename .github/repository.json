@@ -1,0 +1,17 @@
+{
+  "name": "noemorph",
+  "description": "Multi-Agent Knowledge Exploration through concept expansion, recursive deep research, and cross-disciplinary knowledge discovery.",
+  "visibility": "public",
+  "topics": [
+    "agent-skills",
+    "multi-agent",
+    "deep-research",
+    "knowledge-exploration",
+    "concept-expansion",
+    "recursive-research",
+    "knowledge-discovery",
+    "research-question-generation",
+    "knowledge-graph"
+  ],
+  "owner": "21sjhhs"
+}

@@ -1,0 +1,416 @@
+{
+  "round": 1,
+  "agent_id": "/root/noemorph_live_subject",
+  "role": "subject",
+  "directions": [
+    {
+      "id": "R1-A3-1",
+      "question": "How do open-source contributor communities regain workable alignment of interdependent activity after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? -> P(S-prime,C)?; substitute an organizational subject class while preserving P, C and scope.",
+      "discovery_target": "Whether replacement of contribution and review relationships restores aligned joint development after impairment; do not equate commit output with P.",
+      "search_route": {
+        "queries": [
+          {
+            "id": "Q1",
+            "query": "site.usenix.org open source community disruption recovery coordination maintainer incident study"
+          },
+          {
+            "id": "Q6",
+            "query": "site.apache.org foundation how it works meritocracy consensus projects governance"
+          }
+        ],
+        "source_ids": [
+          "SRC1",
+          "SRC2"
+        ],
+        "reproduction": "Run the literal queries in a web search engine; inspect the listed source URLs and the access-level limits in source_checks."
+      },
+      "bridge_test": "First establish interdependent contributions and a dated impairment of their alignment. Then test whether changes in participation, review and decision rights precede renewed compatible work against the same outcome threshold used for teams. Distinguish project-community and team boundaries; compare only episodes without coercive management.",
+      "novelty_reason": "Changes membership boundaries, employment relationship and control over a shared artifact; this is more than relabeling a remote team.",
+      "fixed": {
+        "P": "Regain a workable capacity to align interdependent activity after impairment.",
+        "C": "An event or episode associated with interruption or impairment of ongoing joint activity; origin, duration and severity remain unspecified. After remains temporal, not causal.",
+        "scope": [
+          "Non-coercive organizational coordination",
+          "Exclude employee surveillance",
+          "Exclude military command"
+        ],
+        "comparison_rule": "Apply the same demonstrated interdependence, impairment, and workable-alignment outcome requirements to S and S-prime. Do not substitute productivity, service delivery, resource sustainability, or survival for coordination recovery."
+      },
+      "changed": {
+        "S_prime": "Voluntary, permeable contributor communities organized around a shared software artifact, rather than a bounded employment team.",
+        "not_assumed": "The replacement class need not have every property of decentralized teams; comparability and the non-coercion boundary require explicit checks."
+      },
+      "finding": "An author-hosted study reports a productivity decrease among remaining developers after core-developer dropout. Apache documents volunteer, consensus-based project governance. These establish a plausible distinct collective and an impairment route, but neither inspected item establishes restored coordination.",
+      "evidence_refs": [
+        "SRC1",
+        "SRC2"
+      ],
+      "status": "open_candidate_recovery_unresolved",
+      "candidate_validity": {
+        "subject_transformation": "provisionally_valid",
+        "scope": "Case-level non-coercion check remains necessary.",
+        "evidence": "Class/governance and shock evidence; recovery mechanism unestablished."
+      },
+      "unknowns": [
+        "Whether sampled projects meet the volunteer and non-coercive criteria.",
+        "Whether a productivity decrease reflects coordination impairment rather than less labor.",
+        "Observed recovery trajectories and a coordination outcome threshold."
+      ]
+    },
+    {
+      "id": "R1-A3-2",
+      "question": "How do member-owned cooperative enterprises regain workable alignment of interdependent activity after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? -> P(S-prime,C)?; substitute an organizational subject class while preserving P, C and scope.",
+      "discovery_target": "Whether member ownership and formal member decision rights change how interdependent work is realigned after impairment.",
+      "search_route": {
+        "queries": [
+          {
+            "id": "Q2",
+            "query": "site.ica.coop cooperative democratic member control crisis resilience coordination"
+          }
+        ],
+        "source_ids": [
+          "SRC3"
+        ],
+        "reproduction": "Run the literal queries in a web search engine; inspect the listed source URLs and the access-level limits in source_checks."
+      },
+      "bridge_test": "Identify an impaired enterprise workflow, then track how member decisions and operational actions regain workable alignment. Keep enterprise governance separate from operational team coordination; require an observed episode rather than treating democratic principles as an effect.",
+      "novelty_reason": "Replaces the team unit with an enterprise constituted by membership, ownership and voting rights; these institutional features create a distinct comparison axis.",
+      "fixed": {
+        "P": "Regain a workable capacity to align interdependent activity after impairment.",
+        "C": "An event or episode associated with interruption or impairment of ongoing joint activity; origin, duration and severity remain unspecified. After remains temporal, not causal.",
+        "scope": [
+          "Non-coercive organizational coordination",
+          "Exclude employee surveillance",
+          "Exclude military command"
+        ],
+        "comparison_rule": "Apply the same demonstrated interdependence, impairment, and workable-alignment outcome requirements to S and S-prime. Do not substitute productivity, service delivery, resource sustainability, or survival for coordination recovery."
+      },
+      "changed": {
+        "S_prime": "Member-owned, democratically controlled cooperative enterprises as whole organizations.",
+        "not_assumed": "The replacement class need not have every property of decentralized teams; comparability and the non-coercion boundary require explicit checks."
+      },
+      "finding": "ICA defines cooperatives through voluntary association, joint ownership and democratic control, including equal votes in primary cooperatives. This supports the replacement class, not a demonstrated recovery process.",
+      "evidence_refs": [
+        "SRC3"
+      ],
+      "status": "open_candidate_recovery_unresolved",
+      "candidate_validity": {
+        "subject_transformation": "provisionally_valid",
+        "scope": "Voluntary principles support screening but do not prove every practice non-coercive.",
+        "evidence": "Institutional class definition only; no recovery episode verified."
+      },
+      "unknowns": [
+        "Actual power distribution within an individual cooperative.",
+        "Whether consent and exit are meaningful during impairment.",
+        "Which observed coordination failures recover and by what sequence."
+      ]
+    },
+    {
+      "id": "R1-A3-3",
+      "question": "How do self-governing irrigation-user associations regain workable alignment of interdependent activity after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? -> P(S-prime,C)?; substitute an organizational subject class while preserving P, C and scope.",
+      "discovery_target": "Whether bargaining over asymmetric maintenance and allocation responsibilities contributes to restoring alignment after impairment, within non-coercive cases only.",
+      "search_route": {
+        "queries": [
+          {
+            "id": "Q3",
+            "query": "site.nobelprize.org Ostrom irrigation resource users self governance organizations"
+          }
+        ],
+        "source_ids": [
+          "SRC4"
+        ],
+        "reproduction": "Run the literal queries in a web search engine; inspect the listed source URLs and the access-level limits in source_checks."
+      },
+      "bridge_test": "Verify a non-coercive case with prior joint maintenance/allocation activity and an actual coordination impairment. Test whether maintenance contributions and allocation schedules become workable again. Exclude sanctions or compelled labor as recovery explanations; ordinary long-run resource performance does not satisfy P.",
+      "novelty_reason": "Changes the collective from an employment/work team to an association coordinating common-resource access and shared physical maintenance under spatial asymmetry.",
+      "fixed": {
+        "P": "Regain a workable capacity to align interdependent activity after impairment.",
+        "C": "An event or episode associated with interruption or impairment of ongoing joint activity; origin, duration and severity remain unspecified. After remains temporal, not causal.",
+        "scope": [
+          "Non-coercive organizational coordination",
+          "Exclude employee surveillance",
+          "Exclude military command"
+        ],
+        "comparison_rule": "Apply the same demonstrated interdependence, impairment, and workable-alignment outcome requirements to S and S-prime. Do not substitute productivity, service delivery, resource sustainability, or survival for coordination recovery."
+      },
+      "changed": {
+        "S_prime": "Common-resource user associations with upstream/downstream dependencies and shared infrastructure obligations.",
+        "not_assumed": "The replacement class need not have every property of decentralized teams; comparability and the non-coercion boundary require explicit checks."
+      },
+      "finding": "Ostrom and Gardner discuss upstream/downstream maintenance decisions, mutually beneficial bargaining and Nepal irrigation evidence. The abstract also mentions rule enforcement; it does not establish that the cases or mechanisms meet this pilot’s non-coercion condition, or that they show recovery after impairment.",
+      "evidence_refs": [
+        "SRC4"
+      ],
+      "status": "needs_review_scope_and_recovery",
+      "candidate_validity": {
+        "subject_transformation": "provisionally_valid",
+        "scope": "Unresolved: source discusses rule enforcement; admissible subset not verified.",
+        "evidence": "Class and dependency comparison supported; in-scope recovery unsupported.",
+        "review_required": true
+      },
+      "unknowns": [
+        "Whether a relevant case can meet the non-coercion boundary without relying on sanctions.",
+        "Whether retrieved evidence concerns recovery rather than enduring self-governance.",
+        "Whether restored water delivery results from aligned activity rather than infrastructure repair alone."
+      ]
+    },
+    {
+      "id": "R1-A3-4",
+      "question": "How do voluntary coalitions of autonomous relief organizations regain workable alignment of interdependent activity after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? -> P(S-prime,C)?; substitute an organizational subject class while preserving P, C and scope.",
+      "discovery_target": "Whether shared agreements and information exchange realign interdependent tasks when the coalition’s own coordination has been impaired.",
+      "search_route": {
+        "queries": [
+          {
+            "id": "Q4",
+            "query": "site.nvoad.org points consensus cooperation communication coordination collaboration disaster voluntary organizations"
+          }
+        ],
+        "source_ids": [
+          "SRC5"
+        ],
+        "reproduction": "Run the literal queries in a web search engine; inspect the listed source URLs and the access-level limits in source_checks."
+      },
+      "bridge_test": "Do not confuse recovery of disaster-affected communities with recovery of the coalition’s coordination. Establish that the coalition had coordinated work before impairment, identify disrupted interfaces, and observe regained compatible task/resource allocation under voluntary agreements. Exclude military command and coerced participation.",
+      "novelty_reason": "Changes the subject to a coalition of legally distinct organizations with negotiated interfaces; this differs from a team or a single cooperative enterprise.",
+      "fixed": {
+        "P": "Regain a workable capacity to align interdependent activity after impairment.",
+        "C": "An event or episode associated with interruption or impairment of ongoing joint activity; origin, duration and severity remain unspecified. After remains temporal, not causal.",
+        "scope": [
+          "Non-coercive organizational coordination",
+          "Exclude employee surveillance",
+          "Exclude military command"
+        ],
+        "comparison_rule": "Apply the same demonstrated interdependence, impairment, and workable-alignment outcome requirements to S and S-prime. Do not substitute productivity, service delivery, resource sustainability, or survival for coordination recovery."
+      },
+      "changed": {
+        "S_prime": "Civilian voluntary interorganizational disaster-relief coalitions, restricted to consent-based coordination among autonomous organizations.",
+        "not_assumed": "The replacement class need not have every property of decentralized teams; comparability and the non-coercion boundary require explicit checks."
+      },
+      "finding": "National VOAD’s primary search result describes member-approved consensus principles for disaster work and commitments to communication, coordination, collaboration and cooperation. It supports a voluntary coalition comparison, but contains no verified trajectory of its own coordination impairment and recovery.",
+      "evidence_refs": [
+        "SRC5"
+      ],
+      "status": "needs_review_limited_source_access",
+      "candidate_validity": {
+        "subject_transformation": "provisionally_valid",
+        "scope": "Civilian voluntary subset specified; actual case not verified.",
+        "evidence": "Primary search-result content only; recovery remains open.",
+        "review_required": true
+      },
+      "unknowns": [
+        "Whether a disaster disrupts pre-existing coalition coordination or simply creates a new coordination task.",
+        "Actual autonomy and consent in a particular coalition.",
+        "Episode-level evidence for restored alignment, rather than service delivery alone."
+      ]
+    },
+    {
+      "id": "R1-A3-5",
+      "question": "How do networks of independently owned supplier firms regain workable alignment of interdependent activity after impairment?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": "P(S,C)? -> P(S-prime,C)?; substitute an organizational subject class while preserving P, C and scope.",
+      "discovery_target": "Whether renegotiating interfaces and responsibilities restores workable alignment across legal firm boundaries after impairment.",
+      "search_route": {
+        "queries": [
+          {
+            "id": "Q5",
+            "query": "supply chain network disruption recovery coordination empirical study supplier manufacturer original research"
+          }
+        ],
+        "source_ids": [
+          "SRC6"
+        ],
+        "reproduction": "Run the literal queries in a web search engine; inspect the listed source URLs and the access-level limits in source_checks."
+      },
+      "bridge_test": "Measure regained compatibility of ordering, production and handoffs, not merely output continuity. Verify distributed interfirm agency and meaningful consent; exclude domination, employee surveillance and imposed compliance. Identify an actual coordination impairment, then test changes against the same P criterion used for teams.",
+      "novelty_reason": "Changes the unit to an economic network spanning firm ownership and contract boundaries; dependencies are coordinated across organizations rather than a single team’s membership.",
+      "fixed": {
+        "P": "Regain a workable capacity to align interdependent activity after impairment.",
+        "C": "An event or episode associated with interruption or impairment of ongoing joint activity; origin, duration and severity remain unspecified. After remains temporal, not causal.",
+        "scope": [
+          "Non-coercive organizational coordination",
+          "Exclude employee surveillance",
+          "Exclude military command"
+        ],
+        "comparison_rule": "Apply the same demonstrated interdependence, impairment, and workable-alignment outcome requirements to S and S-prime. Do not substitute productivity, service delivery, resource sustainability, or survival for coordination recovery."
+      },
+      "changed": {
+        "S_prime": "Contractually linked, independently owned supplier/manufacturer networks, restricted to non-coercive interfirm coordination.",
+        "not_assumed": "The replacement class need not have every property of decentralized teams; comparability and the non-coercion boundary require explicit checks."
+      },
+      "finding": "A primary journal search result for an automaker semiconductor-shortage case describes internal coordination, external information flows and relationship reconfiguration. The attempted DOI open returned 403; the result does not establish the pilot’s non-coercion boundary or P as defined here.",
+      "evidence_refs": [
+        "SRC6"
+      ],
+      "status": "needs_review_access_scope_and_recovery",
+      "candidate_validity": {
+        "subject_transformation": "provisionally_valid",
+        "scope": "Unverified: power asymmetry and consent require case screening.",
+        "evidence": "Search-result abstract only; failed full-source retrieval.",
+        "review_required": true
+      },
+      "unknowns": [
+        "Full study methods and evidence could not be inspected.",
+        "Whether observed relationships are voluntary rather than driven by buyer power.",
+        "Whether operational continuity or firm resilience corresponds to restored coordination across the network."
+      ]
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "SRC1",
+      "url": "https://www.sg.ethz.ch/publications/2024/latona2024shock-quantifying-the/",
+      "title": "Shock! Quantifying the Impact of Core Developers’ Dropout on the Productivity of OSS Projects",
+      "source_type": "Primary research abstract on authors’ institutional site",
+      "retrieval": "Opened successfully; abstract only, lines 5–8. Found via Q1.",
+      "supported_claim": "The study uses difference-in-differences across OSS GitHub projects and reports lower productivity among remaining developers after core-developer dropout.",
+      "does_not_support": "Recovery of aligned interdependent activity; productivity is not the fixed P.",
+      "search_call": 1,
+      "open_action": 1
+    },
+    {
+      "id": "SRC2",
+      "url": "https://apache.org/foundation/how-it-works/",
+      "title": "How the ASF works",
+      "source_type": "First-party organizational governance description",
+      "retrieval": "Search-result content retrieved via Q6; not separately opened.",
+      "supported_claim": "Apache gives project committees technical authority and describes volunteer participation and collaborative consensus decisions.",
+      "does_not_support": "That all OSS communities share this governance or that these procedures restore coordination after an observed impairment.",
+      "search_call": 2,
+      "open_action": null
+    },
+    {
+      "id": "SRC3",
+      "url": "https://www.ica.coop/en/cooperatives/cooperative-identity/",
+      "title": "Cooperative identity, values & principles",
+      "source_type": "First-party institutional identity statement",
+      "retrieval": "Opened successfully; lines 76–103. Found via Q2.",
+      "supported_claim": "Cooperatives are voluntarily constituted, jointly owned and democratically controlled enterprises; primary cooperatives provide equal member votes.",
+      "does_not_support": "Observed non-coercion in every enterprise or causal evidence about coordination recovery.",
+      "search_call": 1,
+      "open_action": 2
+    },
+    {
+      "id": "SRC4",
+      "url": "https://swlb2.aeaweb.org/articles?id=10.1257/jep.7.4.93",
+      "title": "Coping with Asymmetries in the Commons: Self-Governing Irrigation Systems Can Work",
+      "source_type": "Primary research publisher abstract",
+      "retrieval": "Opened successfully; lines 44–48. Found via Q3.",
+      "supported_claim": "The paper studies upstream/downstream irrigation maintenance incentives and bargaining, with empirical irrigation evidence from Nepal.",
+      "does_not_support": "A non-coercive recovery sequence; enforcement is mentioned and requires scope review.",
+      "search_call": 1,
+      "open_action": 3
+    },
+    {
+      "id": "SRC5",
+      "url": "https://www.nvoad.org/points-of-consensus/",
+      "title": "Points of Consensus",
+      "source_type": "First-party coalition principles",
+      "retrieval": "Search-result content retrieved via Q4; not separately opened.",
+      "supported_claim": "VOAD presents committee-developed, membership-affirmed consensus principles for disaster response and recovery.",
+      "does_not_support": "That coalition coordination itself was impaired and subsequently recovered; community disaster recovery is a different outcome.",
+      "search_call": 2,
+      "open_action": null
+    },
+    {
+      "id": "SRC6",
+      "url": "https://doi.org/10.1016/j.pursup.2026.101174",
+      "title": "Building resilience amidst a crisis: An automaker’s procurement journey to secure semiconductor supply",
+      "source_type": "Primary research journal search-result abstract",
+      "retrieval": "Search-result content retrieved via Q5. DOI open failed with 403 Forbidden; no full text inspected.",
+      "supported_claim": "The search-result abstract describes an automaker case linking procurement’s internal coordination, external information flows and reconfigured relationships to continuity/adaptation during the semiconductor shortage.",
+      "does_not_support": "Verified methods, causal recovery mechanism, consent-based interfirm relations, or the fixed coordination-recovery criterion.",
+      "search_call": 2,
+      "open_action": 4,
+      "open_result": "403 Forbidden"
+    }
+  ],
+  "retrieval_limits": {
+    "maximum_search_calls": 4,
+    "actual_search_calls": 2,
+    "actual_search_queries": 6,
+    "maximum_primary_source_opens": 4,
+    "actual_primary_source_open_attempts": 4,
+    "successful_primary_source_opens": 3,
+    "failed_primary_source_opens": 1,
+    "search_batches": [
+      {
+        "call": 1,
+        "query_ids": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      },
+      {
+        "call": 2,
+        "query_ids": [
+          "Q4",
+          "Q5",
+          "Q6"
+        ]
+      }
+    ],
+    "open_batch": "One tool call requested four source opens; counted as four open actions, including the failed DOI fetch.",
+    "remaining_search_calls_unused": 2,
+    "primary_source_open_budget_remaining": 0,
+    "coverage_limit": "Five independently formulated and searched directions; evidence establishes classes and comparisons more strongly than recovery. Three directions explicitly require review. No five-path mechanism completion is claimed."
+  },
+  "execution_note": {
+    "mode": "Live separate subagent breadth investigation, one macro round.",
+    "executor_identity": "/root/noemorph_live_subject",
+    "files_read": [
+      "noemorph/audit/live-pilot/anchor.json",
+      "noemorph/references/EXPLORATION_OPERATORS.md"
+    ],
+    "path_resolution": "The requested repository-root references/EXPLORATION_OPERATORS.md did not exist; rg --files located noemorph/references/EXPLORATION_OPERATORS.md. No sibling outputs, old reports, demo files or other audits were read.",
+    "tools_used": [
+      "exec_command for authorized input reads and output serialization",
+      "web.run for two searches and one four-URL open batch"
+    ],
+    "not_performed": [
+      "Selection",
+      "Depth investigation",
+      "Subagent spawning"
+    ],
+    "fixture_record": {
+      "macro_rounds": 1,
+      "top_n": 1,
+      "minimum_depth_later": 3,
+      "research_language": "Unconstrained; English queries used."
+    },
+    "stage_completion": "Breadth output produced; no claim that all five candidates are validated or that the research run is complete."
+  }
+}

@@ -1,0 +1,452 @@
+{
+  "round": 1,
+  "agent_id": "/root/noemorph_live_predicate_abstraction",
+  "role": "predicate_abstraction",
+  "execution_mode": "live_separate_subagent_web_retrieval",
+  "fixture": {
+    "macro_rounds": 1,
+    "top_n": 1,
+    "later_depth_minimum": 3,
+    "selection_performed": false,
+    "depth_performed": false,
+    "research_language": "unconstrained; English used for these searches"
+  },
+  "directions": [
+    {
+      "id": "R1-A4-1",
+      "question": "Under what conditions is recovery of coordination a subtype of functional team adaptation, alongside adaptation that improves an unimpaired team or accommodates new demands?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "P -> G_P",
+        "proposed_superordinate": "Functional changes in team performance in response to changed demands",
+        "relation": "Conditional proper inclusion: P episodes that exhibit a cue-linked functional change can be members of G_P; G_P can also include functional changes without prior coordination impairment. P as supplied is not unconditionally a subtype.",
+        "invariants": [
+          "same team and interdependent activity",
+          "functional outcome must be assessed separately from actions"
+        ],
+        "applicability_conditions": [
+          "A team-level change and a relevant cue are observed.",
+          "The change contributes to a workable team outcome; improvement of one individual alone is insufficient."
+        ],
+        "not_a_synonym_or_extra_activity": "Adds a testable change-and-function criterion and includes non-recovery cases; it is not merely renaming restoration or proposing an additional debrief."
+      },
+      "discovery_target": "Distinguish restoration by resuming an unchanged routine from recovery through a functional adjustment.",
+      "search_route": {
+        "calls": [
+          "search-1",
+          "search-2",
+          "search-3",
+          "search-4"
+        ],
+        "queries": [
+          "team adaptation Burke Stagl Salas Pierce Kendall 2006 functional change team response challenges PDF university",
+          "\"Understanding team adaptation\" \"functional\" \"change\" university",
+          "\"Understanding team adaptation: A conceptual analysis and model\" psycnet apa abstract",
+          "\"Understanding team adaptation\" Burke 2006 \"functional outcome\" author",
+          "site.pubmed.ncbi.nlm.nih.gov \"Understanding team adaptation\" \"functional\"",
+          "site.psycnet.apa.org \"2006-20695-001\""
+        ],
+        "opened_urls": []
+      },
+      "bridge_test": {
+        "test": "For a non-coercive decentralized team episode, identify impairment, cue, actual change, and restored joint capacity independently. Compare with unchanged-routine recovery and successful adaptation without prior impairment.",
+        "pass_condition": "The recovery episode satisfies the adaptation criteria and the broader class has non-recovery members.",
+        "current_result": "Only the existence and theoretical character of a team adaptation framework were securely retrieved from an institutional primary-article abstract; its exact subtype boundary and the decentralized-team mapping were not verified."
+      },
+      "novelty_reason": "Separates functional change from return of function and directs inquiry to alternative adjustment trajectories.",
+      "unknowns": [
+        "Whether any anchor episode exhibits adaptation rather than simple resumption.",
+        "Exact adaptation definition was not verified in an opened primary full text.",
+        "Decentralization and non-coercion are not established by this source."
+      ],
+      "fixed": {
+        "subject": "S: organizational teams with distributed decision authority; location distribution is not substituted for authority distribution.",
+        "condition": "C: after disruption is temporal, with onset/end and causation unresolved.",
+        "scope": "Non-coercive organizational coordination; no employee surveillance or military command.",
+        "outcome": "P retains regaining workable alignment of interdependent activity after impairment, with restoration and a different workable arrangement both possible."
+      },
+      "changed": "P is tentatively classified within functional response-related change; S and C remain fixed.",
+      "finding": "The Burke et al. primary-article abstract presents a multilevel, multiphase theoretical model of team adaptation and testable propositions. It does not establish that all coordination recovery is adaptation.",
+      "evidence_refs": [
+        "SC1"
+      ],
+      "status": "investigated_open",
+      "candidate_validity": {
+        "verdict": "weak_conditional_lift",
+        "reason": "Conditional inclusion is logically explicit, but retrieved primary abstract does not verify the full proposed definition or transfer; unconditional P subset adaptation is rejected."
+      }
+    },
+    {
+      "id": "R1-A4-2",
+      "question": "Can recovery of a team coordination function be represented as an adverse-event coping trajectory within a broader organizational resilience process, while distinguishing it from resilience as a capacity?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "P -> G_P",
+        "proposed_superordinate": "Organizational processes for handling adversity over time",
+        "relation": "Proposed representation, not identity: a measured P trajectory could occupy a coordination-function-specific coping/recovery segment in a process containing anticipation, coping and adaptation. A process segment is not automatically a subtype of a meta-capability.",
+        "invariants": [
+          "collective functional capacity under an adverse episode",
+          "observable trajectory rather than a personality trait"
+        ],
+        "applicability_conditions": [
+          "The disruption qualifies as an adverse organizational event.",
+          "The unit of the resilience model is explicitly restricted to the team or a justified team-to-organization mapping.",
+          "Coordination function and a recovery interval are measured."
+        ],
+        "not_a_synonym_or_extra_activity": "The broader representation includes anticipatory and adaptive trajectories outside recovery; simply calling P resilience would fail the type distinction."
+      },
+      "discovery_target": "A process-level representation that makes before/during/after episode boundaries explicit.",
+      "search_route": {
+        "calls": [
+          "search-1",
+          "search-4",
+          "open-1"
+        ],
+        "queries": [
+          "Duchek 2020 organizational resilience capability based conceptualization anticipation coping adaptation",
+          "site.link.springer.com/article/10.1007/s40685-019-0085-7 \"resilience\" \"anticipation\""
+        ],
+        "opened_urls": [
+          "https://www.econstor.eu/bitstream/10419/233157/1/10.1007_s40685-019-0085-7.pdf"
+        ]
+      },
+      "bridge_test": {
+        "test": "Map the same decentralized team and its coordination trajectory to the coping segment, then identify anticipation or post-event adaptation that is outside P without changing the unit or treating a capability as an event.",
+        "pass_condition": "A justified process representation preserves impairment and workable coordination criteria and has distinct non-P segments.",
+        "current_result": "Search retrieval confirms the author proposes three resilience stages and a meta-capability. Direct full-text open failed at an anti-bot page. Team-level representation is untested."
+      },
+      "novelty_reason": "Exposes the process/capacity and team/organization type boundaries rather than treating bounce-back terminology as explanation.",
+      "unknowns": [
+        "Whether coping specifically includes the measured coordination recovery episode.",
+        "Whether an organization-level model validly maps to distributed team authority.",
+        "Temporal overlap and causal ordering of the stages."
+      ],
+      "fixed": {
+        "subject": "S: organizational teams with distributed decision authority; location distribution is not substituted for authority distribution.",
+        "condition": "C: after disruption is temporal, with onset/end and causation unresolved.",
+        "scope": "Non-coercive organizational coordination; no employee surveillance or military command.",
+        "outcome": "P retains regaining workable alignment of interdependent activity after impairment, with restoration and a different workable arrangement both possible."
+      },
+      "changed": "P is tentatively embedded in an adversity-handling process representation; the organizational unit is not silently broadened.",
+      "finding": "Duchek conceptualizes organizational resilience as a meta-capability and proposes anticipation, coping and adaptation stages. This supports a framing and warns against equating a recovery process with an entire capacity; it does not verify the requested lift.",
+      "evidence_refs": [
+        "SC2",
+        "SC3"
+      ],
+      "status": "investigated_open_with_failed_fulltext",
+      "candidate_validity": {
+        "verdict": "weak_representation_hypothesis",
+        "reason": "An explicit process representation is possible to test; a direct subtype claim P subset resilience-capacity is invalid and is not asserted."
+      }
+    },
+    {
+      "id": "R1-A4-3",
+      "question": "When can coordination recovery be represented as a special case of regulation toward an acceptable joint-function region, alongside regulation that maintains function without a prior loss?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "P -> G_P",
+        "proposed_superordinate": "Regulation of collective functional variables within acceptable limits",
+        "relation": "Conditional representation: encode workable coordination as an acceptable region K of collective variables, impairment as leaving K, and recovery as re-entry mediated by regulatory action. Broader regulation includes remaining within K through disturbances.",
+        "invariants": [
+          "joint-function criterion",
+          "disturbance-to-function relationship"
+        ],
+        "applicability_conditions": [
+          "An explicit, collectively legitimate acceptable region can be operationalized.",
+          "Relevant regulatory action and its effect are identifiable.",
+          "Distributed decision authority is preserved in the model; no central commander or employee surveillance is assumed."
+        ],
+        "not_a_synonym_or_extra_activity": "Introduces variables, acceptable ranges and disturbance attenuation that permit a maintenance-versus-recovery comparison; feedback alone is an unverified additional mechanism, not the definition of P."
+      },
+      "discovery_target": "State-space conditions and response variety required for non-coercive distributed regulation.",
+      "search_route": {
+        "calls": [
+          "search-1",
+          "open-1"
+        ],
+        "queries": [
+          "Ashby introduction cybernetics regulation disturbance essential variables pdf"
+        ],
+        "opened_urls": [
+          "https://ashby.info/Ashby-Introduction-to-Cybernetics.pdf"
+        ]
+      },
+      "bridge_test": {
+        "test": "Specify collective handoff or dependency-function variables without individual surveillance; record an agreed threshold and evidence that distributed actions limit disturbance effects or restore the variables. Contrast spontaneous return after disturbance cessation.",
+        "pass_condition": "The mapped P episode is explained by regulatory action while broader regulation has maintenance cases; the representation predicts which disturbances exceed available responses.",
+        "current_result": "Ashby provides the abstract regulator/disturbance/essential-variable framing. No organizational episode or distributed-authority regulatory mechanism was retrieved."
+      },
+      "novelty_reason": "Makes threshold, disturbance variety and response availability explicit and distinguishes restoration by regulation from unassisted recovery.",
+      "unknowns": [
+        "Which collective variables preserve the meaning of workable coordination.",
+        "Whether distributed actors possess relevant responses and legitimate shared criteria.",
+        "Whether feedback is involved; it is not inferred merely from recovery."
+      ],
+      "fixed": {
+        "subject": "S: organizational teams with distributed decision authority; location distribution is not substituted for authority distribution.",
+        "condition": "C: after disruption is temporal, with onset/end and causation unresolved.",
+        "scope": "Non-coercive organizational coordination; no employee surveillance or military command.",
+        "outcome": "P retains regaining workable alignment of interdependent activity after impairment, with restoration and a different workable arrangement both possible."
+      },
+      "changed": "P becomes a conditional regulatory trajectory in a broader functional-variable relation; S remains an organizational team.",
+      "finding": "Ashby frames regulation using disturbance, a regulator and essential variables, with permissible ranges and attenuation of disturbance effects. This is a formal framing; it does not establish universal cybernetic causation in decentralized organizational recovery.",
+      "evidence_refs": [
+        "SC4"
+      ],
+      "status": "investigated_open",
+      "candidate_validity": {
+        "verdict": "conditional_representation_unverified_transfer",
+        "reason": "Properly broader than recovery when maintenance regulation is included, but applies only after defensible variable mapping and evidence of regulation."
+      }
+    },
+    {
+      "id": "R1-A4-4",
+      "question": "Is regaining coordination necessarily a subtype of collective learning, or only when experience produces a change in the team capability that accounts for recovery?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "attempted P -> G_P",
+        "proposed_superordinate": "Experience-related change in collective knowledge or capability",
+        "relation": "The unrestricted inclusion P subset collective learning is rejected. A narrower learned-recovery subclass might fit a learning-change class, but a learning behavior that accompanies recovery is merely an additional activity and does not establish type inclusion.",
+        "invariants": [
+          "team capability and a separate functional-outcome criterion"
+        ],
+        "applicability_conditions": [
+          "Experience-related knowledge or capability change is demonstrated, not just conversation or restored output.",
+          "A link from that change to recovery is separately investigated."
+        ],
+        "not_a_synonym_or_extra_activity": "Learning can occur without impairment or recovery, and recovery can occur without learning. Debriefing, asking for help or experimenting cannot by themselves rescue the proposed lift."
+      },
+      "discovery_target": "A discriminating failure case for an attractive but overgeneralized predicate lift.",
+      "search_route": {
+        "calls": [
+          "search-1",
+          "open-1"
+        ],
+        "queries": [
+          "Edmondson 1999 team learning behavior reflection action PDF hbs"
+        ],
+        "opened_urls": [
+          "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Organizational_Learning_and_Change/Edmondson_1999_Psychological_safety.pdf"
+        ]
+      },
+      "bridge_test": {
+        "test": "Compare restoration via an already known routine with recovery involving verified knowledge/capability change. Measure learning behavior separately from the assessed recovery outcome.",
+        "pass_condition": "Only the second kind could support conditional inclusion; the first is a logical counterexample to universal inclusion unless learning is independently demonstrated.",
+        "current_result": "Edmondson distinguishes learning behaviors, including information processing and experimentation, from team outcomes. The study supports a learning framing but supplies no claim that P entails learning."
+      },
+      "novelty_reason": "Tests whether a proposed superordinate class actually contains P instead of converting a possible antecedent into an abstraction.",
+      "unknowns": [
+        "Whether any recovery episode contains enduring learning.",
+        "Whether learning causes recovery rather than follows it."
+      ],
+      "fixed": {
+        "subject": "S: organizational teams with distributed decision authority; location distribution is not substituted for authority distribution.",
+        "condition": "C: after disruption is temporal, with onset/end and causation unresolved.",
+        "scope": "Non-coercive organizational coordination; no employee surveillance or military command.",
+        "outcome": "P retains regaining workable alignment of interdependent activity after impairment, with restoration and a different workable arrangement both possible."
+      },
+      "changed": "A proposed epistemic/capability-change superclass is tested and rejected for unrestricted P.",
+      "finding": "The retrieved primary field study concerns 51 manufacturing work teams and separates learning behaviors from outcomes. It offers no evidence for classifying all recovery as learning; the role definition requires rejecting that overreach.",
+      "evidence_refs": [
+        "SC5"
+      ],
+      "status": "investigated_lift_rejected",
+      "candidate_validity": {
+        "verdict": "invalid_as_unrestricted_lift",
+        "reason": "P does not entail experience-related knowledge/capability change. Restricting P to learned recovery would add a condition, so this is not counted as an established general lift."
+      }
+    },
+    {
+      "id": "R1-A4-5",
+      "question": "Can coordination recovery be faithfully represented as re-entering a feasible set of joint activity assignments within a broader constraint-satisfaction relation?",
+      "anchor_ids": [
+        "S",
+        "P",
+        "C",
+        "X"
+      ],
+      "logical_move": {
+        "operator": "P -> G_P by representation",
+        "proposed_superordinate": "Satisfying joint compatibility relations among activity choices",
+        "relation": "Conditional proper representation: map team activities to variables, available choices to domains, and interdependencies plus a workable threshold to admissibility constraints. Recovery is the restricted trajectory from an impaired assignment to an admissible one; the broader relation also contains first-time feasible plans and feasibility without a disruption history.",
+        "invariants": [
+          "interdependence",
+          "joint admissibility rather than isolated member success"
+        ],
+        "applicability_conditions": [
+          "A finite variable/domain/constraint representation preserves the observed recovery criterion.",
+          "Relevant constraints reflect consensual organizational coordination and do not erase negotiation or conflicting criteria.",
+          "A feasible assignment exists; model feasibility is validated against actual workable capacity."
+        ],
+        "not_a_synonym_or_extra_activity": "An explicit encoding permits alternative feasible arrangements and constraint-conflict tests. Merely using the word fit or recommending a scheduling algorithm is insufficient."
+      },
+      "discovery_target": "Which dependencies must be represented for recovery criteria to be preserved and whether incompatible constraints make recovery impossible within current options.",
+      "search_route": {
+        "calls": [
+          "search-2",
+          "open-1"
+        ],
+        "queries": [
+          "site.ics.uci.edu Dechter constraint network variables domains constraints solutions"
+        ],
+        "opened_urls": [
+          "https://ics.uci.edu/~dechter/publications/r68.html"
+        ]
+      },
+      "bridge_test": {
+        "test": "Construct an encoding from a scoped team episode, require operational recovery iff the encoded assignment meets the declared workable criterion, and check for false-positive feasible plans and false-negative workable plans. Preserve member authority in assigning choices.",
+        "pass_condition": "The encoding preserves the recovery judgment, admits non-P feasible cases, and makes an independently testable constraint-conflict prediction.",
+        "current_result": "The author institutional abstract verifies the CSP representation and solution criterion. It does not supply temporal recovery dynamics, a decentralized team encoding or an organizational validation."
+      },
+      "novelty_reason": "Recasts interdependence as compatibility relations with explicit existence and alternative-solution questions.",
+      "unknowns": [
+        "Whether workable coordination can be represented at suitable finite resolution.",
+        "How negotiated or changing criteria enter the model.",
+        "Whether feasibility of a plan yields capacity to execute it.",
+        "No algorithmic mechanism in human teams has been established."
+      ],
+      "fixed": {
+        "subject": "S: organizational teams with distributed decision authority; location distribution is not substituted for authority distribution.",
+        "condition": "C: after disruption is temporal, with onset/end and causation unresolved.",
+        "scope": "Non-coercive organizational coordination; no employee surveillance or military command.",
+        "outcome": "P retains regaining workable alignment of interdependent activity after impairment, with restoration and a different workable arrangement both possible."
+      },
+      "changed": "P is proposed as a restricted trajectory within a broader formal compatibility relation; the original team is not replaced by software agents.",
+      "finding": "Dechter defines CSPs using variables, domains and constraints and solutions as assignments satisfying all constraints. This supports the representation vocabulary only; mapping recovery to it remains unresolved.",
+      "evidence_refs": [
+        "SC6"
+      ],
+      "status": "investigated_open",
+      "candidate_validity": {
+        "verdict": "conditional_representation_unverified_transfer",
+        "reason": "Has explicit proper extension and a falsifiable encoding test, but the primary source does not demonstrate this organizational transfer."
+      }
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "SC1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17100478/",
+      "title": "Understanding team adaptation: a conceptual analysis and model",
+      "source_type": "Primary research article abstract hosted by NIH PubMed",
+      "retrieval": "search-3 result; not directly opened",
+      "exact_supported_claim": "Burke et al. propose a multilevel and multiphase theoretical model of team adaptation, including time-unfolding processes and emergent states, with testable propositions.",
+      "does_not_support": "An exact verified full-text adaptation definition; a universal inclusion of coordination recovery; evidence about decentralized or non-coercive authority.",
+      "verification_status": "abstract_retrieved_via_search"
+    },
+    {
+      "id": "SC2",
+      "url": "https://www.econstor.eu/bitstream/10419/233157/1/10.1007_s40685-019-0085-7.pdf",
+      "title": "Organizational resilience: a capability-based conceptualization",
+      "source_type": "Primary conceptual research article in institutional repository",
+      "retrieval": "search-1 primary-article text excerpt; open-1 returned anti-bot page",
+      "exact_supported_claim": "Search excerpt attributes to Duchek a resilience meta-capability and three stages: anticipation, coping and adaptation.",
+      "does_not_support": "The full article was not verified by direct opening; no decentralized-team recovery subtype is established.",
+      "verification_status": "fulltext_open_failed_antibot_search_excerpt_only"
+    },
+    {
+      "id": "SC3",
+      "url": "https://d-nb.info/1178203778/34",
+      "title": "Organizational resilience: a capability-based conceptualization",
+      "source_type": "Primary article hosted by German National Library",
+      "retrieval": "search-4 primary-article abstract; not directly opened",
+      "exact_supported_claim": "The author conceptualizes resilience as a meta-capability and proposes anticipation, coping and adaptation as stages, while noting conceptual disagreement in the field.",
+      "does_not_support": "A universal process classification or team-level empirical transfer.",
+      "verification_status": "abstract_retrieved_via_search"
+    },
+    {
+      "id": "SC4",
+      "url": "https://ashby.info/Ashby-Introduction-to-Cybernetics.pdf",
+      "title": "An Introduction to Cybernetics",
+      "source_type": "Primary author monograph, estate-authorized digital copy",
+      "retrieval": "search-1 regulation section excerpt and successful open-1 PDF",
+      "exact_supported_claim": "Ashby models regulation with disturbances, a regulator and essential variables; permissible variable ranges and limiting disturbance effects provide the regulatory criterion (chapter 10, sections 10/5-10/6, printed pp. 197-198).",
+      "does_not_support": "That organizational recovery always uses regulation, that feedback is necessary, or that mathematical similarity establishes a shared cause. Excluded military examples in the book are not transferred.",
+      "verification_status": "primary_text_retrieved"
+    },
+    {
+      "id": "SC5",
+      "url": "https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Organizational_Learning_and_Change/Edmondson_1999_Psychological_safety.pdf",
+      "title": "Psychological Safety and Learning Behavior in Work Teams",
+      "source_type": "Primary field study hosted by MIT",
+      "retrieval": "search-1 and successful open-1 PDF, printed pp. 350-351",
+      "exact_supported_claim": "Edmondson studies 51 manufacturing work teams and describes learning behaviors as team activities for obtaining and processing data, including seeking feedback, information sharing, help-seeking, discussing errors and experimenting; learning behaviors and team outcomes are distinct constructs.",
+      "does_not_support": "That every recovery is learning, that learning behavior guarantees recovery, or that the sampled teams meet the anchor decentralization condition.",
+      "verification_status": "primary_text_retrieved"
+    },
+    {
+      "id": "SC6",
+      "url": "https://ics.uci.edu/~dechter/publications/r68.html",
+      "title": "Constraint Satisfaction — Rina Dechter",
+      "source_type": "Primary author abstract on University of California Irvine site",
+      "retrieval": "search-2 and successful open-1 author abstract",
+      "exact_supported_claim": "A CSP has finite variables, value domains and constraints; a solution assigns one domain value per variable while satisfying every constraint, and typical tasks include solution existence and finding solutions.",
+      "does_not_support": "Temporal recovery, a validated encoding of team coordination, or a human behavioral mechanism.",
+      "verification_status": "primary_author_abstract_retrieved"
+    }
+  ],
+  "retrieval_limits": {
+    "max_search_calls": 4,
+    "actual_search_calls": 4,
+    "actual_individual_queries": 11,
+    "max_primary_source_opens": 4,
+    "actual_primary_source_open_attempts": 4,
+    "actual_open_tool_calls": 1,
+    "successful_direct_primary_opens": 3,
+    "failed_direct_primary_opens": 1,
+    "calls": [
+      {
+        "id": "search-1",
+        "query_count": 4
+      },
+      {
+        "id": "search-2",
+        "query_count": 2
+      },
+      {
+        "id": "search-3",
+        "query_count": 2
+      },
+      {
+        "id": "search-4",
+        "query_count": 3
+      },
+      {
+        "id": "open-1",
+        "url_count": 4
+      }
+    ],
+    "limitations": [
+      "Four-open budget exhausted; adaptation checked via institutional primary-article abstract, not full text.",
+      "EconStor full-text opening failed at an anti-bot page; no circumvention attempted. A national-library abstract was retrieved by the final search.",
+      "No decentralized-team episode was retrieved or tested.",
+      "Five questions were investigated, but five established type-lifts were not achieved: one unrestricted lift is rejected and others remain conditional or weak."
+    ]
+  },
+  "execution_note": {
+    "identity_basis": "Canonical actual executor task identity supplied by the collaboration runtime: /root/noemorph_live_predicate_abstraction. No separate opaque UUID was provided.",
+    "read_boundary": "Read anchor.json and only the permitted operator-definition file (resolved from missing top-level references path to noemorph/references/EXPLORATION_OPERATORS.md using filename inventory). No sibling outputs, old reports, demo or other audits were read.",
+    "method": "One breadth role only. Questions formulated independently from the anchor; actual live web searches and four primary-source open attempts recorded above. Evidence statements are brief paraphrases; formal lifts and bridge tests are analyst proposals, not source-established classifications.",
+    "completion": "Breadth investigation completed for five candidate questions; validity shortfall explicitly retained. No selection, depth work or spawned agents."
+  }
+}

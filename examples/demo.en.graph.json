@@ -1,0 +1,680 @@
+{
+  "schema_version": "1.0",
+  "meta": {
+    "title": "The Frontiers of Inquiry",
+    "question": "How can a research question reveal knowledge you did not know to seek?",
+    "description": "Interactive demo · Does not constitute research evidence",
+    "demo": true,
+    "rounds": 2,
+    "language": "en",
+    "language_label": "English",
+    "translation": {
+      "source_fingerprint": "c7aa78efdba7ea1bd8dd7f92592203bd87ec5aece1cd3b29491cd2ad757ad71a",
+      "source_language": "zh-CN",
+      "target_language": "en",
+      "translator": "independent-translation-agent (demo)"
+    }
+  },
+  "nodes": [
+    {
+      "id": "question",
+      "label": "How do we discover questions we have not yet asked?",
+      "summary": "A question opens a path into unknown terrain. Follow four logical paths to find new entities, processes, and levels of abstraction, then trace the evidence and limitations of each discovery.",
+      "type": "question",
+      "role": "anchor",
+      "status": "discovered",
+      "evidence": "unresolved",
+      "importance": 5,
+      "depth": 0,
+      "round": 0,
+      "parent_id": null,
+      "origin_ids": [
+        "question"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new directions emerge when we change the entity or process in a question?"
+    },
+    {
+      "id": "process",
+      "label": "Extend the Process Outward",
+      "summary": "Study neighboring processes rather than merely rename the same concept.\n\nInterface demonstration only; does not constitute actual research evidence.",
+      "type": "direction",
+      "role": "predicate",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 4,
+      "depth": 0,
+      "round": 1,
+      "parent_id": "question",
+      "origin_ids": [
+        "process"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Which neighboring processes might change the initial explanation?"
+    },
+    {
+      "id": "process:1",
+      "label": "Bridging Processes",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "predicate",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "process",
+      "origin_ids": [
+        "process:1"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "process:1:next",
+      "label": "Turn Explanations into Testable Questions",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "frontier",
+      "role": "predicate",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 3,
+      "round": 2,
+      "parent_id": "process:1",
+      "origin_ids": [
+        "process:1:next"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Where should the next independent piece of evidence come from?"
+    },
+    {
+      "id": "process:2",
+      "label": "The Limits of a Mechanism",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "predicate",
+      "status": "explored",
+      "evidence": "unresolved",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "process",
+      "origin_ids": [
+        "process:2"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "process:3",
+      "label": "What Happens When Conditions Change?",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "direction",
+      "role": "predicate",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 2,
+      "round": 2,
+      "parent_id": "process",
+      "origin_ids": [
+        "process:3"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new observations would distinguish the current explanations?"
+    },
+    {
+      "id": "subject",
+      "label": "Ask Again with a Different Entity",
+      "summary": "Keep the process and conditions fixed, and examine whether other entities meet the prerequisites of the mechanism.\n\nInterface demonstration only; does not constitute actual research evidence.",
+      "type": "direction",
+      "role": "subject",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 4,
+      "depth": 0,
+      "round": 1,
+      "parent_id": "question",
+      "origin_ids": [
+        "subject"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "In which other entities might this process occur?"
+    },
+    {
+      "id": "subject:1",
+      "label": "Different Entities, Shared Process",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "subject",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "subject",
+      "origin_ids": [
+        "subject:1"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "subject:1:next",
+      "label": "Turn Explanations into Testable Questions",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "frontier",
+      "role": "subject",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 3,
+      "round": 2,
+      "parent_id": "subject:1",
+      "origin_ids": [
+        "subject:1:next"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Where should the next independent piece of evidence come from?"
+    },
+    {
+      "id": "subject:2",
+      "label": "Distinguishing the Framework from Its Participants",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "subject",
+      "status": "explored",
+      "evidence": "unresolved",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "subject",
+      "origin_ids": [
+        "subject:2"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "subject:3",
+      "label": "What Other Entities Could Be Considered?",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "direction",
+      "role": "subject",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 2,
+      "round": 2,
+      "parent_id": "subject",
+      "origin_ids": [
+        "subject:3"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new observations would distinguish the current explanations?"
+    },
+    {
+      "id": "abstract-process",
+      "label": "See More General Principles",
+      "summary": "Place specific processes within broader categories; distinguish analogies, transferable models, and strict equivalence.\n\nInterface demonstration only; does not constitute actual research evidence.",
+      "type": "direction",
+      "role": "predicate_abstraction",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 4,
+      "depth": 0,
+      "round": 1,
+      "parent_id": "question",
+      "origin_ids": [
+        "abstract-process"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Which models can these processes share, and where do those models fail?"
+    },
+    {
+      "id": "abstract-process:1",
+      "label": "A Phenomenon Is Not a Mechanism",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "predicate_abstraction",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "abstract-process",
+      "origin_ids": [
+        "abstract-process:1"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "abstract-process:1:next",
+      "label": "Turn Explanations into Testable Questions",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "frontier",
+      "role": "predicate_abstraction",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 3,
+      "round": 2,
+      "parent_id": "abstract-process:1",
+      "origin_ids": [
+        "abstract-process:1:next"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Where should the next independent piece of evidence come from?"
+    },
+    {
+      "id": "abstract-process:2",
+      "label": "Conditions for Model Transfer",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "predicate_abstraction",
+      "status": "explored",
+      "evidence": "unresolved",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "abstract-process",
+      "origin_ids": [
+        "abstract-process:2"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "abstract-process:3",
+      "label": "When Does an Analogy Fail?",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "direction",
+      "role": "predicate_abstraction",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 2,
+      "round": 2,
+      "parent_id": "abstract-process",
+      "origin_ids": [
+        "abstract-process:3"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new observations would distinguish the current explanations?"
+    },
+    {
+      "id": "abstract-subject",
+      "label": "Find the Categories Behind Entities",
+      "summary": "Trace an entity to its broader categories and study general properties that can inform the original question.\n\nInterface demonstration only; does not constitute actual research evidence.",
+      "type": "direction",
+      "role": "subject_abstraction",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 4,
+      "depth": 0,
+      "round": 1,
+      "parent_id": "question",
+      "origin_ids": [
+        "abstract-subject"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new connections emerge at a different level of classification?"
+    },
+    {
+      "id": "abstract-subject:1",
+      "label": "Broader Categories of Entities",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "subject_abstraction",
+      "status": "explored",
+      "evidence": "supported_with_limits",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "abstract-subject",
+      "origin_ids": [
+        "abstract-subject:1"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "abstract-subject:1:next",
+      "label": "Turn Explanations into Testable Questions",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "frontier",
+      "role": "subject_abstraction",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 3,
+      "round": 2,
+      "parent_id": "abstract-subject:1",
+      "origin_ids": [
+        "abstract-subject:1:next"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "Where should the next independent piece of evidence come from?"
+    },
+    {
+      "id": "abstract-subject:2",
+      "label": "Open Systems and Their Environment",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "finding",
+      "role": "subject_abstraction",
+      "status": "explored",
+      "evidence": "unresolved",
+      "importance": 3,
+      "depth": 2,
+      "round": 1,
+      "parent_id": "abstract-subject",
+      "origin_ids": [
+        "abstract-subject:2"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": ""
+    },
+    {
+      "id": "abstract-subject:3",
+      "label": "Change the Level of Classification",
+      "summary": "This item is an interactive demonstration, not a research conclusion based on an actual literature search.",
+      "type": "direction",
+      "role": "subject_abstraction",
+      "status": "frontier",
+      "evidence": "unresolved",
+      "importance": 2,
+      "depth": 2,
+      "round": 2,
+      "parent_id": "abstract-subject",
+      "origin_ids": [
+        "abstract-subject:3"
+      ],
+      "links": [
+        {
+          "label": "Exploration Methods and Evidence Limitations",
+          "url": "notes/guide.md",
+          "kind": "file"
+        }
+      ],
+      "next_question": "What new observations would distinguish the current explanations?"
+    }
+  ],
+  "edges": [
+    {
+      "id": "question:process",
+      "source": "question",
+      "target": "process",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "process:process:1",
+      "source": "process",
+      "target": "process:1",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "process:1:process:1:next",
+      "source": "process:1",
+      "target": "process:1:next",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "process:process:2",
+      "source": "process",
+      "target": "process:2",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "process:process:3",
+      "source": "process",
+      "target": "process:3",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "question:subject",
+      "source": "question",
+      "target": "subject",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "subject:subject:1",
+      "source": "subject",
+      "target": "subject:1",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "subject:1:subject:1:next",
+      "source": "subject:1",
+      "target": "subject:1:next",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "subject:subject:2",
+      "source": "subject",
+      "target": "subject:2",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "subject:subject:3",
+      "source": "subject",
+      "target": "subject:3",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "question:abstract-process",
+      "source": "question",
+      "target": "abstract-process",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-process:abstract-process:1",
+      "source": "abstract-process",
+      "target": "abstract-process:1",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-process:1:abstract-process:1:next",
+      "source": "abstract-process:1",
+      "target": "abstract-process:1:next",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-process:abstract-process:2",
+      "source": "abstract-process",
+      "target": "abstract-process:2",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-process:abstract-process:3",
+      "source": "abstract-process",
+      "target": "abstract-process:3",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "question:abstract-subject",
+      "source": "question",
+      "target": "abstract-subject",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-subject:abstract-subject:1",
+      "source": "abstract-subject",
+      "target": "abstract-subject:1",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-subject:1:abstract-subject:1:next",
+      "source": "abstract-subject:1",
+      "target": "abstract-subject:1:next",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-subject:abstract-subject:2",
+      "source": "abstract-subject",
+      "target": "abstract-subject:2",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "abstract-subject:abstract-subject:3",
+      "source": "abstract-subject",
+      "target": "abstract-subject:3",
+      "label": "Exploration Path",
+      "kind": "path"
+    },
+    {
+      "id": "cross:1",
+      "source": "process:1",
+      "target": "abstract-process:2",
+      "label": "Model Transfer (Demo)",
+      "kind": "transfer"
+    },
+    {
+      "id": "cross:2",
+      "source": "subject:2",
+      "target": "abstract-subject:1",
+      "label": "Classification Link (Demo)",
+      "kind": "analogy"
+    }
+  ]
+}

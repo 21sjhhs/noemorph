@@ -1,0 +1,25 @@
+{
+  "status": "stopped_by_user",
+  "reason": "The user explicitly requested termination of the current test.",
+  "completed_run": false,
+  "worker_outputs_retained": [
+    "interpretation.json",
+    "anchor.json",
+    "role2.json",
+    "role3.json",
+    "role4.json",
+    "role5.json",
+    "selection.json",
+    "depth.json"
+  ],
+  "observed_worker_status": "All listed research workers had already completed when the stop instruction was received; no running research worker remained.",
+  "pending_at_stop": [
+    "Parent review of the final depth submission",
+    "Normalized state submission and round closure",
+    "End-to-end acceptance decision",
+    "Final regression run"
+  ],
+  "subsequent_test_actions": "None authorized or performed after the stop instruction. Documentation of the interruption only.",
+  "interpretation": "Partial research artifacts do not constitute a completed or successful end-to-end pilot. This stop applies to testing, not cancellation of the Noemorph project.",
+  "publication_instruction": "The user subsequently authorized packaging, sensitive-data/rights review and GitHub publication without resuming tests. Publication is independent of live-pilot completion."
+}

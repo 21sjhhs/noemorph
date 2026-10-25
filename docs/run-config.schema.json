@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Noemorph Run Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "question",
+    "macro_rounds",
+    "max_parallel_agents",
+    "top_n",
+    "depth_hops",
+    "presentation_languages",
+    "ui_language",
+    "research_language_policy",
+    "logical_roles",
+    "breadth_per_role"
+  ],
+  "properties": {
+    "schema_version": {
+      "enum": [
+        "noemorph-run-config/1.0",
+        "socrates-run-config/1.0"
+      ]
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "macro_rounds": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000
+    },
+    "max_parallel_agents": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 5
+    },
+    "top_n": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 20
+    },
+    "depth_hops": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 20
+    },
+    "presentation_languages": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z]{2,8}(-[A-Za-z0-9]{1,8})*$",
+        "not": {
+          "const": "und"
+        }
+      }
+    },
+    "ui_language": {
+      "enum": [
+        "zh-CN",
+        "en"
+      ]
+    },
+    "research_language_policy": {
+      "const": "unconstrained"
+    },
+    "logical_roles": {
+      "const": 5
+    },
+    "breadth_per_role": {
+      "const": 5
+    },
+    "scope": {
+      "type": "string",
+      "default": ""
+    }
+  }
+}

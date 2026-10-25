@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Noemorph — Multi-Agent Knowledge Exploration. Explore evidence, follow connections, and open the next question.">
+  <title>Noemorph — Multi-Agent Knowledge Exploration.</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="workspace" id="workspace">
+    <aside class="sidebar" id="sidebar" aria-label="图谱导航">
+      <a class="brand" href="#" aria-label="Noemorph 首页" id="brand-home"><span class="brand-mark" aria-hidden="true">n<span>✦</span></span><span>Noemorph<span class="brand-version">KNOWLEDGE EXPLORATION</span></span></a>
+      <div class="tagline">Discover What You<br>Didn't Know to Ask.</div>
+      <div class="sidebar-rule"></div>
+      <div class="eyebrow">RESEARCH SPACE <span class="live-dot"></span></div>
+      <button class="project-card" id="project-home"><span class="project-icon">◈</span><span><strong id="project-title">知识探索地图</strong><small id="project-subtitle">本地研究空间</small></span><span class="project-arrow">↗</span></button>
+      <div id="demo-notice" class="demo-notice" hidden>交互演示 · 示例不构成研究证据</div>
+      <div class="section-heading">浏览图谱 <span>EXPLORE</span></div>
+      <nav class="view-nav" aria-label="显示范围">
+        <button data-view="overview" class="active" aria-pressed="true"><span>◎</span>主要发现<span class="nav-count" id="overview-count">—</span></button>
+        <button data-view="all" aria-pressed="false"><span>⌘</span>完整网络<span class="nav-count" id="all-count">—</span></button>
+        <button data-view="frontier" aria-pressed="false"><span>✧</span>待探索分支<span class="nav-count" id="frontier-count">—</span></button>
+      </nav>
+      <div class="section-heading">逻辑探索路径 <button id="reset-filters" class="text-button">重置</button></div>
+      <div id="role-filters" class="role-filters"></div>
+      <div class="section-heading">研究轮次 <span id="round-caption">ALL ROUNDS</span></div>
+      <div class="round-pills" id="round-filters"></div>
+      <label class="status-select-label" for="status-filter">探索状态</label>
+      <select id="status-filter"><option value="all">所有状态</option><option value="explored">已做深度探索</option><option value="frontier">尚未深入</option><option value="blocked">未解决 / 受阻</option><option value="contradicted">存在反证</option></select>
+      <div class="sidebar-bottom"><div class="local-label"><span class="live-dot"></span> LOCAL · OFFLINE READY</div><button class="import-button" id="import-button"><span>↥</span> 导入研究图谱 <kbd>JSON</kbd></button><p>跟随证据，让问题继续生长。</p></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar"><div class="breadcrumb"><button id="menu-button" class="icon-button mobile-menu" aria-label="打开导航">☰</button><span>工作空间</span><span class="slash">/</span><strong>知识图谱</strong><span class="small-tag">INTERACTIVE</span></div><div class="topbar-actions"><div class="language-switch" aria-label="界面语言"><button data-ui-lang="zh-CN" aria-pressed="true" title="中文界面">中</button><button data-ui-lang="en" aria-pressed="false" title="English interface">EN</button></div><button id="run-settings-button" class="icon-button" title="运行参数" aria-label="运行参数">⚙</button><button id="theme-button" class="icon-button" title="切换明暗主题" aria-label="切换明暗主题">☼</button><button id="help-button" class="icon-button" title="操作指南" aria-label="打开操作指南">?</button><button id="export-button" class="button export-button" aria-expanded="false" aria-controls="export-menu"><span>↗</span> 导出 <span class="chevron">⌄</span></button><div id="export-menu" class="popover" hidden><button data-export="html">独立交互 HTML<span>可离线打开</span></button><button data-export="json">全部语言 JSON<span>包含全部节点与视图</span></button><button data-export="current-json">当前语言 JSON<span>完整图谱 JSON</span></button><button data-export="svg">当前视图 SVG<span>可编辑矢量图</span></button></div></div></header>
+      <section class="research-header"><div><div class="eyebrow">THE ATLAS OF UNASKED QUESTIONS</div><h1>每一个发现，<em>都是新的起点。</em></h1><p id="question-title">正在打开研究空间…</p></div><div class="research-stats"><div><strong id="stat-nodes">—</strong><span>知识节点</span></div><div><strong id="stat-links">—</strong><span>探索连接</span></div><div><strong id="stat-frontier">—</strong><span>待深入方向</span></div></div></section>
+      <div class="map-toolbar"><div class="map-title"><span class="map-indicator"></span><strong id="view-title">主要发现</strong><span id="visible-count" class="muted">—</span></div><div class="content-language-control"><label for="content-language" class="sr-only">图谱内容语言</label><select id="content-language" aria-label="图谱内容语言"><option value="auto">跟随界面</option></select></div><div class="toolbar-actions"><div class="search-box"><svg width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m12 12 5 5" stroke="currentColor" stroke-width="1.5"/></svg><input id="search-input" type="search" placeholder="寻找概念、线索或问题…" autocomplete="off" aria-label="搜索所有节点"><kbd>/</kbd><div id="search-results" class="search-results" role="listbox" hidden></div></div><button id="labels-button" class="icon-button active" aria-label="切换连线标签" title="切换连线标签" aria-pressed="true">Aa</button><button id="fit-button" class="icon-button" aria-label="适应窗口" title="适应窗口 · F">⛶</button></div></div>
+      <section class="map-area" id="map-area" aria-label="可拖动缩放的交互知识图谱">
+        <div class="map-ambient" aria-hidden="true"></div>
+        <svg id="graph" xmlns="http://www.w3.org/2000/svg" tabindex="0" role="group" aria-label="知识图谱。拖动空白移动，滚轮缩放；Tab 选择节点，Enter 打开详情。">
+          <defs><filter id="node-glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="9"/></filter><marker id="edge-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 6 3 0 6" fill="var(--edge-color)"/></marker></defs>
+          <g id="viewport"><g id="edge-layer"></g><g id="node-layer"></g></g>
+        </svg>
+        <div class="canvas-caption"><span class="compass">✥</span><div>KNOWLEDGE IS A LANDSCAPE<small>缩小看见联系，靠近看见细节。</small></div></div>
+        <div id="empty-state" class="empty-state" hidden><span>⌕</span><strong>这里还没有匹配的线索</strong><p>调整路径、轮次或探索状态，再看看。</p><button id="empty-reset" class="button">重置筛选</button></div>
+        <div class="map-bottom"><div class="map-legend"><span><i class="legend-solid"></i>探索路径</span><span><i class="legend-dashed"></i>类比 / 待验证联系</span><span><i class="legend-frontier"></i>尚未深入</span></div><div class="zoom-controls"><button id="zoom-out" aria-label="缩小">−</button><button id="zoom-level" title="重置为 100%" aria-label="重置缩放">100%</button><button id="zoom-in" aria-label="放大">+</button><span></span><button id="fullscreen-button" title="全屏图谱" aria-label="全屏图谱">⤢</button></div></div>
+        <div class="minimap-wrap"><div class="minimap-label">NAVIGATOR <button id="minimap-toggle" aria-label="收起缩略导航" aria-expanded="true">−</button></div><svg id="minimap" viewBox="0 0 180 112" role="button" tabindex="0" aria-label="缩略导航图，点击定位；按 Enter 适应全部节点"></svg></div>
+        <div id="drop-target" class="drop-target" hidden>松开以导入图谱 JSON</div>
+      </section>
+      <footer class="statusbar"><span><span class="live-dot"></span><span id="status-message">研究记录仅在当前设备中处理</span></span><span id="status-hint">拖动移动 · 滚轮缩放 · 双击节点展开</span></footer>
+    </main>
+
+    <aside class="inspector" id="inspector" aria-label="节点详情"><div class="inspector-top"><span class="eyebrow">NODE INSIGHTS</span><button id="close-inspector" class="icon-button" aria-label="收起节点详情" title="收起节点详情">→</button></div><div class="inspector-scroll" id="inspector-content"></div></aside>
+    <button id="reopen-inspector" class="reopen-inspector icon-button" hidden title="打开节点详情" aria-label="打开节点详情">←</button>
+  </div>
+  <input id="file-input" type="file" accept=".json,application/json" hidden>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="help-dialog"><div class="dialog-title"><span>探索，从一个问题开始。</span><button id="close-help" class="icon-button" aria-label="关闭指南">×</button></div><p>地图只呈现已有记录。大小与主次表示阅读优先级；证据等级单独标注。未入选纵深研究的发现依然保留。</p><div class="help-grid"><kbd>拖动空白</kbd><span>移动地图</span><kbd>滚轮 / 双指</kbd><span>以指针为中心缩放；触屏支持双指缩放</span><kbd>拖动节点</kbd><span>调整位置；导出会保留布局</span><kbd>单击 / Enter</kbd><span>查看发现、证据与下一问</span><kbd>双击 / +n</kbd><span>展开或收起下一级线索</span><kbd>/</kbd><span>搜索完整图谱，包括隐藏节点</span><kbd>F</kbd><span>适应当前窗口</span><kbd>Esc</kbd><span>退出搜索或关闭详情</span></div><p class="help-footnote">“探索路径”是研究记录的先后关系，不自动表示因果。类比、迁移及冲突关系必须以节点记录和原始证据为准。</p></dialog>
+  <dialog id="run-dialog" class="run-settings-dialog"><div class="dialog-title"><span>新研究配置</span><button id="close-run-dialog" class="icon-button" aria-label="关闭参数卡">×</button></div><div id="run-dialog-form"></div></dialog>
+  <script id="graph-data" type="application/json">null</script>
+  <script src="demo.js"></script>
+  <script src="graph-core.js"></script>
+  <script src="languages.js"></script>
+  <script src="i18n.js"></script>
+  <script src="settings.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

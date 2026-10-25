@@ -1,0 +1,114 @@
+{
+  "question": "How do decentralized teams recover coordination after disruption?",
+  "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command",
+  "whole_concept": {
+    "id": "X",
+    "label": "Decentralized teams recovering coordination after disruption",
+    "type": "composite phenomenon under inquiry",
+    "question_operator": "How",
+    "meaning": "An inquiry into the process by which organizational teams with distributed decision authority regain workable coordination following disruption, with the nature of decentralization, disruption and recovery still revisable.",
+    "status": "Working interpretation; no mechanism or successful recovery is asserted."
+  },
+  "concepts": [
+    {
+      "id": "S",
+      "original_term": "decentralized teams",
+      "type": "candidate class of organizational collectives",
+      "working_definition": "Teams in which relevant decision authority is distributed among members or constituent units to some degree.",
+      "components": [
+        {"term": "teams", "type": "collective", "meaning": "People treated as an organizational working unit; membership and unit boundaries remain unspecified."},
+        {"term": "decentralized", "type": "organizational property", "meaning": "The distribution and degree of decision authority remain to be specified; geographic dispersion alone does not establish this interpretation."}
+      ],
+      "unresolved": ["Within-team versus between-team decentralization", "Which decisions are distributed", "Whether authority remains distributed throughout recovery", "Whether the intended meaning is authority distribution, location distribution, or both"]
+    },
+    {
+      "id": "P",
+      "original_term": "recover coordination",
+      "type": "candidate process with an outcome criterion",
+      "working_definition": "Regain a workable capacity to align interdependent activity after that capacity has been impaired.",
+      "components": [
+        {"term": "recover", "type": "change process", "meaning": "A transition from impaired functioning toward a specified criterion; neither complete restoration nor success is guaranteed."},
+        {"term": "coordination", "type": "process or observed state", "meaning": "The alignment of interdependent activity; distinguish what participants do from the resulting degree of alignment."}
+      ],
+      "unresolved": ["Restoration of an earlier arrangement versus establishment of a different workable arrangement", "How coordination and recovery are observed", "Whose assessment defines workable", "Partial versus complete and temporary versus sustained recovery"]
+    },
+    {
+      "id": "C",
+      "original_term": "disruption",
+      "type": "event or episode serving as a condition",
+      "working_definition": "An event or episode associated with an interruption or impairment of the team's ongoing joint activity; the affected activity, severity and duration are unspecified.",
+      "unresolved": ["Discrete event versus continuing disturbance", "Internal versus external origin", "Loss of coordination versus disruption of another team function", "The point at which the disturbance begins and ends"]
+    },
+    {
+      "id": "X",
+      "original_term": "How do decentralized teams recover coordination after disruption?",
+      "type": "whole composite inquiry",
+      "working_definition": "Preserve S, P and C together with their temporal relation, organizational scope and exclusions.",
+      "unresolved": ["Which combination of team, disturbance and recovery criterion the question intends"]
+    }
+  ],
+  "relations": [
+    {"id": "R", "original_term": "after disruption", "type": "temporal qualification", "from": "P", "to": "C", "meaning": "The recovery process follows disruption or its onset; whether it must wait until the disturbance ends is unresolved.", "status": "Temporal reading supported by wording; a causal relation is not established."},
+    {"id": "R_subject", "type": "process participant", "from": "S", "to": "P", "meaning": "Teams are the collectives whose coordination recovery is under inquiry.", "status": "Question structure, not an observed event."},
+    {"id": "R_whole", "type": "semantic composition", "from": "X", "to": ["S", "P", "C"], "meaning": "The whole inquiry combines the collective, recovery process and disruption condition.", "status": "Interpretive structure."}
+  ],
+  "ambiguities": [
+    {"id": "A1", "concept_ids": ["S"], "question": "Does decentralized describe decision authority, geographic distribution, or both?", "working_choice": "Distributed decision authority, provisionally; do not equate it with remote work."},
+    {"id": "A2", "concept_ids": ["S"], "question": "Is the unit a single team or several teams coordinating with one another?", "working_choice": "Keep both readings open until a concrete unit is specified."},
+    {"id": "A3", "concept_ids": ["P"], "question": "Does recovery mean returning to an earlier coordination arrangement or attaining adequate coordination through a different arrangement?", "working_choice": "Retain both as distinct definition paths; do not require a return to the original arrangement."},
+    {"id": "A4", "concept_ids": ["P"], "question": "Is coordination a set of actions or an assessed condition, and what observation would establish recovery?", "working_choice": "Distinguish process from outcome; do not substitute general performance for coordination without justification."},
+    {"id": "A5", "concept_ids": ["C", "P"], "question": "Must the disruption have ended before recovery begins, and did it impair coordination itself?", "working_choice": "Treat after as a temporal qualifier; event onset, event end and coordination impairment require separate evidence."},
+    {"id": "A6", "concept_ids": ["X"], "question": "Is how requesting an account of observed recovery or an intervention recommendation?", "working_choice": "Begin with an explanatory process inquiry; recommendations would require additional evidence and criteria."},
+    {"id": "A7", "concept_ids": ["S", "X"], "question": "What counts as non-coercive coordination in the intended organization?", "working_choice": "Preserve the explicit non-coercive boundary and both exclusions; do not assume that all organizational authority is coercive or that decentralization itself guarantees non-coercion."}
+  ],
+  "working_interpretation": {
+    "text": "Investigate how organizational teams with distributed decision authority regain a workable capacity to align interdependent activity following a disruption. Keep the collective, process, temporal condition and scope together. The recovery criterion, unit of analysis and disturbance boundaries remain open. Include only non-coercive organizational coordination and exclude employee surveillance and military command.",
+    "given_constraints": ["Non-coercive organizational coordination", "Employee surveillance excluded", "Military command excluded"],
+    "provisional_choices": ["Decentralization refers primarily to decision authority", "Recovery may produce an earlier or a different workable arrangement", "After establishes a temporal relation without proving causation"],
+    "not_established": ["That every disruption impairs coordination", "That every decentralized team recovers", "That decentralization causes recovery", "That any particular recovery mechanism is effective"]
+  },
+  "open_questions": [
+    "Which decisions, organizational units and membership boundaries define S?",
+    "What changes in joint activity distinguish disruption from routine variation?",
+    "What baseline, threshold and observation interval would distinguish recovery from ongoing impairment?",
+    "Would restoration of the former arrangement and attainment of a different workable arrangement count equally as recovery?",
+    "Would distributed locations without distributed authority satisfy the intended meaning of decentralized?",
+    "Can recovery occur while the disturbance persists, or is a completed disruption required by the intended question?",
+    "How should non-coercive be operationalized without admitting either explicit exclusion?"
+  ],
+  "source_checks": [
+    {
+      "url": "https://ccs.mit.edu/papers/CCSWP157.html",
+      "supported_claim": "The search result presented a definition of coordination in terms of managing dependencies among activities; direct-page verification at this URL failed.",
+      "access_outcome": "Search result retrieved; direct open returned 502 Bad Gateway.",
+      "use_limit": "No direct full-page access is claimed; the claim was subsequently checked in the author's PDF."
+    },
+    {
+      "url": "https://crowston.syr.edu/sites/default/files/acmcs94.pdf",
+      "source_title": "The Interdisciplinary Study of Coordination",
+      "supported_claim": "The authors explicitly adopt coordination as managing dependencies between activities and acknowledge that other definitions exist.",
+      "location": "Printed page 90, section 2.1; PDF page index 3, retrieved text lines 225–236.",
+      "access_outcome": "PDF text retrieved successfully; targeted text search located the definition.",
+      "use_limit": "Terminological calibration only. This definitional statement does not establish how decentralized teams recover or what causes recovery. Its named framework and proposed mechanisms are not included in the neutral anchor."
+    },
+    {
+      "url": "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-34r1.pdf",
+      "source_title": "NIST Special Publication 800-34 Revision 1, Contingency Planning Guide for Federal Information Systems",
+      "supported_claim": "Its glossary defines disruption in the specific context of an unplanned event making an information system inoperable for a period of time.",
+      "location": "Appendix G, printed page G-1; PDF page index 142, retrieved text lines 5518–5521.",
+      "access_outcome": "PDF text retrieved successfully; targeted text search located the glossary entry.",
+      "use_limit": "This information-system definition demonstrates a domain-specific boundary. It is not imposed on organizational coordination, does not require all relevant disturbances to be IT outages, and provides no causal evidence for team recovery."
+    }
+  ],
+  "execution_note": {
+    "mode": "Separately delegated Role 1 interpretation for the bounded live release QA fixture.",
+    "local_read_scope": "Interpretation and initial decomposition instructions in noemorph/SKILL.md and noemorph/references/01-logic.md only; no prior research findings used.",
+    "retrieval_actions": [
+      "Submitted web search queries for the original coordination definition and an authoritative disruption definition.",
+      "Attempted the MIT paper HTML and retrieved the original NIST publication PDF.",
+      "Retrieved the author's coordination-paper PDF after the MIT HTML fetch failed.",
+      "Searched the retrieved PDF texts for the coordination definition and the disruption glossary entry."
+    ],
+    "limits": "Source checks cover terminology only. No empirical team-recovery finding, mechanism evaluation, causal conclusion, breadth direction, transformation-role answer, or downstream role execution is claimed. No subagents were spawned by this role. The separate anchor omits source names and suggested theories."
+  }
+}

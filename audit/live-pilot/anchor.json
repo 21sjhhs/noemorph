@@ -1,0 +1,27 @@
+{
+  "question": "How do decentralized teams recover coordination after disruption?",
+  "scope": "Non-coercive organizational coordination; exclude employee surveillance and military command",
+  "concepts": [
+    {"id": "S", "original_term": "decentralized teams", "type": "candidate class of organizational collectives", "working_definition": "Teams with decision authority distributed among members or constituent units to some degree.", "components": [{"term": "teams", "type": "collective"}, {"term": "decentralized", "type": "organizational property"}]},
+    {"id": "P", "original_term": "recover coordination", "type": "candidate process with an outcome criterion", "working_definition": "Regain a workable capacity to align interdependent activity after impairment.", "components": [{"term": "recover", "type": "change process"}, {"term": "coordination", "type": "process or observed state"}]},
+    {"id": "C", "original_term": "disruption", "type": "event or episode serving as a condition", "working_definition": "An event or episode associated with interruption or impairment of ongoing joint activity; its origin, duration and severity remain unspecified."},
+    {"id": "X", "original_term": "How do decentralized teams recover coordination after disruption?", "type": "whole composite inquiry", "working_definition": "The collective S undergoing the candidate process P under the temporal condition C, within the original scope."}
+  ],
+  "ambiguities": [
+    {"concept_ids": ["S"], "question": "Does decentralized mean distributed decision authority, distributed location, or both?", "working_choice": "Use decision authority provisionally; keep the alternative open."},
+    {"concept_ids": ["S"], "question": "Is the unit one team or multiple teams, and which decisions are distributed?", "working_choice": "Unspecified."},
+    {"concept_ids": ["P"], "question": "Does recovery require restoration of the earlier arrangement or allow a different workable arrangement?", "working_choice": "Retain both definition paths as questions."},
+    {"concept_ids": ["P"], "question": "What observations, baseline, threshold and interval establish recovery?", "working_choice": "Distinguish coordinating actions from the assessed coordination outcome; criteria remain open."},
+    {"concept_ids": ["P", "C"], "question": "Does after mean after disturbance onset or after its end, and was coordination itself impaired?", "working_choice": "Treat after as temporal; do not infer causation."},
+    {"concept_ids": ["X"], "question": "Does how request an explanation or an intervention recommendation?", "working_choice": "Begin with an explanatory process inquiry."},
+    {"concept_ids": ["X"], "question": "What operational boundary defines non-coercive in this organization?", "working_choice": "Preserve the stated boundary and exclusions without assuming decentralization guarantees it."}
+  ],
+  "working_interpretation": {
+    "question_operator": "How",
+    "text": "Investigate how organizational teams with distributed decision authority regain a workable capacity to align interdependent activity following disruption. Preserve the whole phenomenon while leaving the collective's boundaries, recovery criterion and disturbance boundaries open.",
+    "typed_relation": {"id": "R", "original_term": "after disruption", "type": "temporal qualification", "from": "P", "to": "C", "status": "Timing remains underspecified; causation is not established."},
+    "scope_constraints": ["Non-coercive organizational coordination", "Exclude employee surveillance", "Exclude military command"],
+    "assumptions_to_revisit": ["Decentralization primarily concerns decision authority", "Recovery can attain an earlier or a different workable arrangement"],
+    "epistemic_boundary": "The question does not establish that every disruption impairs coordination, that recovery occurs, or that decentralization causes it."
+  }
+}
