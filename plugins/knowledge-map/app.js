@@ -1,8 +1,8 @@
 /* Noemorph Knowledge Map — local, dependency-free HTML visualization plugin. */
 (async function () {
   'use strict';
-  const G = window.SocratesGraph, $ = id => document.getElementById(id);
-  const I = window.SocratesI18n, L = window.SocratesLanguages, T = value => I.t(value);
+  const G = window.NoemorphGraph, $ = id => document.getElementById(id);
+  const I = window.NoemorphI18n, L = window.NoemorphLanguages, T = value => I.t(value);
   const NS = 'http://www.w3.org/2000/svg';
   const symbols = { question: 'n', direction: '✧', concept: '◇', finding: '·', frontier: '?' };
   let model, positions, shown, selected, inspectorTab = 'insight', sceneBounds;
@@ -429,13 +429,13 @@
   new ResizeObserver(() => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (model) Date.now() < preserveViewUntil ? updateCamera() : fit(false); }); }).observe(area);
   document.querySelectorAll('[data-ui-lang]').forEach(button => button.addEventListener('click', () => changeInterfaceLanguage(button.dataset.uiLang)));
   $('content-language').onchange = event => { contentLanguage = event.target.value; switchContent(); };
-  $('run-settings-button').onclick = () => { window.SocratesSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };
+  $('run-settings-button').onclick = () => { window.NoemorphSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };
   $('close-run-dialog').onclick = () => $('run-dialog').close();
   try {
-    const initial = JSON.parse($('graph-data').textContent) || window.SOCRATES_DEMO;
-    try { const theme = initial?.view?.theme || (localStorage.getItem('noemorph-theme') || localStorage.getItem('socrates-theme')); if (['dark', 'light'].includes(theme)) document.documentElement.dataset.theme = theme; } catch (_) {}
+    const initial = JSON.parse($('graph-data').textContent) || window.NOEMORPH_DEMO;
+    try { const theme = initial?.view?.theme || localStorage.getItem('noemorph-theme'); if (['dark', 'light'].includes(theme)) document.documentElement.dataset.theme = theme; } catch (_) {}
     let uiLanguage = initial?.view?.ui_language || initial?.run_config?.ui_language;
-    try { uiLanguage ||= (localStorage.getItem('noemorph-ui-language') || localStorage.getItem('socrates-ui-language')); } catch (_) {}
+    try { uiLanguage ||= localStorage.getItem('noemorph-ui-language'); } catch (_) {}
     I.setLanguage(uiLanguage || 'zh-CN'); I.applyStatic(document);
     setInspector(!isMobileInspector()); await mount(initial);
   } catch (error) { text('question-title', T('图谱未能打开')); toast(error.message); }

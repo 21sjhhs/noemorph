@@ -17,6 +17,6 @@ for name, record in lock["files"].items():
     if record["mode"] == "prefix":
         data = data[:record["bytes"]]
     if hashlib.sha256(data).hexdigest() != record["sha256"]:
-        failures.append(name + ": original content changed")
-print("\n".join(failures) if failures else f"PASS: {len(lock['files'])} original research files preserved, including the archived entrypoint prefix.")
+        failures.append(name + ": recorded baseline changed")
+print("\n".join(failures) if failures else f"PASS: {len(lock['files'])} research baseline records verified.")
 sys.exit(bool(failures))

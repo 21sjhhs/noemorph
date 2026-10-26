@@ -87,7 +87,7 @@
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesGraph = api;
+  else root.NoemorphGraph = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   const ROLES = {
@@ -258,9 +258,9 @@
 </script>
   <script>/* Portable multilingual graph contract. UI locale never changes research data. */
 (function (root, factory) {
-  const api = factory(typeof module === 'object' && module.exports ? require('./graph-core.js') : root.SocratesGraph);
+  const api = factory(typeof module === 'object' && module.exports ? require('./graph-core.js') : root.NoemorphGraph);
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesLanguages = api;
+  else root.NoemorphLanguages = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (G) {
   'use strict';
   const protectedKeys = new Set(['id','ids','origin_ids','anchor_ids','typed_queries','formal_logic','source','target','parent_id','url','href','path','evidence','role','type']);
@@ -349,7 +349,7 @@
 (function (root, factory) {
   const api = factory();
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesI18n = api;
+  else root.NoemorphI18n = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   const pairs = [
@@ -472,9 +472,9 @@
 </script>
   <script>/* A host-neutral parameter card. Saves configuration; never starts research. */
 (function (root, factory) {
-  const api = factory(root.SocratesI18n);
+  const api = factory(root.NoemorphI18n);
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesSettings = api;
+  else root.NoemorphSettings = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (I) {
   'use strict';
   const defaults = { schema_version: 'noemorph-run-config/1.0', question: '', scope: '', macro_rounds: 3,
@@ -491,7 +491,6 @@
     c.question = c.question.trim();
     if (typeof c.scope !== 'string') throw new Error('scope must be text');
     c.scope = c.scope.trim();
-    if (c.schema_version === 'socrates-run-config/1.0') c.schema_version = defaults.schema_version;
     if (!Number.isInteger(c.macro_rounds) || c.macro_rounds < 1 || c.macro_rounds > 1000) throw new Error('轮数必须是 1–1000 的整数。');
     if (c.max_parallel_agents !== null && (!Number.isInteger(c.max_parallel_agents) || c.max_parallel_agents < 1 || c.max_parallel_agents > 5)) throw new Error('并发上限必须是自动或 1–5。');
     if (c.top_n !== null && (!Number.isInteger(c.top_n) || c.top_n < 1 || c.top_n > 20)) throw new Error('深入路径数必须是自动或 1–20。');
@@ -575,8 +574,8 @@
   <script>/* Noemorph Knowledge Map — local, dependency-free HTML visualization plugin. */
 (async function () {
   'use strict';
-  const G = window.SocratesGraph, $ = id => document.getElementById(id);
-  const I = window.SocratesI18n, L = window.SocratesLanguages, T = value => I.t(value);
+  const G = window.NoemorphGraph, $ = id => document.getElementById(id);
+  const I = window.NoemorphI18n, L = window.NoemorphLanguages, T = value => I.t(value);
   const NS = 'http://www.w3.org/2000/svg';
   const symbols = { question: 'n', direction: '✧', concept: '◇', finding: '·', frontier: '?' };
   let model, positions, shown, selected, inspectorTab = 'insight', sceneBounds;
@@ -1003,13 +1002,13 @@
   new ResizeObserver(() => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (model) Date.now() < preserveViewUntil ? updateCamera() : fit(false); }); }).observe(area);
   document.querySelectorAll('[data-ui-lang]').forEach(button => button.addEventListener('click', () => changeInterfaceLanguage(button.dataset.uiLang)));
   $('content-language').onchange = event => { contentLanguage = event.target.value; switchContent(); };
-  $('run-settings-button').onclick = () => { window.SocratesSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };
+  $('run-settings-button').onclick = () => { window.NoemorphSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };
   $('close-run-dialog').onclick = () => $('run-dialog').close();
   try {
-    const initial = JSON.parse($('graph-data').textContent) || window.SOCRATES_DEMO;
-    try { const theme = initial?.view?.theme || (localStorage.getItem('noemorph-theme') || localStorage.getItem('socrates-theme')); if (['dark', 'light'].includes(theme)) document.documentElement.dataset.theme = theme; } catch (_) {}
+    const initial = JSON.parse($('graph-data').textContent) || window.NOEMORPH_DEMO;
+    try { const theme = initial?.view?.theme || localStorage.getItem('noemorph-theme'); if (['dark', 'light'].includes(theme)) document.documentElement.dataset.theme = theme; } catch (_) {}
     let uiLanguage = initial?.view?.ui_language || initial?.run_config?.ui_language;
-    try { uiLanguage ||= (localStorage.getItem('noemorph-ui-language') || localStorage.getItem('socrates-ui-language')); } catch (_) {}
+    try { uiLanguage ||= localStorage.getItem('noemorph-ui-language'); } catch (_) {}
     I.setLanguage(uiLanguage || 'zh-CN'); I.applyStatic(document);
     setInspector(!isMobileInspector()); await mount(initial);
   } catch (error) { text('question-title', T('图谱未能打开')); toast(error.message); }

@@ -127,8 +127,8 @@ class ReleaseTests(unittest.TestCase):
         result=audit(state)
         self.assertIn('cross_round_question_repeated_review_conditions_and_novelty',{w['code'] for w in result['warnings']})
 
-    def test_legacy_configuration_normalizes_and_retains_scope(self):
-        config=validate_config({'schema_version':'socrates-run-config/1.0','question':'Q?','scope':'Limit C','ui_language':'en','presentation_languages':['zh-CN']})
+    def test_current_configuration_retains_scope(self):
+        config=validate_config({'schema_version':'noemorph-run-config/1.0','question':'Q?','scope':'Limit C','ui_language':'en','presentation_languages':['zh-CN']})
         self.assertEqual(config['schema_version'],'noemorph-run-config/1.0')
         self.assertEqual(config['scope'],'Limit C')
         self.assertEqual(config['research_language_policy'],'unconstrained')

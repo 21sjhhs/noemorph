@@ -1,8 +1,8 @@
 /* Portable multilingual graph contract. UI locale never changes research data. */
 (function (root, factory) {
-  const api = factory(typeof module === 'object' && module.exports ? require('./graph-core.js') : root.SocratesGraph);
+  const api = factory(typeof module === 'object' && module.exports ? require('./graph-core.js') : root.NoemorphGraph);
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesLanguages = api;
+  else root.NoemorphLanguages = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (G) {
   'use strict';
   const protectedKeys = new Set(['id','ids','origin_ids','anchor_ids','typed_queries','formal_logic','source','target','parent_id','url','href','path','evidence','role','type']);

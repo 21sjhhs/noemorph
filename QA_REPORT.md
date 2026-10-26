@@ -2,7 +2,21 @@
 
 Status: **Interrupted by the user; release acceptance is incomplete.**
 
-This report records work completed before the stop instruction on 2026-10-25. The user explicitly terminated the current test. No new retrieval, research-worker task, regression run or acceptance test was performed after that instruction. Existing artifacts were retained. This does not cancel the Noemorph project.
+Sections 1 onward record work completed around the stop instruction on 2026-10-25. The user explicitly terminated that research pilot. The 2026-10-26 maintenance entry below records separate documentation and branding work and its code checks; it does not resume or complete the research pilot.
+
+## Maintenance verification — 2026-10-26
+
+The current request updates project presentation and removes retired branding throughout the current source tree. Both READMEs now lead with the project promise, use cases, an illustrative request, a map preview, and installation steps. `llms.txt` supplies a concise linked project overview for readers and retrieval tools. Internal browser namespaces and generated examples now use Noemorph names.
+
+Completed checks for this maintenance:
+
+- Python state suite: 6 tests passed; Python integration/export/configuration suite: 36 tests passed.
+- JavaScript graph suite: 7 tests passed; language/configuration suite: 7 tests passed, including browser-global loading without CommonJS. The added VM test initially lacked the browser `URL` global; after correcting the test environment, the language suite passed.
+- Skill validation, 11 research baseline records, common sensitive-data scan, JavaScript syntax checks, and local links in both READMEs and `llms.txt` passed.
+- Rebuilt the offline examples. In a real browser, the map loaded all 21 demo nodes, switched interface/content to English, and opened the run settings card with localized controls.
+- A case-insensitive current-tree text and filename scan found no retired branding. Git history and historical release tags are outside that scan.
+
+The archive name/text and state temporary-file prefix received explicit baseline updates, with earlier hashes retained. Retired run-configuration/header aliases and browser preference fallbacks were removed; older configurations must use the current identifier. This maintenance preserves research semantics and does not complete the interrupted research pilot or establish discovery quality.
 
 ## 1. Result and release recommendation
 
@@ -16,7 +30,7 @@ Apache-2.0 was selected by the user, who confirmed the right to license the orig
 
 The existing project was inspected rather than replaced with a new research design. A 49-file snapshot of public source material was retained outside the candidate release. Its inventory is recorded in [audit/source-manifest.json](audit/source-manifest.json). Private earlier LLPS reports were excluded from the release candidate and the new research pilot.
 
-Eleven protected source files have a hash lock. The original full skill is retained at [references/SOCRATES_SKILL.original.md](references/SOCRATES_SKILL.original.md); original references 01–08 and the research state engine are retained. The last completed upstream check passed for all 11 protected files. A final whole-tree comparison was not performed after the stop.
+Eleven research source records have a hash lock. The entrypoint baseline is retained at [references/NOEMORPH_SKILL.baseline.md](references/NOEMORPH_SKILL.baseline.md); references 01–08 and the research state engine are retained. The historical upstream check passed for all 11 protected files. Branding maintenance on 2026-10-26 renamed and normalized the archive and changed the state temporary-file prefix, explicitly updating those two lock records with prior hashes retained. The remaining source hashes were not changed. This is a recorded baseline check, not a claim that every file is identical to the earlier version.
 
 The original specialized entrypoint has five logical roles, but only roles 2–5 each submit five directions: **20 directions per round**. Historical generic references and the state engine's default instead describe five breadth submitters, yielding 25 directions. This discrepancy is documented in [the architecture](references/ARCHITECTURE.md). The maintained workflow explicitly uses four breadth submitters and preserves the specialized 20-direction behavior. The requested interpretation of five agents each supplying five directions has **not** been implemented; it requires a deliberate research-design decision.
 
@@ -76,7 +90,7 @@ An isolated evaluator read the skill metadata and classified 20 prompts. See [ro
 
 All five requested positive scenarios were identified: hidden scientific connections, going beyond the original question, overlooked interdisciplinary directions, generating questions from a hypothesis, and recursive knowledge exploration rather than a conventional review.
 
-Negative scenarios included definitions, arithmetic, translation, summarization, finding a specific paper, Socratic teaching, ordinary software decomposition, causal appraisal, displaying an existing report, price comparison, fixing the viewer and asking what recursive research means. A bare “perform deep research” request was treated as ambiguous rather than automatically matching.
+Negative scenarios included definitions, arithmetic, translation, summarization, finding a specific paper, Question-led teaching, ordinary software decomposition, causal appraisal, displaying an existing report, price comparison, fixing the viewer and asking what recursive research means. A bare “perform deep research” request was treated as ambiguous rather than automatically matching.
 
 This is one metadata-routing simulation. It does not establish native client activation behavior, population-level precision/recall, or consistency across models. No such claims are made.
 
@@ -87,7 +101,7 @@ These are mechanism descriptions, not measured comparisons against a particular 
 | Method | Typical organizing operation | Noemorph's documented distinction |
 | --- | --- | --- |
 | Ordinary deep research | Retrieve and synthesize evidence around a question | Explicitly vary or abstract typed subject/predicate concepts before choosing branches; deep retrieval remains necessary |
-| Socratic questioning | Clarify assumptions, definitions and reasoning through questions | Retains an interpretation role and adds four prescribed transformation roles plus breadth selection and evidence-linked recursion |
+| Question-led questioning | Clarify assumptions, definitions and reasoning through questions | Retains an interpretation role and adds four prescribed transformation roles plus breadth selection and evidence-linked recursion |
 | Recursive problem decomposition | Split a problem into subproblems | Allows changes to the original framing and investigation of related objects/process classes rather than only constituent tasks |
 
 The fixed/changed constraints, class-membership tests, source qualifiers, main-agent branch selection and traceable recursion are the intended distinctive mechanism. They do not ensure novelty, correct abstraction, interdisciplinary transfer or superiority. No controlled comparison, speed benchmark, external user evaluation or performance advantage was established.

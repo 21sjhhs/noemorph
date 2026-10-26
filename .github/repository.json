@@ -1,6 +1,6 @@
 {
   "name": "noemorph",
-  "description": "Multi-Agent Knowledge Exploration through concept expansion, recursive deep research, and cross-disciplinary knowledge discovery.",
+  "description": "Discover the research questions you did not know to ask. An AI research skill for cross-disciplinary discovery, hypothesis exploration, and interactive knowledge maps.",
   "visibility": "public",
   "topics": [
     "agent-skills",
@@ -11,7 +11,9 @@
     "recursive-research",
     "knowledge-discovery",
     "research-question-generation",
-    "knowledge-graph"
+    "knowledge-graph",
+    "hypothesis-generation",
+    "interdisciplinary-research"
   ],
   "owner": "21sjhhs"
 }

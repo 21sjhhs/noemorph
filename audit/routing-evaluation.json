@@ -53,9 +53,9 @@
       "reason": "A bounded paper lookup does not request concept expansion or recursive discovery; conventional literature retrieval is a better fit."
     },
     {
-      "request": "Explain this concept with Socratic questions.",
+      "request": "Explain this concept with Question-led questions.",
       "decision": "ordinary_assistance_or_another_skill",
-      "reason": "Socratic teaching is not the same as the described research workflow; no interdisciplinary discovery or recursive investigation is requested."
+      "reason": "Question-led teaching is not the same as the described research workflow; no interdisciplinary discovery or recursive investigation is requested."
     },
     {
       "request": "Break this software feature into implementation tasks.",

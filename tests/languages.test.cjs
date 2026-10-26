@@ -2,10 +2,25 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 const L = require('../plugins/knowledge-map/languages.js');
 const I = require('../plugins/knowledge-map/i18n.js');
 const C = require('../plugins/knowledge-map/settings.js');
 const originalBundle = () => JSON.parse(fs.readFileSync(path.join(__dirname,'../examples/knowledge-map.html'),'utf8').match(/<script id="graph-data" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+
+test('browser scripts share the public namespace and load the demo without CommonJS', () => {
+  const browser = vm.createContext({ URL });
+  browser.window = browser;
+  for (const file of ['graph-core.js', 'languages.js', 'i18n.js', 'settings.js', 'demo.js']) {
+    vm.runInContext(fs.readFileSync(path.join(__dirname, '../plugins/knowledge-map', file), 'utf8'), browser, { filename: file });
+  }
+  const graph = browser.NoemorphGraph.normalize(browser.NOEMORPH_DEMO.graphs[0]);
+  assert.equal(graph.data.nodes.length, 21);
+  assert.equal(browser.NoemorphLanguages.tag('en'), 'en');
+  browser.NoemorphI18n.setLanguage('en');
+  assert.equal(browser.NoemorphI18n.t('思考轮数'), 'Research rounds');
+  assert.equal(browser.NoemorphSettings.validate({question: 'Q?'}).schema_version, 'noemorph-run-config/1.0');
+});
 
 test('Python-exported bundle fingerprints verify in the browser implementation', async () => {
   const pack = await L.prepare(originalBundle());

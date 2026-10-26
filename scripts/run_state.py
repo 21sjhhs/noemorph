@@ -51,7 +51,7 @@ def load(path: str) -> dict:
 def write(path: str, value: dict) -> None:
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
-    fd, tmp = tempfile.mkstemp(prefix=".socrates-", suffix=".json", dir=p.parent)
+    fd, tmp = tempfile.mkstemp(prefix=".noemorph-", suffix=".json", dir=p.parent)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as f:
             json.dump(value, f, ensure_ascii=False, indent=2)

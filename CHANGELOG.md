@@ -1,8 +1,16 @@
 # Changelog
 
+## Unreleased
+
+- Lead both READMEs with the project promise, use cases, example request, map preview, and quick start.
+- Add `llms.txt` and clearer project metadata for readers and retrieval tools.
+- Use Noemorph names throughout documentation, browser APIs, configuration, and generated examples.
+- Remove retired configuration/header aliases and browser preference fallbacks. Older configurations must use `noemorph-run-config/1.0`; earlier browser preferences reset to current defaults.
+- Rename the archived entrypoint to `references/NOEMORPH_SKILL.baseline.md` and explicitly record branding-only baseline updates without changing research operators or state transitions.
+
 ## Initial public source release
 
-- Rename the maintained Socrates project to Noemorph with bilingual installation and usage documentation.
+- Rename the maintained Noemorph project to Noemorph with bilingual installation and usage documentation.
 - Preserve the original five logical roles, typed transformations, breadth selection, recursive frontier and research state engine.
 - Document the original 20-versus-25-direction discrepancy rather than changing research semantics silently.
 - Include the offline HTML graph viewer, multilingual graph contract and portable parameter card.

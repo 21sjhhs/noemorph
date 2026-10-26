@@ -1,8 +1,8 @@
 /* A host-neutral parameter card. Saves configuration; never starts research. */
 (function (root, factory) {
-  const api = factory(root.SocratesI18n);
+  const api = factory(root.NoemorphI18n);
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.SocratesSettings = api;
+  else root.NoemorphSettings = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (I) {
   'use strict';
   const defaults = { schema_version: 'noemorph-run-config/1.0', question: '', scope: '', macro_rounds: 3,
@@ -19,7 +19,6 @@
     c.question = c.question.trim();
     if (typeof c.scope !== 'string') throw new Error('scope must be text');
     c.scope = c.scope.trim();
-    if (c.schema_version === 'socrates-run-config/1.0') c.schema_version = defaults.schema_version;
     if (!Number.isInteger(c.macro_rounds) || c.macro_rounds < 1 || c.macro_rounds > 1000) throw new Error('轮数必须是 1–1000 的整数。');
     if (c.max_parallel_agents !== null && (!Number.isInteger(c.max_parallel_agents) || c.max_parallel_agents < 1 || c.max_parallel_agents > 5)) throw new Error('并发上限必须是自动或 1–5。');
     if (c.top_n !== null && (!Number.isInteger(c.top_n) || c.top_n < 1 || c.top_n > 20)) throw new Error('深入路径数必须是自动或 1–20。');

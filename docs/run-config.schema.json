@@ -18,10 +18,7 @@
   ],
   "properties": {
     "schema_version": {
-      "enum": [
-        "noemorph-run-config/1.0",
-        "socrates-run-config/1.0"
-      ]
+      "const": "noemorph-run-config/1.0"
     },
     "question": {
       "type": "string",

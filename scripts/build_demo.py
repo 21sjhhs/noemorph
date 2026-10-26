@@ -24,6 +24,6 @@ for variant in (graph, translated):
 translated = stamp_translation(graph, translated, translated["meta"]["translation"]["translator"])
 bundle = make_bundle(graph, [translated], 'zh-CN')
 data = json.dumps(bundle, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c")
-(root / "plugins/knowledge-map/demo.js").write_text("/* UI demonstration only; never research context. */\nwindow.SOCRATES_DEMO = " + data + ";\n")
+(root / "plugins/knowledge-map/demo.js").write_text("/* UI demonstration only; never research context. */\nwindow.NOEMORPH_DEMO = " + data + ";\n")
 (root / "examples/run-card.html").write_text(render_card(), encoding="utf-8")
 print("Built offline demo bundle, examples/knowledge-map.html and examples/run-card.html.")

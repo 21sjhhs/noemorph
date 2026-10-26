@@ -1,6 +1,6 @@
 # Exploration operators and delegation
 
-This document preserves the five specialized Socrates roles. Use abstract structures inferred from the current user question. Do not seed a scientific example, discipline list, named theory, expected conclusion or an earlier demo into core prompts.
+This document preserves the five specialized Noemorph roles. Use abstract structures inferred from the current user question. Do not seed a scientific example, discipline list, named theory, expected conclusion or an earlier demo into core prompts.
 
 ## Shared input
 

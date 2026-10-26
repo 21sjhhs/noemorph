@@ -1,145 +1,123 @@
-# Noemorph
+# Go beyond the question you asked. Discover the questions you didn't know existed.
 
-**Go beyond the question you asked. Discover the questions you didn't know existed.**
+**Noemorph** turns a research question into new directions to investigate, connections across disciplines, and an interactive knowledge map you can keep exploring.
 
-[简体中文](README.zh-CN.md) · [Skill instructions](SKILL.md) · [Architecture](references/ARCHITECTURE.md) · [QA report](QA_REPORT.md)
+An open-source **AI research skill** for **research question generation, hypothesis exploration, and cross-disciplinary knowledge discovery**. Bring a question to your AI agent. Find out where it can lead.
 
-Noemorph expands the concepts behind a research question and recursively investigates promising connections. It maintains the existing Socrates Skill's five logical roles: interpretation, predicate expansion, subject substitution, predicate abstraction and subject abstraction.
+[Get started](#quick-start) · [See what you get](#a-map-you-can-keep-exploring) · [简体中文](README.zh-CN.md)
 
-The method is **concept transformation → breadth-first discovery → explicit branch selection → evidence-linked depth → a revised frontier**. It supports Concept Expansion, Recursive Exploration, Cross-disciplinary Knowledge Discovery and Deep Research. It is an instruction-driven Agent Skill with optional local tools; it is not an autonomous Python research service.
+![Noemorph interactive knowledge map showing new questions, connected research paths, and evidence details](docs/preview.png)
 
-> Release status: research acceptance was stopped by the user. Publication proceeds at the user’s request with incomplete acceptance disclosed in [QA_REPORT.md](QA_REPORT.md). CI checks are manual only; publishing does not restart tests.
+*Interactive map preview with illustrative demo data.*
 
-[Download v0.1.0-alpha.1](https://github.com/21sjhhs/noemorph/releases/tag/v0.1.0-alpha.1) — installable ZIP and SHA256 checksum.
+## When you have a question—but need a new direction
 
-## What a run does
+You know the topic. You have read the obvious papers. Yet the next useful question is still hard to see.
 
-1. Preserve the original question, whole concept, subject, process, conditions, ambiguity and user scope.
-2. Let the interpretation role establish a working explanation before the other roles explore.
-3. Give four transformation roles the same anchor. Each investigates five distinct directions, producing 20 candidates per round.
-4. Have the main agent compare novelty, depth, bridge, evidence, overlap and risk, then select the user's `n` branches.
-5. Make at least three successive evidence-seeking attempts per selected branch, retaining blocked and contradicted paths honestly.
-6. Reinterpret the updated frontier and repeat exactly the user's `N` rounds. Retain useful findings from unselected branches in the final catalogue and graph.
+Noemorph helps you look beyond your starting frame: explore other explanations, look for the same process in different systems, and ask which ideas from another field might transfer. Promising directions become deeper investigations, with sources and uncertainties kept alongside the findings.
 
-The source materials disagree about five breadth agents versus one interpretation plus four breadth agents. This release preserves the specialized source entrypoint's **five roles / four breadth submitters / 20 directions**. It does **not** claim to implement five agents each generating five directions. The discrepancy and all migration decisions are recorded in the architecture.
+Use it when you want to:
 
-## Install
+- **Find your next research question.** Explore open directions around a topic or an early hypothesis.
+- **Connect ideas across fields.** Look for shared mechanisms, useful analogies, and the conditions under which they hold.
+- **Challenge a familiar explanation.** Investigate alternative objects, processes, and levels of analysis.
+- **Build a research agenda.** Keep the paths worth pursuing, the evidence behind them, and the questions still open.
 
-Requires a compatible agent client. Verified source-backed research additionally needs that client's retrieval tools; independent workers need its actual delegation support. Local utilities require **Python 3.10+ standard library**. The HTML viewer needs a modern browser. Node.js 18+ is only needed for development tests. No API keys or model SDK are bundled.
+## Start with something you are curious about
 
-The public repository is [21sjhhs/noemorph](https://github.com/21sjhhs/noemorph). This early release discloses incomplete acceptance in the QA report. Choose one installation destination, leaving the folder named `noemorph`:
+After installing the skill, give your agent a request like this:
+
+> Use Noemorph to explore this question: Why do some online communities retain useful knowledge while others repeatedly lose it? Look for connections across disciplines and turn promising ideas into researchable questions. Run two rounds, investigate four paths per round, and deliver an English report with an interactive knowledge map. Keep sources, uncertainty, and unselected findings.
+
+An exploration might ask whether the answer changes with community size, what other systems preserve information under turnover, or which findings about memory can usefully transfer to a community. These are illustrative starting directions, not research results.
+
+**Bring your own question, hypothesis, or puzzling observation.** You choose the scope and how far to explore.
+
+## A map you can keep exploring
+
+The output is a connected record of the investigation:
+
+| You receive | What you can do with it |
+| --- | --- |
+| **New research directions** | See questions that extend your original framing, including paths not selected for deeper study. |
+| **Evidence-linked research paths** | Follow how one finding leads to the next question, with sources, assumptions, and unresolved gaps. |
+| **An interactive knowledge map** | Expand branches, search across hidden nodes, filter findings, and jump to source links. |
+| **A synthesis and research catalogue** | Review the main findings and return to the full set of discoveries later. |
+| **Shareable files** | Export HTML, JSON, or SVG; keep linked local attachments beside the shared output. |
+
+The map viewer works locally in a browser. It includes light/dark themes and separate controls for interface language and available content translations.
+
+To explore the bundled demo, clone the repository, then run from its parent directory:
 
 ```sh
-# Codex: personal local skill
+cd noemorph
+python3 scripts/serve.py --port 8765
+```
+
+Open <http://127.0.0.1:8765>. The [standalone example](examples/knowledge-map.html) can also be downloaded and opened locally. The demo shows the interface using synthetic data.
+
+## Quick start
+
+Noemorph runs inside your AI agent client. Choose **one** installation below, then ask your agent to use Noemorph with your question.
+
+<details open>
+<summary><strong>Codex</strong></summary>
+
+```sh
 mkdir -p ~/.agents/skills
 git clone https://github.com/21sjhhs/noemorph.git ~/.agents/skills/noemorph
+```
 
-# Claude Code: personal local skill
+</details>
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+```sh
 mkdir -p ~/.claude/skills
 git clone https://github.com/21sjhhs/noemorph.git ~/.claude/skills/noemorph
+```
 
-# Cursor: personal local skill
+</details>
+
+<details>
+<summary><strong>Cursor</strong></summary>
+
+```sh
 mkdir -p ~/.cursor/skills
 git clone https://github.com/21sjhhs/noemorph.git ~/.cursor/skills/noemorph
 ```
 
-Run **one** relevant pair of commands. `git clone` refuses an existing destination instead of overwriting it. For a project installation, use the corresponding `.agents/skills/noemorph`, `.claude/skills/noemorph` or `.cursor/skills/noemorph` directory inside that project. Keep the entire skill directory, including the HTML assets. For other clients, place this directory in the client's documented skill location or explicitly ask the agent to read its `SKILL.md`.
+</details>
 
-Paths and discovery behavior are documented by [OpenAI](https://learn.chatgpt.com/docs/build-skills), [Claude Code](https://code.claude.com/docs/en/skills), and [Cursor](https://cursor.com/docs/skills). These are installation instructions, not a claim that native activation was tested in all clients. Restart/refresh discovery when the client requires it. Do not install duplicate copies with the same name into several discovery paths.
+Refresh skill discovery or restart the client if needed. Ask: **“Use Noemorph to explore [your question].”** In Claude Code, you can also invoke `/noemorph`. Discovery and activation depend on the client; native activation has not been tested in every client.
 
-For an offline installation, unpack the locally built `noemorph.zip` into one of those skill roots, producing `<skill-root>/noemorph/SKILL.md`. Validate the extracted directory with `python3 <skill-root>/noemorph/scripts/validate_skill.py`.
+For another client, keep the complete `noemorph` folder in its supported skill directory, or ask the agent to read its `SKILL.md`. Source-backed research needs the client's retrieval tools; independent research workers need delegation support. Local utilities use Python 3.10+ with the standard library. No API key or model runtime is bundled.
 
-## Invoke and configure
+The agent collects your question, scope, number of rounds, paths to investigate, and output languages before starting. See the [example research request](examples/research-request.md) for a fuller prompt.
 
-The commands below assume you changed into the installed skill directory, for example `cd ~/.agents/skills/noemorph` for that Codex installation. Use your actual chosen location for another client.
+## How the exploration grows
 
-Use a natural-language request such as:
+**Your question → new directions → selected investigations → connected findings → new questions.**
 
-> Use Noemorph to discover overlooked interdisciplinary research directions from my hypothesis. Run two rounds, select four deep paths per round, and preserve all unselected findings. Ask for the hypothesis and scope if I have not supplied them.
+Each round first clarifies the question, then explores it from four complementary perspectives. The agent compares the resulting directions, investigates selected paths, and uses what it learns to shape the next round. You control the scope and stopping point; unselected findings remain available.
 
-In clients exposing explicit skill invocation, select Noemorph from the skill menu; Claude Code also supports `/noemorph`. Automatic discovery/activation depends on the host and competing skills. The description targets recursive knowledge exploration, not ordinary factual answers, simple summaries or literature retrieval alone.
+Noemorph combines concept expansion, recursive deep research, and knowledge graph exploration. The [workflow](references/WORKFLOW.md) and [architecture](references/ARCHITECTURE.md) explain the method in detail.
 
-The [parameter card](examples/run-card.html) collects rounds, scope/exclusions, concurrency ceiling, deep paths, minimum attempts and final content languages. A host can use its native question UI, a portable HTML card, JSON or text choices:
+## Questions before you start
 
-```sh
-python3 scripts/run_card.py serve \
-  --question 'Your research question' --directory runs/current --port 0
-```
+**Does this run research by itself?** It is an Agent Skill: your client supplies the model, retrieval, and execution. The bundled scripts collect settings, check records, and build maps.
 
-The agent sends the printed `card_url` to the user. After actual submission, the utility writes `runs/current/run-config.json`, returns the configuration and exits. It does not start research. Use `run_card.py prompt` for portable field metadata or `run_card.py render --question 'Your question' --output runs/current/run-card.html` for an offline card.
+**What if my client cannot run independent agents?** The workflow supports separately recorded roles executed in sequence, with that limitation disclosed. Independent contexts require actual delegation support.
 
-Five logical roles remain fixed. The subagent setting is a **concurrency ceiling**, not a switch to remove roles. When real workers cannot run simultaneously, batch them. When no delegation exists, disclose `role_sequential`, keep separate role records and the same anchor, and do not claim independent models. A single-context fallback cannot guarantee independent cognition. If the user requires genuine isolation, the run remains blocked until that capability is available.
+**Can I trust every connection?** Findings must distinguish evidence, hypotheses, analogies, and unresolved questions. Treat a promising connection as a lead to examine. This is an early alpha; end-to-end research acceptance remains incomplete. See the [QA report](QA_REPORT.md) for performed checks and limitations.
 
-![Noemorph interactive knowledge map — synthetic demonstration](docs/preview.png)
+**Can I update or remove it?** Run `git -C <your-skill-directory>/noemorph pull --ff-only` to update a clean clone. To uninstall, move the folder out of the client's skill directory and refresh discovery. Preserve any local changes first.
 
-## Read and share the map
+## Explore the project
 
-Open [the static viewer](index.html) or [the standalone example](examples/knowledge-map.html). The example is synthetic UI data, not scientific evidence or a demonstration of completed research. For local HTTP preview:
+[Skill instructions](SKILL.md) · [Research workflow](references/WORKFLOW.md) · [Graph format](docs/graph-format.md) · [Development and checks](docs/development.md) · [Agent-readable overview](llms.txt)
 
-```sh
-python3 scripts/serve.py --port 8765
-```
+Contributions to documentation, research workflows, and the map viewer are welcome. See the development guide for validation and packaging commands.
 
-The map supports node/background dragging, wheel/pinch zoom, progressive branch expansion, search across collapsed nodes, role/round/status filters, a minimap, source/file jump buttons, light/dark themes and HTML/JSON/SVG export. Node importance represents reading priority; evidence is labeled separately.
-
-```sh
-python3 scripts/knowledge_map.py \
-  --input runs/current/state.json --output runs/current/knowledge-map.html
-```
-
-If details live in Markdown ledgers, pass `--breadth-ledger`, `--depth-ledger` and `--report`. The exporter accepts the preserved v4 state, a supported historical ledger format or a standard [graph JSON](docs/graph-format.md). It reads existing output and does not conduct research. Local attachments remain separate relative files: keep them beside the shared output as linked, or re-export after moving the package.
-
-## Two independent language settings
-
-“中 / EN” changes interface controls. The graph-language selector switches existing content versions or follows the interface. Content switching retains node IDs, layout, zoom, expanded branches and selection.
-
-Final content language does **not** constrain the language used for research or retrieval. After freezing the source graph, a real translation worker generates a full copy per requested language, preserving structure, IDs, sources, logic and evidence qualifiers. Declare `meta.language`, bind it with `graph_languages.py`, then pack it with repeatable `knowledge_map.py --translation`. The utility validates/binds; it does not translate or spawn workers. Missing delegation or translations must be reported. See [language variants](references/11-language-variants.md).
-
-## Inspect, update and uninstall
-
-Inspect `SKILL.md` and the scripts before installation. To update a clean clone:
-
-```sh
-git -C ~/.agents/skills/noemorph pull --ff-only
-```
-
-Use the path you installed into. Preserve local changes before updating. To uninstall reversibly, move that `noemorph` directory out of all client discovery roots, for example to a backup directory. If you no longer need it, delete only that skill directory; no global client settings or credentials were installed. Restart/refresh the client as needed. The project does not install a daemon, hook, model runtime or third-party marketplace plugin.
-
-## Validate and package
-
-```sh
-python3 scripts/validate_skill.py
-python3 scripts/check_upstream.py
-python3 -m unittest discover -s scripts -p 'test_run_state.py' -v
-python3 -m unittest discover -s tests -p 'test_*.py' -v
-node --test tests/graph-core.test.cjs tests/languages.test.cjs
-python3 scripts/release_scan.py
-python3 scripts/build_demo.py
-python3 scripts/package_skill.py --output dist/noemorph.zip
-```
-
-`validate_skill.py` implements the applicable [Agent Skills specification](https://agentskills.io/specification) constraints for this repository's flat YAML subset and checks entrypoint paths. It is not the official validator or a general YAML parser. If installed, `skills-ref validate ./noemorph` is the official alternative from the parent directory. Tests do not prove research novelty or citation truth; see `QA_REPORT.md` for exact performed checks and limits.
-
-## Repository layout
-
-```text
-SKILL.md / AGENTS.md          Portable entrypoints
-README.md / README.zh-CN.md   Installation and use
-references/                  Architecture, operators, workflow, output and preserved sources
-scripts/                     State audit, cards, graph tools, validation, packaging, publication
-plugins/knowledge-map/        Offline HTML/SVG viewer and card
-examples/                    Synthetic UI and input/output-format examples
-tests/                       Executable regression tests
-audit/                       Sanitized source manifest and performed evaluations
-.github/                     Manual checks and publication metadata
-LICENSE / NOTICE             Apache-2.0 and provenance
-QA_REPORT.md                  Release acceptance and unverified capabilities
-```
-
-## Differentiation and limits
-
-Compared with a conventional research synthesis, Noemorph explicitly transforms subjects, predicates and abstraction levels before selecting paths. Compared with Socratic questioning, the emphasis is generating researchable conceptual neighborhoods with evidence-linked exploration. Compared with recursive task decomposition, recursion revises a knowledge frontier rather than only splitting a task into subtasks. These are mechanism descriptions, not controlled evidence of superior performance. Neither independent execution nor scientific discovery is guaranteed by a prompt file.
-
-## License and publication
-
-[Apache-2.0](LICENSE), with original-project attribution in [NOTICE](NOTICE). The rights holder confirmed licensing of the original code and instructions. External papers, linked material, private research, and third-party services retain their own rights and are not bundled. GitHub settings live in `.github/repository.json`; `python3 scripts/publish.py --dry-run` shows the plan, and `python3 scripts/publish.py` uses an installed/authenticated GitHub CLI after scans and a clean local commit. It refuses unrelated origins and never force-pushes.
+Licensed under [Apache-2.0](LICENSE). See [NOTICE](NOTICE) for attribution and third-party material boundaries.

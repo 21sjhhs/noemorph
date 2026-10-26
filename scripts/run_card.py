@@ -37,8 +37,6 @@ def validate_config(value):
     if not isinstance(c["scope"], str):
         raise ValueError("scope must be text")
     c["scope"] = c["scope"].strip()
-    if c["schema_version"] == "socrates-run-config/1.0":
-        c["schema_version"] = DEFAULTS["schema_version"]
     def integer(name, low, high, nullable=False):
         v = c[name]
         if nullable and v is None:
@@ -125,7 +123,7 @@ class CardHandler(BaseHTTPRequestHandler):
         self.respond(200, self.server.card_html, 'text/html; charset=utf-8')
 
     def do_POST(self):
-        token = self.headers.get('X-Noemorph-Token') or self.headers.get('X-Socrates-Token')
+        token = self.headers.get('X-Noemorph-Token')
         if self.headers.get('Host') != urlsplit(self.server.expected_origin).netloc or self.path != '/api/config' or self.headers.get('Origin') != self.server.expected_origin or token != self.server.card_token:
             return self.respond(403, '{"error":"same-origin card token required"}')
         try:

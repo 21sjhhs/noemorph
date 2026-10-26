@@ -1,0 +1,26 @@
+# Noemorph
+
+> Go beyond the question you asked. Discover the questions you didn't know existed.
+
+Noemorph is an open-source AI research skill for research question generation, hypothesis exploration, cross-disciplinary knowledge discovery, concept expansion, and recursive deep research. It runs in an agent client using that client's model, retrieval tools, and delegation support.
+
+Use Noemorph when a researcher wants to find overlooked questions, explore connections between fields, or develop a research agenda from a question or hypothesis. Each round clarifies the question, explores four complementary perspectives, selects promising paths, and investigates them with evidence-linked follow-up questions. Outputs include a synthesis, a full research catalogue, and an interactive knowledge map, retaining unselected findings and uncertainty.
+
+The bundled local viewer supports branch expansion, search, filters, source links, language variants, and HTML/JSON/SVG export. Python utilities collect settings, validate records, and render maps; they do not execute research or call models. The demo uses synthetic data. This is an early alpha with incomplete end-to-end research acceptance; no benchmark establishes superior research performance.
+
+## Start here
+
+- [English overview and installation](https://github.com/21sjhhs/noemorph/blob/main/README.md)
+- [中文介绍与安装](https://github.com/21sjhhs/noemorph/blob/main/README.zh-CN.md)
+- [Example research request](https://github.com/21sjhhs/noemorph/blob/main/examples/research-request.md)
+
+## Research and outputs
+
+- [Skill instructions](https://github.com/21sjhhs/noemorph/blob/main/SKILL.md)
+- [Research workflow](https://github.com/21sjhhs/noemorph/blob/main/references/WORKFLOW.md)
+- [Architecture and execution boundaries](https://github.com/21sjhhs/noemorph/blob/main/references/ARCHITECTURE.md)
+- [Knowledge graph format](https://github.com/21sjhhs/noemorph/blob/main/docs/graph-format.md)
+- [Checks and limitations](https://github.com/21sjhhs/noemorph/blob/main/QA_REPORT.md)
+- [Development, validation, and packaging](https://github.com/21sjhhs/noemorph/blob/main/docs/development.md)
+
+License: Apache-2.0. Repository: https://github.com/21sjhhs/noemorph

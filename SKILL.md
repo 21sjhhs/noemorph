@@ -6,7 +6,7 @@ description: Multi-agent deep research and knowledge exploration through concept
 
 # Noemorph — Multi-Agent Knowledge Exploration
 
-Expand the concepts behind a question, discover overlooked directions, and recursively investigate selected paths. This is the maintained Socrates workflow, not a general task-decomposition or keyword-enumeration recipe.
+Expand the concepts behind a question, discover overlooked directions, and recursively investigate selected paths through evidence-linked research.
 
 ## When to use
 

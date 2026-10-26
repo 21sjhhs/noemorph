@@ -1,12 +1,13 @@
 {
-  "source": "socrates (local installed skill)",
-  "policy": "Original research sources are preserved byte-for-byte; the renamed entrypoint is documented in references/ARCHITECTURE.md.",
+  "source": "Noemorph research baseline",
+  "policy": "Check the recorded research baseline. Branding-only maintenance on 2026-10-26 renamed the archived entrypoint and updated its name and the state temporary-file prefix; research semantics were retained. References 01\u201308 and state tests retain their original hashes.",
   "files": {
     "SKILL.md": {
-      "sha256": "28662dc9fab7bfe9f0052dc394793a6d34694434216263567a31edccf1d39e75",
-      "bytes": 8516,
-      "mode": "prefix",
-      "preserved_path": "references/SOCRATES_SKILL.original.md"
+      "sha256": "a6db99d6085349b6fc7a5507a3ddb51e6f3359302e8cd4aa0356a406f23d0641",
+      "bytes": 10198,
+      "mode": "exact",
+      "preserved_path": "references/NOEMORPH_SKILL.baseline.md",
+      "previous_sha256": "28662dc9fab7bfe9f0052dc394793a6d34694434216263567a31edccf1d39e75"
     },
     "references/01-logic.md": {
       "sha256": "ff43810e250c9315601c45a310e34fd35bde0a548b1c4446d1777347def9f149",
@@ -49,9 +50,10 @@
       "mode": "exact"
     },
     "scripts/run_state.py": {
-      "sha256": "5e7cee5f9a682c057fb188bb5618f692d215f0ac445d781ab11a45efbff0c623",
+      "sha256": "84d7b050347742db40bc7d7e9804b719b14fa93a60387391e38836461b54a2bf",
       "bytes": 10590,
-      "mode": "exact"
+      "mode": "exact",
+      "previous_sha256": "5e7cee5f9a682c057fb188bb5618f692d215f0ac445d781ab11a45efbff0c623"
     },
     "scripts/test_run_state.py": {
       "sha256": "8487631d9b02e3a5e25ef76663dc4a5320abb5c1c65a7c95e762c1f0aa94b152",
