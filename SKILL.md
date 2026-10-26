@@ -65,3 +65,10 @@ Complete exactly the configured `N` rounds. Do not extend the run or expand excl
 Follow [the output contract](references/OUTPUT_FORMAT.md) and [knowledge preservation](references/07-report.md). Produce a synthesis, complete knowledge map and full research catalogue, including meaningful unselected findings, uncertainties and a direction-ID coverage map. Do not call the report complete while valid findings remain unaccounted for.
 
 Use [the HTML visualization](references/09-visualization.md) and `scripts/knowledge_map.py` for interactive output. After freezing the source graph, use [independent graph translation](references/11-language-variants.md) for requested language variants. Declare `meta.language` and bind translations to the source fingerprint. Interface language and graph content language remain separate. Never invent a translation-agent call.
+
+
+## Presentation completeness (maintenance addition)
+
+English (`en`) is required for every final graph delivery, in addition to the user's other chosen languages. Configuration adapters add it to legacy choices automatically. Freeze mixed research output as `meta.language=und`; obtain a real, separate translation worker for each missing requested language as specified in `references/11-language-variants.md`. Translate all display text, including nested details and reference captions; changing UI strings or language labels is not content translation. Final export rejects missing language versions. `--allow-incomplete-languages` is explicitly a source-preview option, not completion. Keep the preserved research engine unchanged.
+
+Before marking a graph delivery complete, apply the final language-delivery gate in `references/11-language-variants.md`, including review of short foreign-language fragments that the automated audit cannot detect.

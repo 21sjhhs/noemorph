@@ -24,7 +24,7 @@
     if (c.top_n !== null && (!Number.isInteger(c.top_n) || c.top_n < 1 || c.top_n > 20)) throw new Error('深入路径数必须是自动或 1–20。');
     if (!Number.isInteger(c.depth_hops) || c.depth_hops < 3 || c.depth_hops > 20) throw new Error('深度尝试次数必须是 3–20 的整数。');
     if (!Array.isArray(c.presentation_languages) || !c.presentation_languages.length) throw new Error('请至少选择一种最终呈现语言。');
-    c.presentation_languages = [...new Set(c.presentation_languages.map(languageTag))];
+    c.presentation_languages = [...new Set([...c.presentation_languages.map(languageTag), 'en'])];
     if (c.schema_version !== defaults.schema_version || !['zh-CN','en'].includes(c.ui_language) || c.research_language_policy !== 'unconstrained' || c.logical_roles !== 5 || c.breadth_per_role !== 5) throw new Error('Invalid fixed workflow settings.');
     return c;
   }
@@ -58,8 +58,8 @@
     const languages = h('fieldset', { class: 'setting-languages' }, h('legend', {}, '最终内容呈现语言'));
     const checks = {};
     for (const [code, name] of [['zh-CN','简体中文'], ['en','英语']]) {
-      const check = h('input', { type: 'checkbox', value: code, name: 'presentation_language' }); check.checked = c.presentation_languages.includes(code); checks[code] = check;
-      languages.append(h('label', { class: 'language-choice' }, check, h('span', {}, name), h('code', { 'data-i18n-skip': '' }, code)));
+      const check = h('input', { type: 'checkbox', value: code, name: 'presentation_language' }); check.checked = code === 'en' || c.presentation_languages.includes(code); if (code === 'en') check.disabled = true; checks[code] = check;
+      languages.append(h('label', { class: 'language-choice' }, check, h('span', {}, code === 'en' ? '英语（必选）' : name), h('code', { 'data-i18n-skip': '' }, code)));
     }
     const other = h('input', { type: 'text', placeholder: T('例如 ja、de、fr，多个用逗号分隔') }); other.value = c.presentation_languages.filter(code => !checks[code]).join(', ');
     languages.append(field('other_languages','其他语言标签（可选）',other,true));

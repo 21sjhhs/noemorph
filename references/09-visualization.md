@@ -8,7 +8,7 @@
 
 ```sh
 python3 <skill-dir>/scripts/knowledge_map.py \
-  --input <run-dir>/state.json \
+  --input <run-dir>/state.json --allow-incomplete-languages \
   --output <run-dir>/knowledge-map.html
 ```
 
@@ -32,3 +32,6 @@ python3 <skill-dir>/scripts/knowledge_map.py \
 `plugins/knowledge-map/` 为配套静态 HTML 插件，可离线打开；`examples/` 只用于前端演示，**不得读入真实研究的冷启动或委派上下文**。
 
 存在最终内容语言选择时，先执行 `11-language-variants.md` 的翻译与绑定，再通过 `--translation` / `--config` 打包全部语言。原图与翻译 JSON 各自保留；网页不会在切换界面语言时临时生成研究翻译。
+
+
+仅查看尚未翻译的原始记录时，命令添加 `--allow-incomplete-languages`，混合原图声明 `--language und`。最终交付不使用该预览选项，必须按 `11-language-variants.md` 打包英文及其他请求语言。滚轮事件按动画帧更新；像素、行、页单位均归一化。窗口或详情面板改变尺寸时保留当前缩放，点击“适应窗口”才重新适配。

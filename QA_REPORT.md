@@ -163,3 +163,14 @@ The user-authorized public release was published after tests stopped.
 - [SHA256SUMS.txt](https://github.com/21sjhhs/noemorph/releases/download/v0.1.0-alpha.1/SHA256SUMS.txt): `f6a7ef5dcdb65f37b250455383b4ca62828b0f51f4d85896954012e6ed6feb78` for `noemorph.zip`. GitHub's displayed asset digest matches the locally calculated digest. This confirms the delivered artifact identity; it is not a resumed functional acceptance test.
 - The tagged archive contains the QA report as it stood at the source cut. This section and download links were added to main after publication, without rebuilding or silently replacing the released ZIP.
 - No research, regression or native-client installation test was resumed. The release notes disclose incomplete acceptance and the historical 54-test result. Manual-only Actions configuration was included before the first source publication.
+
+
+## 2026-10-26: viewer wheel and language repair
+
+The user requested repair of intermittent wheel zoom and incomplete content-language switching. This maintenance request authorized targeted functional/regression checks; it did not start a new research run or establish scientific acceptance.
+
+Changes: wheel input over the entire map (including overlays) is normalized for pixel/line/page devices and coalesced to one SVG camera update per animation frame; resize retains zoom. English is mandatory in configuration and final export, including legacy/embedded configuration. A source-preview flag explicitly allows incomplete language packages. Obviously mixed source text is labeled `und`. Full translations cover node/edge prose and nested details, with source binding and locked identifiers, URLs and evidence enums. Original graph view settings survive bundle export.
+
+Completed checks: 40 Python tests, 18 Node tests, the six preserved engine tests, and 11 upstream/baseline integrity records passed. Chrome browser automation passed on a 152-node/128-edge graph: 100 synchronous wheel events produced one camera paint; pixel/line/page deltas, limit reversal, cursor anchoring, native wheel input, minimap overlay input, resize retention, language-follow content selection, and required-English controls were checked. Both language variants passed structure/source-binding checks and a conservative language-residue audit. The audit is heuristic and does not prove semantic translation quality. Private run files and screenshots are kept outside the release tree.
+
+Optional browser check (requires Playwright and local Chrome): `node tests/viewer.browser.cjs [standalone.html] [screenshot.png]`.

@@ -40,7 +40,7 @@ python3 <skill-dir>/scripts/run_card.py render \
 | `max_parallel_agents` | 同时活跃的工作子代理上限，1–5，或 `null` 表示自动适配；不包括主 Agent |
 | `top_n` | 原选题阶段每轮深入的独立方向数；`null` 表示沿用原流程的默认目标与选择判断 |
 | `depth_hops` | 每条深入路径的最低尝试次数，至少 3；更高值是用户对纵深的要求，证据不足仍要如实标记 |
-| `presentation_languages` | 研究结束后的内容语言版本列表，例如 `['zh-CN','en']`；不约束研究语言 |
+| `presentation_languages` | 研究结束后的内容语言版本列表；英文 `en` 每次必备，其他语言可选；旧配置会自动补入 `en`，不约束研究语言 |
 | `ui_language` | 网页操作界面的初始语言，`zh-CN` 或 `en`；不改变内容语言选择 |
 
 五个逻辑角色及其隔离顺序不变：一个表层释义角色 + 四个广度探索角色。并发上限不是删除角色的开关。实际同时活跃的子代理数取用户上限、宿主能力和当前阶段需要的最小值；不足时分批调度。没有真实委派能力时遵循原 skill 的能力边界，不伪称已运行。
@@ -52,3 +52,6 @@ python3 <skill-dir>/scripts/run_card.py render \
 ## 语言边界
 
 `research_language_policy` 固定为 `unconstrained`。不要把最终内容语言写入研究 Agent 的检索语言限制或推理语言要求。研究完成、原始图谱冻结后，才按 `references/11-language-variants.md` 调度独立翻译子 Agent。
+
+
+英文是每次交付的必备版本，参数卡中的英语选项固定勾选。JSON/文本卡即使只选择中文，也会由配置校验自动补入 `en`；自定义语言同理。原始混合研究记录不算任何完整目标语言版本。最终导出须包含英文及用户请求的其他语言；缺失版本时报错，不得把原始记录直接标成该语言。

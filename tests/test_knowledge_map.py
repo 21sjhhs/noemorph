@@ -114,7 +114,7 @@ class ExportTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "state.json"; original = json.dumps(sample()); path.write_text(original)
             output = Path(directory) / "map.html"
-            self.assertEqual(main(["--input", str(path), "--output", str(output)]), 0)
+            self.assertEqual(main(["--input", str(path), "--output", str(output), "--allow-incomplete-languages"]), 0)
             self.assertEqual(path.read_text(), original)
             self.assertTrue(output.is_file())
             exported = json.loads(output.with_suffix('.graph.json').read_text())

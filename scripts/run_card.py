@@ -50,7 +50,7 @@ def validate_config(value):
     languages = c["presentation_languages"]
     if not isinstance(languages, list) or not languages:
         raise ValueError("请至少选择一种最终呈现语言。")
-    c["presentation_languages"] = list(dict.fromkeys(language_tag(v) for v in languages))
+    c["presentation_languages"] = list(dict.fromkeys([*(language_tag(v) for v in languages), "en"]))
     if "und" in c["presentation_languages"]:
         raise ValueError("最终呈现语言不能是未标注的 und")
     if c["schema_version"] != DEFAULTS["schema_version"] or c["ui_language"] not in {"zh-CN", "en"} or c["research_language_policy"] != "unconstrained" or c["logical_roles"] != 5 or c["breadth_per_role"] != 5:
@@ -96,7 +96,7 @@ def portable_prompt(question, ui_language="zh-CN"):
             {"id": "max_parallel_agents", "label": "并行子代理上限 / Maximum parallel subagents", "type": "integer_or_null", "options": [None,1,2,3,4,5]},
             {"id": "top_n", "label": "每轮深入路径数 / Deep paths per round", "type": "integer_or_null", "min": 1, "max": 20, "default": None},
             {"id": "depth_hops", "label": "每条路径最少推进次数 / Minimum depth attempts", "type": "integer", "min": 3, "max": 20, "default": 3},
-            {"id": "presentation_languages", "label": "最终内容呈现语言 / Final content languages", "type": "language_tag_array", "options": [["zh-CN"],["en"],["zh-CN","en"]], "allow_custom": True}],
+            {"id": "presentation_languages", "label": "最终内容呈现语言 / Final content languages", "type": "language_tag_array", "options": [["zh-CN","en"],["en"]], "required_languages": ["en"], "allow_custom": True}],
         "fixed": {"logical_roles": 5, "breadth_per_role": 5, "research_language_policy": "unconstrained"},
         "fallback": "Use the bundled HTML settings card or a numbered text card when native selection UI is unavailable. Wait for actual user choices."}
 

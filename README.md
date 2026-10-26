@@ -121,3 +121,6 @@ Noemorph combines concept expansion, recursive deep research, and knowledge grap
 Contributions to documentation, research workflows, and the map viewer are welcome. See the development guide for validation and packaging commands.
 
 Licensed under [Apache-2.0](LICENSE). See [NOTICE](NOTICE) for attribution and third-party material boundaries.
+
+
+English is required in every final graph delivery, alongside other requested content languages. Configurations that omit English automatically gain `en`. Translate complete display text, including nested node/edge details and reference captions. A mixed research source uses `und`; final export rejects missing translations. `--allow-incomplete-languages` is only for previewing source records. See the [language delivery requirements](references/11-language-variants.md).

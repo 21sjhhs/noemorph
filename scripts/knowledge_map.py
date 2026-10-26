@@ -16,7 +16,7 @@ import re
 import sys
 from urllib.parse import urlsplit, unquote, quote
 from graph_languages import (language_tag, make_bundle, validate_bundle, validate_translation,
-                             stamp_translation)
+                             stamp_translation, require_complete_language, missing_languages)
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / "plugins" / "knowledge-map"
@@ -397,6 +397,7 @@ def main(argv=None):
     parser.add_argument("--language", help="原图的语言声明；混合或未知语言使用 und")
     parser.add_argument("--default-language", help="默认图谱内容语言（必须已经存在）")
     parser.add_argument("--config", type=Path, help="选择卡保存的 run-config.json；只读取呈现偏好")
+    parser.add_argument("--allow-incomplete-languages", action="store_true", help="仅预览原始记录；允许缺失英文或其他请求版本，不代表最终交付")
     parser.add_argument("--json-output", type=Path, help="单独指定图谱 JSON 输出，避免覆盖原图")
     args = parser.parse_args(argv)
     try:
@@ -443,13 +444,15 @@ def main(argv=None):
             validate_graph(translated)
             validate_translation(graph, translated)
         config = None
-        if args.config:
+        config_value = json.loads(args.config.read_text(encoding="utf-8")) if args.config else original.get("run_config")
+        if config_value is not None:
             from run_card import validate_config
-            config = validate_config(json.loads(args.config.read_text(encoding="utf-8")))
-            available = {graph["meta"]["language"]} | {v["meta"]["language"] for v in translations}
-            missing = set(config["presentation_languages"]) - available
-            if missing:
-                raise ValueError("请求的内容语言版本尚未生成：" + ", ".join(sorted(missing)))
+            config = validate_config(config_value)
+        require_complete_language(graph)
+        available = {graph["meta"]["language"]} | {v["meta"]["language"] for v in translations}
+        missing = missing_languages(config["presentation_languages"] if config else [], available)
+        if missing and not args.allow_incomplete_languages:
+            raise ValueError("请求的内容语言版本尚未生成：" + ", ".join(missing) + "；英文为必备交付。仅预览可使用 --allow-incomplete-languages")
         for variant in [graph, *translations]:
             rebase_links(variant, args.input.resolve().parent, args.output.resolve().parent)
         translations = [stamp_translation(graph, v, v["meta"]["translation"]["translator"]) for v in translations]
@@ -460,6 +463,8 @@ def main(argv=None):
             payload = make_bundle(graph, translations, default_language)
             if initial_bundle and initial_bundle.get("view"):
                 payload["view"] = initial_bundle["view"]
+            elif graph.get("view"):
+                payload["view"] = copy.deepcopy(graph["view"])
             if config:
                 payload["run_config"] = config
                 payload.setdefault("view", {})["ui_language"] = config["ui_language"]

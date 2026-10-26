@@ -6,10 +6,11 @@
   const NS = 'http://www.w3.org/2000/svg';
   const symbols = { question: 'n', direction: '✧', concept: '◇', finding: '·', frontier: '?' };
   let model, positions, shown, selected, inspectorTab = 'insight', sceneBounds;
-  let languagePack, contentLanguage = 'auto', preserveViewUntil = 0;
+  let languagePack, contentLanguage = 'auto';
   let state = { mode: 'overview', expanded: new Set(), revealed: new Set(), roles: new Set(Object.keys(G.ROLES)), round: 0, status: 'all' };
   let camera = { x: 0, y: 0, k: 1 }, animation = 0, toastTimer, miniTransform;
-  let drag = null, suppressClick = 0, dragDepth = 0, frame = 0;
+  let drag = null, suppressClick = 0, dragDepth = 0, frame = 0, cameraFrame = 0;
+  let areaSize = { width: 0, height: 0 };
   const pointers = new Map();
   const graph = $('graph'), area = $('map-area'), viewport = $('viewport');
   const nodeElements = new Map(), nodeAnnotations = new Map(), edgeElements = new Map();
@@ -45,7 +46,7 @@
       languagePack = nextPack; contentLanguage = code; switchContent(); toast(I.t('已加入 {language} 图谱版本。', { language: languageName(code) })); return;
     }
     const nextPack = await L.prepare(data), view = nextPack.data.view || {};
-    const requested = view.content_language || 'auto';
+    const requested = nextPack.models.has(view.content_language) ? view.content_language : 'auto';
     const next = nextPack.models.get(L.resolve(nextPack, requested, I.getLanguage()));
     const nextPositions = G.layout(next, view.positions);
     languagePack = nextPack; contentLanguage = requested; model = next; positions = nextPositions;
@@ -57,6 +58,9 @@
     inspectorTab = 'insight';
     $('status-filter').value = 'all'; $('search-input').value = ''; $('search-results').hidden = true;
     refreshHeader(); buildLanguageControl(); I.applyStatic(document); buildFilters(); render(); renderInspector(); fit(false);
+    const { width, height } = area.getBoundingClientRect(); areaSize = { width, height };
+    const missing = L.missingLanguages(languagePack);
+    if (missing.length) toast(I.t('图谱缺少完整语言版本：{languages}。请生成并导入翻译。', { languages: missing.join(', ') }));
   }
   function refreshHeader() {
     text('project-title', model.data.meta.title || T('知识探索地图'));
@@ -88,7 +92,6 @@
   }
   function switchContent() {
     cancelAnimationFrame(animation);
-    preserveViewUntil = Date.now() + 600;
     model = languagePack.models.get(L.resolve(languagePack, contentLanguage, I.getLanguage()));
     refreshHeader(); buildLanguageControl(); buildFilters(); render(); renderInspector();
   }
@@ -249,7 +252,11 @@
     if (n.id === model.root.id && (model.data.meta.warnings || []).length) container.append(el('details', { class: 'inspector-details' }, el('summary', {}, T(`导入说明 · ${model.data.meta.warnings.length}`)), ...model.data.meta.warnings.map(w => el('p', { class: 'importance-note' }, w))));
     container.append(el('div', { class: 'origin-id' }, `NODE / ${n.id}`, el('br'), T(`ORIGIN / ${(n.origin_ids || []).join(' · ') || T('原始问题')}`)));
   }
+  function scheduleCamera() {
+    if (!cameraFrame) cameraFrame = requestAnimationFrame(() => { cameraFrame = 0; updateCamera(); });
+  }
   function updateCamera() {
+    cancelAnimationFrame(cameraFrame); cameraFrame = 0;
     viewport.setAttribute('transform', `translate(${camera.x},${camera.y}) scale(${camera.k})`);
     const labelScale = Math.max(.7, Math.min(2.2, 1 / camera.k)), compact = camera.k < .82;
     graph.classList.toggle('lod-compact', compact);
@@ -261,7 +268,8 @@
       }
       const above = compact && positions.get(info.node.id).y < positions.get(model.root.id).y - 30;
       const offset = above ? -radius(info.node) - 16 - (info.lines - 1) * 16 * labelScale : info.offset;
-      info.element.setAttribute('transform', `translate(0,${offset}) scale(${labelScale})`);
+      const transform = `translate(0,${offset}) scale(${labelScale})`;
+      if (info.transform !== transform) { info.element.setAttribute('transform', transform); info.transform = transform; }
     }
     text('zoom-level', `${Math.round(camera.k * 100)}%`); graph.classList.toggle('lod-low', camera.k < .55); updateMiniViewport();
   }
@@ -280,10 +288,10 @@
     const k = Math.min(1.3, Math.max(.08, Math.min((rect.width - padX * 2) / b.width, (rect.height - padY) / b.height)));
     moveCamera({ k, x: rect.width / 2 - (b.x + b.width / 2) * k, y: rect.height * .47 - (b.y + b.height / 2) * k }, animate);
   }
-  function zoom(factor, point) {
+  function zoom(factor, point, defer = false) {
     cancelAnimationFrame(animation);
     const rect = area.getBoundingClientRect(), at = point || { x: rect.width / 2, y: rect.height / 2 }, k = Math.max(.08, Math.min(3.5, camera.k * factor));
-    camera = { x: at.x - (at.x - camera.x) * k / camera.k, y: at.y - (at.y - camera.y) * k / camera.k, k }; updateCamera();
+    camera = { x: at.x - (at.x - camera.x) * k / camera.k, y: at.y - (at.y - camera.y) * k / camera.k, k }; defer ? scheduleCamera() : updateCamera();
   }
   function localPoint(event) { const r = graph.getBoundingClientRect(); return { x: event.clientX - r.left, y: event.clientY - r.top }; }
   function worldPoint(event) { const p = localPoint(event); return { x: (p.x - camera.x) / camera.k, y: (p.y - camera.y) / camera.k }; }
@@ -303,7 +311,14 @@
     const right = Math.min(180, (rect.width - camera.x) / camera.k * k + x), bottom = Math.min(112, (rect.height - camera.y) / camera.k * k + y);
     box.setAttribute('x', left); box.setAttribute('y', top); box.setAttribute('width', Math.max(0, right - left)); box.setAttribute('height', Math.max(0, bottom - top));
   }
-  graph.addEventListener('wheel', event => { event.preventDefault(); zoom(Math.exp(-event.deltaY * (event.deltaMode === 1 ? .035 : .0014)), localPoint(event)); }, { passive: false });
+  // Normalize pixel/line/page devices, bound extreme deltas, and paint at most once per frame.
+  area.addEventListener('wheel', event => {
+    event.preventDefault();
+    if (!Number.isFinite(event.deltaY) || event.deltaY === 0) return;
+    const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? graph.clientHeight : 1;
+    const delta = Math.max(-240, Math.min(240, event.deltaY * unit));
+    zoom(Math.exp(-delta * .0014), localPoint(event), true);
+  }, { passive: false });
   graph.addEventListener('pointerdown', event => {
     if (event.button !== 0 || event.target.closest('a')) return;
     cancelAnimationFrame(animation); pointers.set(event.pointerId, localPoint(event));
@@ -319,13 +334,13 @@
     const p = localPoint(event); pointers.set(event.pointerId, p);
     if (drag.type === 'pinch' && pointers.size >= 2) {
       const [a, b] = [...pointers.values()], mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }, k = Math.max(.08, Math.min(3.5, drag.camera.k * Math.hypot(a.x - b.x, a.y - b.y) / (drag.distance || 1)));
-      camera = { k, x: mid.x - (drag.center.x - drag.camera.x) * k / drag.camera.k, y: mid.y - (drag.center.y - drag.camera.y) * k / drag.camera.k }; updateCamera(); return;
+      camera = { k, x: mid.x - (drag.center.x - drag.camera.x) * k / drag.camera.k, y: mid.y - (drag.center.y - drag.camera.y) * k / drag.camera.k }; scheduleCamera(); return;
     }
     if (drag.type === 'pinch') return;
     const dx = p.x - drag.start.x, dy = p.y - drag.start.y;
     if (Math.hypot(dx, dy) > 4) { drag.moved = true; graph.setPointerCapture(event.pointerId); graph.classList.add('dragging'); }
     if (!drag.moved) return;
-    if (drag.type === 'pan') { camera.x = drag.camera.x + dx; camera.y = drag.camera.y + dy; updateCamera(); }
+    if (drag.type === 'pan') { camera.x = drag.camera.x + dx; camera.y = drag.camera.y + dy; scheduleCamera(); }
     else { positions.set(drag.id, { x: drag.position.x + dx / camera.k, y: drag.position.y + dy / camera.k });
       if (!frame) frame = requestAnimationFrame(() => { frame = 0; updateGeometry(); }); }
   });
@@ -426,7 +441,19 @@
     } catch (error) { toast(T('当前文件模式无法打包外部资源。请运行 scripts/knowledge_map.py 生成独立 HTML，或通过本地服务打开。')); }
   }));
   let resizeFrame;
-  new ResizeObserver(() => { cancelAnimationFrame(resizeFrame); resizeFrame = requestAnimationFrame(() => { if (model) Date.now() < preserveViewUntil ? updateCamera() : fit(false); }); }).observe(area);
+  new ResizeObserver(() => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      const { width, height } = area.getBoundingClientRect(), previous = areaSize;
+      areaSize = { width, height };
+      if (!model || !width || !height || width === previous.width && height === previous.height) return;
+      // Keep the same world point at the center when panels or the window resize.
+      if (previous.width && previous.height) {
+        camera.x += (width - previous.width) / 2; camera.y += (height - previous.height) / 2;
+      }
+      updateCamera();
+    });
+  }).observe(area);
   document.querySelectorAll('[data-ui-lang]').forEach(button => button.addEventListener('click', () => changeInterfaceLanguage(button.dataset.uiLang)));
   $('content-language').onchange = event => { contentLanguage = event.target.value; switchContent(); };
   $('run-settings-button').onclick = () => { window.NoemorphSettings.mount($('run-dialog-form'), { question: languagePack.data.graphs[0].meta.question || model.root.label, macro_rounds: model.data.meta.rounds || 3, ui_language: I.getLanguage() }); $('run-dialog').showModal(); };

@@ -6,6 +6,8 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   const pairs = [
+    ['英语（必选）','English (required)'],
+    ['图谱缺少完整语言版本：{languages}。请生成并导入翻译。','Complete graph language versions are missing: {languages}. Generate and import the translations.'],
     ['研究范围与排除项','Scope and exclusions'],['可选：允许扩展的范围、必须排除的主题或限制条件','Optional: allowed expansion, excluded topics, or constraints'],
     ['Noemorph 首页','Noemorph home'],['中文界面','Chinese interface'],['工作空间','Workspace'],['知识图谱','Knowledge map'],['知识探索地图','Knowledge atlas'],
     ['每一个发现，','Every discovery,'],['都是新的起点。','a new beginning.'],

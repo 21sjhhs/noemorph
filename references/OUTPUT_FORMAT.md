@@ -40,3 +40,5 @@ Follow preserved `references/07-report.md`: synthesis, complete map, full catalo
 Keep typed bridge relations and limits. Separate established findings from inferred links and open questions. State actual completed rounds, execution mode and missing capabilities. Show all branches in the complete graph, prioritize major nodes initially, and keep per-node source/file jump buttons.
 
 The UI's Chinese/English controls change interface text. Content language selects an existing graph version or follows the interface. Translation happens only after the source graph is frozen and uses actual independent translation workers when possible. Language tags, fingerprint checks and structure protection prevent attaching a translation to the wrong source; they do not prove translation accuracy. See `references/11-language-variants.md` for the executable binding/export commands.
+
+English is mandatory for every final graph delivery, together with the other requested content languages. Before claiming completion, apply the final language-delivery gate in `references/11-language-variants.md`; an incomplete-language preview is not a completed delivery.

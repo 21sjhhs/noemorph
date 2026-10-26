@@ -57,6 +57,36 @@ test('UI localization covers templates and switches back without changing data',
 });
 test('run settings capture final language choices without constraining research', () => {
   const c=C.validate({question:'Q',ui_language:'en',presentation_languages:['zh-CN'],max_parallel_agents:2});
-  assert.equal(c.ui_language,'en');assert.deepEqual(c.presentation_languages,['zh-CN']);assert.equal(c.research_language_policy,'unconstrained');
+  assert.equal(c.ui_language,'en');assert.deepEqual(c.presentation_languages,['zh-CN','en']);assert.equal(c.research_language_policy,'unconstrained');
   for(const patch of [{logical_roles:2},{max_parallel_agents:6},{presentation_languages:[]},{schema_version:'other'}]) assert.throws(()=>C.validate({question:'Q',...patch}));
+});
+
+test('English is always included in legacy and custom configuration choices', () => {
+  assert.deepEqual(C.validate({question:'Q',presentation_languages:['ja']}).presentation_languages,['ja','en']);
+  assert.deepEqual(C.validate({question:'Q',presentation_languages:['en','en']}).presentation_languages,['en']);
+});
+test('legacy mixed content is labeled as source, never as a complete translation', async () => {
+  const graph = originalBundle().graphs[0];
+  graph.nodes[0].details = { note: 'This entire sentence was left untranslated in the Chinese language graph.', typed_queries:['Original Query(S,P)?'] };
+  assert.deepEqual(L.languageIssues(graph), ['nodes.0.details.note']);
+  const pack = await L.prepare(graph);
+  assert.deepEqual([...pack.models.keys()],['und']);
+  assert.deepEqual(L.missingLanguages(pack),['en']);
+});
+test('a bound English version with untranslated Chinese is rejected', async () => {
+  const data = originalBundle(); data.graphs[1].nodes[0].summary='中文原文没有翻译';
+  await assert.rejects(L.prepare(data), /display text/);
+});
+
+test('edge prose is translated while evidence codes and complete URLs stay protected', () => {
+  const source = originalBundle().graphs[0], translated = JSON.parse(JSON.stringify(source));
+  source.edges[0].details = {evidence:'只支持这一批次。',direct_url:'https://example.org/a/very/long/url/that/is/a/reference',status:'supported_with_limits'};
+  translated.edges[0].details = {...source.edges[0].details,evidence:'Supports this batch only.'};
+  assert.equal(L.lockedProjection(source),L.lockedProjection(translated));
+  translated.edges[0].details.direct_url='https://elsewhere.example/ref';
+  assert.notEqual(L.lockedProjection(source),L.lockedProjection(translated));
+  translated.edges[0].details = {...source.edges[0].details,evidence:'inferred'};
+  source.edges[0].details.evidence='supported_with_limits';
+  assert.notEqual(L.lockedProjection(source),L.lockedProjection(translated));
+  assert.deepEqual(L.languageIssues(source),[]);
 });

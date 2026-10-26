@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from graph_languages import (canonical, fingerprint, make_bundle, stamp_translation,
-                             validate_bundle, validate_translation)
+                             validate_bundle, validate_translation, language_issues)
 from knowledge_map import main as export_map, render_html
 from run_card import DEFAULTS, portable_prompt, render_card, save_config, validate_config
 
@@ -66,6 +66,50 @@ class LanguagesTests(unittest.TestCase):
         original['meta']['question'] += '修订'
         self.assertNotEqual(fingerprint(original), first)
 
+    def test_incomplete_translation_is_rejected_even_with_valid_structure(self):
+        translated = translated_graph()
+        translated['nodes'][0]['summary'] = '这段中文还没有翻译。'
+        with self.assertRaisesRegex(ValueError, '展示文字'):
+            stamp_translation(source_graph(), translated, 'test')
+        mixed = source_graph()
+        mixed['nodes'][0]['details']['note'] = 'This entire sentence was left untranslated in the Chinese language graph.'
+        self.assertEqual(language_issues(mixed), ['nodes.0.details.note'])
+
+    def test_final_export_requires_english_even_without_a_config_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory); source = folder / 'source.json'; output = folder / 'map.html'
+            source.write_text(json.dumps(source_graph()))
+            self.assertEqual(export_map(['--input', str(source), '--output', str(output)]), 2)
+            self.assertFalse(output.exists())
+            self.assertEqual(export_map(['--input', str(source), '--output', str(output), '--allow-incomplete-languages']), 0)
+
+    def test_embedded_configuration_is_checked_when_no_config_flag_is_supplied(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory); source = folder / 'source.json'; output = folder / 'map.html'
+            graph = translated_graph(); graph['run_config'] = validate_config({'question':'Q', 'presentation_languages':['ja']})
+            source.write_text(json.dumps(graph))
+            self.assertEqual(export_map(['--input', str(source), '--output', str(output)]), 2)
+            self.assertFalse(output.exists())
+
+    def test_edge_prose_translates_but_evidence_enums_and_reference_urls_are_locked(self):
+        original = source_graph(); translated = translated_graph()
+        original['edges'] = [{'id':'e','source':'q','target':'q','label':'关联','kind':'related',
+            'details':{'from':'原始材料','evidence':'只支持这一批次。','status':'supported_with_limits',
+                       'direct_url':'https://example.org/a/very/long/url/that/is/a/reference'}}]
+        translated['edges'] = copy.deepcopy(original['edges'])
+        translated['edges'][0]['label'] = 'Related'
+        translated['edges'][0]['details'].update({'from':'Source material','evidence':'Supports this batch only.'})
+        stamp_translation(original, translated, 'test')
+        for key in ['direct_url','status']:
+            changed = copy.deepcopy(translated); changed['edges'][0]['details'][key] = 'changed'
+            with self.assertRaises(ValueError): stamp_translation(original, changed, 'test')
+        original['edges'][0]['details']['evidence'] = 'supported_with_limits'
+        translated['edges'][0]['details']['evidence'] = 'inferred'
+        with self.assertRaises(ValueError): stamp_translation(original, translated, 'test')
+        chinese = source_graph()
+        chinese['nodes'][0]['details']['refs'] = ['https://example.org/a/very/long/url/that/is/a/reference']
+        self.assertEqual(language_issues(chinese), [])
+
     def test_numeric_encoding_handles_scientific_notation(self):
         self.assertEqual(canonical(1), canonical(1.0))
         self.assertEqual(canonical(1e-6), 'n3eb0c6f7a0b5ed8d')
@@ -83,16 +127,18 @@ class LanguagesTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             folder=Path(directory); original=source_graph(); translated=stamp_translation(original, translated_graph(),'test')
             src=folder/'graph.json'; target=folder/'graph.en.json'
+            original['view'] = {'positions':{'q':{'x':12,'y':24}},'content_language':'auto'}
             src.write_text(json.dumps(original)); target.write_text(json.dumps(translated)); before=src.read_bytes()
             code=export_map(['--input',str(src),'--translation',str(target),'--output',str(folder/'map.html'),'--default-language','en'])
             self.assertEqual(code,0); self.assertEqual(src.read_bytes(),before)
             bundle=json.loads((folder/'map.graph.json').read_text()); self.assertEqual(bundle['default_language'],'en')
+            self.assertEqual(bundle['view'], original['view'])
 
 
 class ConfigTests(unittest.TestCase):
     def test_interface_and_presentation_languages_are_independent(self):
         config=validate_config({'question':'Q','macro_rounds':4,'ui_language':'en','presentation_languages':['zh-CN'],'max_parallel_agents':2})
-        self.assertEqual(config['presentation_languages'],['zh-CN'])
+        self.assertEqual(config['presentation_languages'],['zh-CN','en'])
         self.assertEqual(config['research_language_policy'],'unconstrained')
         self.assertEqual(config['logical_roles'],5)
 

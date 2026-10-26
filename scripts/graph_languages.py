@@ -12,7 +12,7 @@ LANGUAGE_TAG = re.compile(r"^[A-Za-z]{2,8}(?:-[A-Za-z0-9]{1,8})*$")
 META_TEXT = {"title", "question", "description", "provenance"}
 NODE_TEXT = {"label", "summary", "next_question", "evidence_note"}
 PROTECTED_DETAIL_KEYS = {"id", "ids", "origin_ids", "anchor_ids", "typed_queries", "formal_logic",
-                         "source", "target", "parent_id", "url", "href", "path", "evidence", "role", "type"}
+                         "source", "target", "parent_id", "url", "direct_url", "doi", "href", "path", "evidence", "role", "type"}
 LANGUAGE_META = {"language", "language_label", "translation"}
 
 
@@ -61,12 +61,22 @@ def is_display_text(path):
             return True
         if path[2] == "details":
             return not any(key in PROTECTED_DETAIL_KEYS for key in path[3:])
+    if len(path) >= 3 and path[0] == "edges" and path[2] == "details":
+        protected = (PROTECTED_DETAIL_KEYS - {"evidence"}) | {"status", "relation", "relation_type"}
+        return not any(key in protected for key in path[3:])
     return len(path) == 3 and path[0] == "edges" and path[2] == "label"
+
+
+def is_display_value(value, path):
+    return (isinstance(value, str) and bool(value.strip()) and is_display_text(path)
+            and not re.fullmatch(r"https?://\S+", value)
+            and not (path[-1:] == ("evidence",) and value in {
+                "verified_direct", "supported_with_limits", "inferred", "unresolved", "contradicted"}))
 
 
 def locked_projection(graph):
     def walk(value, path=()):
-        if isinstance(value, str) and value.strip() and is_display_text(path):
+        if is_display_value(value, path):
             return {"$display_text": True}
         if isinstance(value, dict):
             return {k: walk(v, path + (k,)) for k, v in value.items()}
@@ -76,8 +86,38 @@ def locked_projection(graph):
     return walk(stripped(graph))
 
 
+
+def language_issues(graph):
+    """Conservative script/sentence audit, not semantic language detection."""
+    language = language_tag(graph.get("meta", {}).get("language", "und")).split("-")[0]
+    issues = []
+    def walk(value, path=()):
+        if is_display_value(value, path):
+            han = bool(re.search(r"[\u3400-\u9fff]", value))
+            words = re.findall(r"[A-Za-z]+(?:['’-][A-Za-z]+)*", value)
+            if language == "en" and han or language == "zh" and not han and len(words) >= 8:
+                issues.append(".".join(path))
+        elif isinstance(value, dict):
+            for key, child in value.items(): walk(child, path + (key,))
+        elif isinstance(value, list):
+            for index, child in enumerate(value): walk(child, path + (str(index),))
+    walk(graph)
+    return issues
+
+
+def require_complete_language(graph):
+    issues = language_issues(graph)
+    if issues:
+        raise ValueError("图谱语言声明与展示文字不一致（" + graph["meta"]["language"] + "）：" + ", ".join(issues[:5]) + "；请完整翻译，混合原始记录请声明 und")
+
+
+def missing_languages(requested, available):
+    return [code for code in dict.fromkeys([*requested, "en"])
+            if not any(code == actual or code == "en" and actual.startswith("en-") for actual in available)]
+
 def validate_translation(source, translated, require_binding=True):
     target = language_tag(translated.get("meta", {}).get("language"))
+    require_complete_language(translated)
     if target == "und":
         raise ValueError("翻译版本不能声明为未指定语言 und")
     if locked_projection(source) != locked_projection(translated):

@@ -150,12 +150,12 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(handler.respond.call_args[0][0],403)
         handler.server.shutdown.assert_not_called()
 
-    def test_single_language_export_keeps_independent_ui_preference(self):
+    def test_explicit_source_preview_keeps_independent_ui_preference(self):
         source=json.loads((ROOT/'examples/demo.graph.json').read_text())
         original=self.save(source)
         config=self.save(validate_config({'question':'Q?','ui_language':'en','presentation_languages':['zh-CN']}))
         output=self.folder/'single.html'
-        self.assertEqual(export_map(['--input',str(original),'--config',str(config),'--output',str(output)]),0)
+        self.assertEqual(export_map(['--input',str(original),'--config',str(config),'--output',str(output),'--allow-incomplete-languages']),0)
         exported=json.loads(output.with_suffix('.graph.json').read_text())
         self.assertEqual(exported['view']['ui_language'],'en')
         self.assertEqual(exported['meta']['language'],'zh-CN')

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Coalesce wheel zoom updates per animation frame, normalize wheel units, support map overlays, and retain zoom when the viewport resizes.
+- Require English in final graph deliveries, validate complete requested language versions, and distinguish incomplete source previews from completed output.
+- Extend translation checks to node/edge prose, protect reference URLs and evidence codes, preserve saved graph views, and add explicit Skill language-delivery review requirements.
+
 - Lead both READMEs with the project promise, use cases, example request, map preview, and quick start.
 - Add `llms.txt` and clearer project metadata for readers and retrieval tools.
 - Use Noemorph names throughout documentation, browser APIs, configuration, and generated examples.

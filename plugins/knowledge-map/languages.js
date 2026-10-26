@@ -5,7 +5,7 @@
   else root.NoemorphLanguages = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (G) {
   'use strict';
-  const protectedKeys = new Set(['id','ids','origin_ids','anchor_ids','typed_queries','formal_logic','source','target','parent_id','url','href','path','evidence','role','type']);
+  const protectedKeys = new Set(['id','ids','origin_ids','anchor_ids','typed_queries','formal_logic','source','target','parent_id','url','direct_url','doi','href','path','evidence','role','type']);
   const metadata = new Set(['language','language_label','translation']);
   const metaText = new Set(['title','question','description','provenance']);
   const nodeText = new Set(['label','summary','next_question','evidence_note']);
@@ -41,22 +41,51 @@
       if (p.length === 5 && p[2] === 'links' && ['label','note'].includes(p[4])) return true;
       if (p[2] === 'details') return !p.slice(3).some(k => protectedKeys.has(k));
     }
+    if (p.length >= 3 && p[0] === 'edges' && p[2] === 'details') {
+      const protectedEdgeKeys = new Set([...protectedKeys].filter(k => k !== 'evidence').concat(['status','relation','relation_type']));
+      return !p.slice(3).some(k => protectedEdgeKeys.has(k));
+    }
     return p.length === 3 && p[0] === 'edges' && p[2] === 'label';
+  }
+  function displayValue(value, path) {
+    return typeof value === 'string' && !!value.trim() && displayText(path) && !/^https?:\/\/\S+$/.test(value)
+      && !(path.at(-1) === 'evidence' && ['verified_direct','supported_with_limits','inferred','unresolved','contradicted'].includes(value));
   }
   function lockedProjection(graph) {
     function walk(value, path) {
-      if (typeof value === 'string' && value.trim() && displayText(path)) return { $display_text: true };
+      if (displayValue(value, path)) return { $display_text: true };
       if (Array.isArray(value)) return value.map((v, i) => walk(v, [...path, String(i)]));
       if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, walk(v, [...path, k])]));
       return value;
     }
     return canonical(walk(stripped(graph), []));
   }
+  function languageIssues(graph) {
+    const language = tag(graph.meta?.language || 'und').split('-')[0], issues = [];
+    function walk(value, path = []) {
+      if (displayValue(value, path)) {
+        const han = /[\u3400-\u9fff]/.test(value), words = value.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*/g) || [];
+        if (language === 'en' && han || language === 'zh' && !han && words.length >= 8) issues.push(path.join('.'));
+      } else if (Array.isArray(value)) value.forEach((v, i) => walk(v, [...path, String(i)]));
+      else if (value && typeof value === 'object') Object.entries(value).forEach(([k, v]) => walk(v, [...path, k]));
+    }
+    walk(graph); return issues;
+  }
+  function missingLanguages(pack) {
+    const requested = [...new Set([...(pack.data.run_config?.presentation_languages || []), 'en'])];
+    return requested.filter(code => ![...pack.models.keys()].some(actual => code === actual || code === 'en' && actual.startsWith('en-')));
+  }
   async function prepare(input) {
     const data = JSON.parse(JSON.stringify(input));
     const bundled = data.bundle_version === '1.0';
     const graphs = bundled ? data.graphs : [data];
     if (!Array.isArray(graphs) || !graphs.length) throw new Error('The language bundle has no graphs.');
+    const sourceIssues = languageIssues(graphs[0]);
+    if (sourceIssues.length) {
+      const previousLanguage = tag(graphs[0].meta.language || 'und');
+      graphs[0].meta.language = 'und'; delete graphs[0].meta.language_label;
+      if (bundled && data.default_language === previousLanguage) data.default_language = 'und';
+    }
     const models = new Map();
     for (const graph of graphs) {
       G.normalize(graph);
@@ -68,6 +97,7 @@
     if (bundled && data.source_fingerprint !== hash) throw new Error('The language bundle does not match its source fingerprint.');
     for (const translated of graphs.slice(1)) {
       const info = translated.meta.translation;
+      if (languageIssues(translated).length) throw new Error('Graph language does not match its display text: ' + translated.meta.language);
       if (translated.meta.language === 'und' || lockedProjection(translated) !== projection) throw new Error('Translation changed graph structure, IDs, URLs, or evidence.');
       if (!info || info.source_fingerprint !== hash || info.target_language !== translated.meta.language || typeof info.translator !== 'string' || !info.translator.trim()) throw new Error('Translation is not bound to this source graph.');
     }
@@ -84,5 +114,5 @@
     }
     return pack.data.default_language;
   }
-  return { tag, canonical, stripped, fingerprint, lockedProjection, prepare, resolve };
+  return { tag, canonical, stripped, fingerprint, lockedProjection, languageIssues, missingLanguages, prepare, resolve };
 });

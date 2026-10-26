@@ -37,3 +37,6 @@ Build a local installable archive with `python3 scripts/package_skill.py --outpu
 The equivalent specification checker is deliberately limited to the flat plain-string YAML used here; the official `skills-ref` validator or a full YAML parser is needed to validate other frontmatter forms. Common secret patterns are scanned with redacted output. That scan cannot prove arbitrary secrets or copyrighted text are absent; review new assets and data as well.
 
 Native client discovery, independent model behavior, online source support and performance require separate integration/behavioral tests. A two-round synthetic ledger run proves stage/round handling, not recursive scientific discovery. Report only completed checks in `QA_REPORT.md`.
+
+
+Viewer browser regression is optional and requires Playwright plus local Chrome: `node tests/viewer.browser.cjs [standalone.html] [screenshot.png]`. It exercises wheel batching, zoom boundaries, overlays, resize, content-language switching and the mandatory English setting. Private fixtures/screenshots belong outside the release tree.
